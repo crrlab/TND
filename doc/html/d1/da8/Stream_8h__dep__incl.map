@@ -1,0 +1,24 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dd/d8c/Stream_8cpp.html" title="src/stream/Stream.cpp" alt="" coords="104,83,275,112"/>
+<area shape="rect" id="node5" href="$d8/d4a/Streaming_8h.html" title="src/stream/Streaming.h" alt="" coords="299,83,472,112"/>
+<area shape="rect" id="node9" href="$d6/dcd/VideoCamStorage_8h.html" title="src/stream/VideoCamStorage.h" alt="" coords="496,83,720,112"/>
+<area shape="rect" id="node17" href="$df/d6a/VideoCamUDP_8h.html" title="src/stream/VideoCamUDP.h" alt="" coords="795,83,992,112"/>
+<area shape="rect" id="node21" href="$d0/dd2/VideoOutput_8h.html" title="src/stream/VideoOutput.h" alt="" coords="1133,83,1320,112"/>
+<area shape="rect" id="node7" href="$d6/d1b/Streaming_8cpp.html" title="src/stream/Streaming.cpp" alt="" coords="5,160,195,189"/>
+<area shape="rect" id="node11" href="$d7/d97/3main-storage_8cpp.html" title="src/3main&#45;storage.cpp" alt="" coords="699,160,864,189"/>
+<area shape="rect" id="node13" href="$d5/de7/StorageAgent_8cpp.html" title="src/apps/StorageAgent.cpp" alt="" coords="219,160,413,189"/>
+<area shape="rect" id="node15" href="$dd/d63/VideoCamStorage_8cpp.html" title="src/stream/VideoCamStorage.cpp" alt="" coords="437,160,675,189"/>
+<area shape="rect" id="node19" href="$d7/d85/VideoCamUDP_8cpp.html" title="src/stream/VideoCamUDP.cpp" alt="" coords="888,160,1101,189"/>
+<area shape="rect" id="node23" href="$d4/d3c/DeviceContainer_8h.html" title="src/gui/DeviceContainer.h" alt="" coords="1352,160,1536,189"/>
+<area shape="rect" id="node46" href="$d9/de3/VideoOutput_8cpp.html" title="src/stream/VideoOutput.cpp" alt="" coords="1125,160,1328,189"/>
+<area shape="rect" id="node25" href="$db/d63/DeviceCollection_8h.html" title="src/gui/DeviceCollection.h" alt="" coords="965,237,1149,267"/>
+<area shape="rect" id="node33" href="$d4/d83/Frontend_8cpp.html" title="src/gui/Frontend.cpp" alt="" coords="1252,392,1401,421"/>
+<area shape="rect" id="node39" href="$d9/d58/DeviceContainer_8cpp.html" title="src/gui/DeviceContainer.cpp" alt="" coords="1345,237,1543,267"/>
+<area shape="rect" id="node41" href="$d0/d99/DeviceContainer_8moc_8cpp.html" title="src/gui/DeviceContainer.moc.cpp" alt="" coords="1567,237,1796,267"/>
+<area shape="rect" id="node44" href="$db/d4f/qvideowidget_8cpp.html" title="src/gui/qvideowidget.cpp" alt="" coords="1820,237,1999,267"/>
+<area shape="rect" id="node27" href="$db/d58/DeviceCollection_8cpp.html" title="src/gui/DeviceCollection.cpp" alt="" coords="873,315,1073,344"/>
+<area shape="rect" id="node29" href="$d0/d2a/DeviceCollection_8moc_8cpp.html" title="src/gui/DeviceCollection.moc.cpp" alt="" coords="617,315,849,344"/>
+<area shape="rect" id="node31" href="$d0/d1b/Frontend_8h.html" title="src/gui/Frontend.h" alt="" coords="1097,315,1233,344"/>
+<area shape="rect" id="node35" href="$dc/dc4/Frontend_8moc_8cpp.html" title="src/gui/Frontend.moc.cpp" alt="" coords="860,392,1041,421"/>
+<area shape="rect" id="node37" href="$d7/de4/main-frontend_8cpp.html" title="src/main&#45;frontend.cpp" alt="" coords="1065,392,1228,421"/>
+</map>

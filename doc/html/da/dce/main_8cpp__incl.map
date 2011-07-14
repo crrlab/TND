@@ -1,0 +1,29 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d9/d3f/NetworkVideoTransmitter_8h.html" title="onvif/NetworkVideoTransmitter.h" alt="" coords="1383,315,1610,344"/>
+<area shape="rect" id="node36" href="$db/d20/CoreServer_8h.html" title="apps/CoreServer.h" alt="" coords="933,237,1071,267"/>
+<area shape="rect" id="node86" href="$d6/d17/onvifdefs_8h.html" title="onvif/onvifdefs.h" alt="" coords="1629,83,1754,112"/>
+<area shape="rect" id="node11" href="$d1/d55/Command_8h.html" title="patterns/Command.h" alt="" coords="1873,392,2030,421"/>
+<area shape="rect" id="node13" href="$db/de8/Subject_8h.html" title="patterns/Subject.h" alt="" coords="1794,469,1933,499"/>
+<area shape="rect" id="node21" href="$d4/dfa/DeviceProxy_8h.html" title="observers/DeviceProxy.h" alt="" coords="1571,392,1747,421"/>
+<area shape="rect" id="node29" href="$d4/df3/Profile_8h.html" title="Profile.h" alt="" coords="1425,392,1497,421"/>
+<area shape="rect" id="node15" href="$d8/df1/Observer_8h.html" title="Observer.h" alt="" coords="1678,547,1769,576"/>
+<area shape="rect" id="node23" href="$d5/d84/RemoteProxy_8h.html" title="RemoteProxy.h" alt="" coords="1571,469,1686,499"/>
+<area shape="rect" id="node38" href="$d4/d1c/Application_8h.html" title="Application.h" alt="" coords="778,315,882,344"/>
+<area shape="rect" id="node76" href="$dc/d36/AgentProxy_8h.html" title="AgentProxy.h" alt="" coords="950,392,1054,421"/>
+<area shape="rect" id="node83" href="$da/d9f/SMCserverService_8h.html" title="soap/SMCserverService.h" alt="" coords="229,315,413,344"/>
+<area shape="rect" id="node46" href="$d3/d3e/SMCagentService_8h.html" title="../soap/SMCagentService.h" alt="" coords="30,392,225,421"/>
+<area shape="rect" id="node54" href="$d7/dbb/CoreServerProxy_8h.html" title="observers/CoreServerProxy.h" alt="" coords="531,392,737,421"/>
+<area shape="rect" id="node48" href="$d3/d2c/SMCH_8h.html" title="SMCH.h" alt="" coords="55,547,127,576"/>
+<area shape="rect" id="node50" href="$d3/d45/SMCStub_8h.html" title="SMCStub.h" alt="" coords="45,624,138,653"/>
+<area shape="rect" id="node70" href="$d8/d38/SMCserverProxy_8h.html" title="soap/SMCserverProxy.h" alt="" coords="67,469,238,499"/>
+<area shape="rect" id="node79" href="$d2/d29/SMCagentProxy_8h.html" title="soap/SMCagentProxy.h" alt="" coords="1051,469,1219,499"/>
+<area shape="rect" id="node88" href="$d0/d51/GetDeviceInformation_8h.html" title="GetDeviceInformation.h" alt="" coords="2165,160,2338,189"/>
+<area shape="rect" id="node100" href="$d0/dc2/SystemReboot_8h.html" title="SystemReboot.h" alt="" coords="1861,160,1986,189"/>
+<area shape="rect" id="node103" href="$df/d0e/GetProfiles_8h.html" title="GetProfiles.h" alt="" coords="1567,160,1669,189"/>
+<area shape="rect" id="node111" href="$df/d31/GetCapabilities_8h.html" title="GetCapabilities.h" alt="" coords="2010,160,2141,189"/>
+<area shape="rect" id="node114" href="$d9/d8b/GetVideoSources_8h.html" title="GetVideoSources.h" alt="" coords="1693,160,1837,189"/>
+<area shape="rect" id="node117" href="$db/d83/GetStreamUri_8h.html" title="GetStreamUri.h" alt="" coords="1421,160,1543,189"/>
+<area shape="rect" id="node90" href="$de/d7d/DeviceRequest_8h.html" title="DeviceRequest.h" alt="" coords="1917,237,2045,267"/>
+<area shape="rect" id="node92" href="$d2/d3f/Request_8h.html" title="Request.h" alt="" coords="1909,315,1994,344"/>
+<area shape="rect" id="node105" href="$d2/da4/MediaRequest_8h.html" title="MediaRequest.h" alt="" coords="1645,237,1767,267"/>
+</map>

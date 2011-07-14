@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>StreamingMediaCenter-1.0:  File sorgente src/stream/StorageFile.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generato da Doxygen 1.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="../../main.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespace</span></a></li>
+      <li><a href="../../annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="../../files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="../../globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>src/stream/StorageFile.h</h1>  </div>
+</div>
+<div class="contents">
+<a href="../../dc/d90/StorageFile_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * StorageFile.h</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 25/mar/2011</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: paperboy</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#ifndef STORAGEFILE_H_</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define STORAGEFILE_H_</span>
+<a name="l00010"></a>00010 <span class="preprocessor"></span><span class="preprocessor">#include &lt;glib.h&gt;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;gst/gst.h&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00013"></a>00013 <span class="keyword">namespace </span>SMC {
+<a name="l00014"></a>00014 
+<a name="l00015"></a><a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html">00015</a> <span class="keyword">class </span><a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html">StorageFile</a> {
+<a name="l00016"></a><a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a4306f334b44bcd09f4a73532c7192aff">00016</a>     GstElement* <a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a4306f334b44bcd09f4a73532c7192aff">pipeline</a>;
+<a name="l00017"></a><a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a465d424abb362d3ee1beeea5ac4d46e6">00017</a>     std::string <a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a465d424abb362d3ee1beeea5ac4d46e6">uri</a>;
+<a name="l00018"></a><a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#af9ec683bd46bcf7bd1b21b5d6653d2fe">00018</a>     std::string <a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#af9ec683bd46bcf7bd1b21b5d6653d2fe">file</a>;
+<a name="l00019"></a><a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a95c2655724af53a12cee7bb53a7a9ac7">00019</a>     std::string <a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a95c2655724af53a12cee7bb53a7a9ac7">launch</a>;
+<a name="l00020"></a>00020 <span class="keyword">public</span>:
+<a name="l00021"></a><a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a69aa3e37961b2f6fdeedef90996fc7ed">00021</a>     <a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a69aa3e37961b2f6fdeedef90996fc7ed">StorageFile</a>() {
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023     }
+<a name="l00024"></a>00024     <span class="keyword">virtual</span> <a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#adc7537bcf30facce3abced8a8291345d">~StorageFile</a>();
+<a name="l00025"></a><a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#adcb472ef49cf644a1d7d5c524c9da8b8">00025</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#adcb472ef49cf644a1d7d5c524c9da8b8">run</a>(){
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027         <a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a95c2655724af53a12cee7bb53a7a9ac7">launch</a> = <span class="stringliteral">&quot;rtspsrc location=&quot;</span>+<a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a465d424abb362d3ee1beeea5ac4d46e6">uri</a>+<span class="stringliteral">&quot; ! decodebin2 ! clockoverlay auto-resize=false shaded-background=true&quot;</span>
+<a name="l00028"></a>00028                 <span class="stringliteral">&quot;! filesink location=&quot;</span>+<a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#af9ec683bd46bcf7bd1b21b5d6653d2fe">file</a>;
+<a name="l00029"></a>00029         this-&gt;<a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a4306f334b44bcd09f4a73532c7192aff">pipeline</a> = gst_parse_launch(<a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a95c2655724af53a12cee7bb53a7a9ac7">launch</a>.c_str(),NULL);
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031         GstStateChangeReturn sret = gst_element_set_state(<a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a4306f334b44bcd09f4a73532c7192aff">pipeline</a>,
+<a name="l00032"></a>00032                             GST_STATE_PLAYING);
+<a name="l00033"></a>00033                     g_print(<span class="stringliteral">&quot;Running...\n&quot;</span>);
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035     }
+<a name="l00036"></a><a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a4d0ff1c76913da69bb4325c75d5bc6f5">00036</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a4d0ff1c76913da69bb4325c75d5bc6f5">setUri</a>(std::string a){
+<a name="l00037"></a>00037         this-&gt;<a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a465d424abb362d3ee1beeea5ac4d46e6">uri</a> =a;
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042     }
+<a name="l00043"></a><a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a6f461ed6bed20b406a56454c63b974ba">00043</a>     <span class="keyword">virtual</span> std::string <a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a6f461ed6bed20b406a56454c63b974ba">getUri</a>(){
+<a name="l00044"></a>00044         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a465d424abb362d3ee1beeea5ac4d46e6">uri</a>;
+<a name="l00045"></a>00045     }
+<a name="l00046"></a><a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a13075e59a041fdd5a03c3cb2df4a4282">00046</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#a13075e59a041fdd5a03c3cb2df4a4282">setFile</a>(std::string a){
+<a name="l00047"></a>00047         this-&gt;<a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#af9ec683bd46bcf7bd1b21b5d6653d2fe">file</a>=a;
+<a name="l00048"></a>00048     }
+<a name="l00049"></a>00049 
+<a name="l00050"></a><a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#acf179dbe719b85d9f11c9fe0edead63c">00050</a>     <span class="keyword">virtual</span> std::string <a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#acf179dbe719b85d9f11c9fe0edead63c">getFile</a>(){
+<a name="l00051"></a>00051         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d3/dc6/classSMC_1_1StorageFile.html#af9ec683bd46bcf7bd1b21b5d6653d2fe">file</a>;
+<a name="l00052"></a>00052     }
+<a name="l00053"></a>00053 };
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055 }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="preprocessor">#endif </span><span class="comment">/* STORAGEFILE_H_ */</span>
+</pre></div></div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generato il Sat Apr 2 2011 21:25:41 per StreamingMediaCenter-1.0 da&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

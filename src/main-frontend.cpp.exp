@@ -1,0 +1,201 @@
+/*
+ * main-frontend.cpp
+ *
+ *  Created on: 13/gen/2011
+ *      Author: Mario Giustiniani
+ */
+//#include <QtUiTools/QtUiTools>
+//#include <QtGui/QtGui>
+//#include <QtCore/QCoreApplication>
+//#include <QtGui/QApplication>
+//#include  <gst/gst.h>
+//#include <gst/interfaces/xoverlay.h>
+//#include <iostream>
+//
+//int main(int argc, char *argv[])
+//{
+//    QApplication a(argc, argv);
+//    QUiLoader loader;
+//
+//    QFile file("src/gui/frontend.ui");
+//
+//
+//    file.open(QFile::ReadOnly);
+//    QWidget *formWidget = loader.load(&file);
+//    file.close();
+//
+//    QFrame *mainVideo;
+//    //mainVideo = formWidget->findChild<QWidget*>("Frame_2");
+//    QList<QFrame *> list = formWidget->findChildren<QFrame *> ();
+//
+//    std::cout << list.size() << std::endl;
+//
+//   // while (!list.isEmpty())
+//  //  {
+//    list.takeFirst();
+//    list.takeFirst();
+//    list.takeFirst();
+//    mainVideo = list.takeFirst();
+//    formWidget->show();
+//
+//   //std::cout << "WinID:"<<mainVideo->objectName();
+////delete mainVideo;
+//   // delete list.takeFirst();
+//   // }
+//   // ui_inputSpinBox2 = qFindChild<QSpinBox*>(this, "inputSpinBox2");
+//   // ui_outputWidget = qFindChild<QLabel*>(this, "outputWidget");
+//
+//
+//  //  QVBoxLayout *layout = new QVBoxLayout;
+//  //  layout->addWidget(formWidget);
+//  //  setLayouQList<QWidget *> list = layout -> findChildren<QWidget *> ();
+//
+//
+//   // setWindowTitle(tr("Calculator Builder"));
+//
+// //   gst_init (NULL,NULL);
+//
+//    GstElement *bin = gst_pipeline_new ("pipeline");
+//    g_assert(bin);
+//
+//    GstElement *testSrc = gst_element_factory_make("videotestsrc", "source");
+//    g_assert(testSrc);
+//
+//    GstElement *videoOut = gst_element_factory_make("autovideosink", "video out");
+//    g_assert(videoOut);
+//
+//    gst_bin_add_many(GST_BIN(bin), testSrc, videoOut, NULL);
+//    gst_element_link_many(testSrc, videoOut, NULL);
+//    QApplication::syncX();
+//   gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(videoOut),mainVideo->winId());
+//
+//    gst_element_set_state(GST_ELEMENT(bin), GST_STATE_PLAYING);
+//
+//    return a.exec();
+//}
+
+#include <glib.h>
+#include <gst/gst.h>
+#include <gst/interfaces/xoverlay.h>
+#include <QApplication>
+#include <QtCore/QTimer>
+#include <QtGui/QWidget>
+#include <QtGui/QtGui>
+#include <QtUiTools/QtUiTools>
+#define DEFAULT_VIDESINK
+#include <iostream>
+
+/* slightly convoluted way to find a working video sink that's not a bin,
+ * one could use autovideosink from gst-plugins-good instead
+ */
+static GstElement *
+find_video_sink(void) {
+	GstStateChangeReturn sret;
+	GstElement *sink;
+
+	if ((sink = gst_element_factory_make("xvimagesink", NULL))) {
+		sret = gst_element_set_state(sink, GST_STATE_READY);
+		if (sret == GST_STATE_CHANGE_SUCCESS)
+			return sink;
+
+		gst_element_set_state(sink, GST_STATE_NULL);
+	}
+	gst_object_unref(sink);
+
+	if ((sink = gst_element_factory_make("ximagesink", NULL))) {
+		sret = gst_element_set_state(sink, GST_STATE_READY);
+		if (sret == GST_STATE_CHANGE_SUCCESS)
+			return sink;
+
+		gst_element_set_state(sink, GST_STATE_NULL);
+	}
+	gst_object_unref(sink);
+
+	// if (strcmp (DEFAULT_VIDEOSINK, "xvimagesink") == 0 ||
+	//    strcmp (DEFAULT_VIDEOSINK, "ximagesink") == 0)
+	//return NULL;
+
+	if ((sink = gst_element_factory_make("ximagesink", NULL))) {
+		if (GST_IS_BIN(sink)) {
+			gst_object_unref(sink);
+			return NULL;
+		}
+
+		sret = gst_element_set_state(sink, GST_STATE_READY);
+		if (sret == GST_STATE_CHANGE_SUCCESS)
+			return sink;
+
+		gst_element_set_state(sink, GST_STATE_NULL);
+	}
+	gst_object_unref(sink);
+	return NULL;
+}
+
+int main(int argc, char *argv[]) {
+	if (!g_thread_supported())
+		g_thread_init(NULL);
+
+	gst_init(&argc, &argv);
+	QApplication app(argc, argv);
+	app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
+	QUiLoader loader;
+
+	QFile file("src/gui/frontend.ui");
+
+	file.open(QFile::ReadOnly);
+	QWidget *formWidget = loader.load(&file);
+	file.close();
+
+	QFrame *mainVideo;
+	QString name = "Frame_2";
+
+	QList<QFrame *> list = formWidget->findChildren<QFrame *> ();
+
+	std::cout << list.size() << std::endl;
+
+	while (!list.isEmpty())
+		  {
+		 mainVideo = list.takeFirst();
+		formWidget->show();
+	 }
+	/* prepare the pipeline */
+	GstElement *pipeline = gst_pipeline_new("xvoverlay");
+	GstElement *src = gst_element_factory_make("videotestsrc", NULL);
+	GstElement *sink = find_video_sink();
+
+	if (sink == NULL)
+		g_error("Couldn't find a working video sink.");
+
+	gst_bin_add_many(GST_BIN(pipeline), src, sink, NULL);
+	gst_element_link(src, sink);
+
+	/* prepare the ui */
+
+	// QWidget window;
+	// window.resize(320, 240);
+	//  window.setWindowTitle("GstXOverlay Qt demo");
+	// window.show();
+
+	WId xwinid = mainVideo->winId();
+	QApplication::syncX();
+	gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(sink), xwinid);
+
+	/* run the pipeline */
+
+	GstStateChangeReturn sret = gst_element_set_state(pipeline,
+			GST_STATE_PLAYING);
+	if (sret == GST_STATE_CHANGE_FAILURE) {
+		gst_element_set_state(pipeline, GST_STATE_NULL);
+		gst_object_unref(pipeline);
+		/* Exit application */
+		QTimer::singleShot(0, QApplication::activeWindow(), SLOT(quit()));
+	}
+
+	int ret = app.exec();
+
+	formWidget->hide();
+	gst_element_set_state(pipeline, GST_STATE_NULL);
+	gst_object_unref(pipeline);
+
+	return ret;
+}

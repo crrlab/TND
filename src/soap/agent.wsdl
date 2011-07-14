@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="agent"
+ targetNamespace="http://tempuri.org/agent.xsd/agent.wsdl"
+ xmlns:tns="http://tempuri.org/agent.xsd/agent.wsdl"
+ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:camera="http://tempuri.org/camera.xsd"
+ xmlns:agent="http://tempuri.org/agent.xsd"
+ xmlns:server="http://tempuri.org/server.xsd"
+ xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+ xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+ xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+ xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+ <schema targetNamespace="http://tempuri.org/camera.xsd"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:camera="http://tempuri.org/camera.xsd"
+  xmlns:agent="http://tempuri.org/agent.xsd"
+  xmlns:server="http://tempuri.org/server.xsd"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <complexType name="uri">
+   <sequence>
+     <element name="streamURI" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+     <element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   </sequence>
+  </complexType>
+ </schema>
+
+ <schema targetNamespace="http://tempuri.org/agent.xsd"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:camera="http://tempuri.org/camera.xsd"
+  xmlns:agent="http://tempuri.org/agent.xsd"
+  xmlns:server="http://tempuri.org/server.xsd"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <!-- operation request element -->
+  <element name="coreStation">
+   <complexType>
+    <sequence>
+     <element name="command" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="coreStationResponse">
+   <complexType>
+    <sequence>
+     <element name="message" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="addCamera">
+   <complexType>
+    <sequence>
+     <element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="addCameraResponse">
+   <complexType>
+    <sequence>
+     <element name="message" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="removeCamera">
+   <complexType>
+    <sequence>
+     <element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="removeCameraResponse">
+   <complexType>
+    <sequence>
+     <element name="message" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="setCameraInfo">
+   <complexType>
+    <sequence>
+     <element name="info" type="camera:info" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="setCameraInfoResponse">
+   <complexType>
+    <sequence>
+     <element name="message" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="setCameraURI">
+   <complexType>
+    <sequence>
+     <element name="info" type="camera:uri" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="info">
+   <complexType>
+    <sequence>
+     <element name="Info-type" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+     <element name="Info" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+     <element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+ </schema>
+
+ <schema targetNamespace="http://tempuri.org/server.xsd"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:camera="http://tempuri.org/camera.xsd"
+  xmlns:agent="http://tempuri.org/agent.xsd"
+  xmlns:server="http://tempuri.org/server.xsd"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+ </schema>
+
+</types>
+
+<message name="coreStationRequest">
+ <part name="parameters" element="agent:coreStation"/>
+</message>
+
+<message name="coreStationResponse">
+ <part name="parameters" element="agent:coreStationResponse"/>
+</message>
+
+<message name="addCameraRequest">
+ <part name="parameters" element="agent:addCamera"/>
+</message>
+
+<message name="addCameraResponse">
+ <part name="parameters" element="agent:addCameraResponse"/>
+</message>
+
+<message name="removeCameraRequest">
+ <part name="parameters" element="agent:removeCamera"/>
+</message>
+
+<message name="removeCameraResponse">
+ <part name="parameters" element="agent:removeCameraResponse"/>
+</message>
+
+<message name="setCameraInfoRequest">
+ <part name="parameters" element="agent:setCameraInfo"/>
+</message>
+
+<message name="setCameraInfoResponse">
+ <part name="parameters" element="agent:setCameraInfoResponse"/>
+</message>
+
+<message name="setCameraURI">
+ <part name="parameters" element="agent:setCameraURI"/>
+</message>
+
+<message name="info">
+ <part name="parameters" element="camera:info"/>
+</message>
+
+<portType name="agentPortType">
+ <operation name="coreStation">
+  <documentation>Service definition of function agent__coreStation</documentation>
+  <input message="tns:coreStationRequest"/>
+  <output message="tns:coreStationResponse"/>
+ </operation>
+ <operation name="addCamera">
+  <documentation>Service definition of function agent__addCamera</documentation>
+  <input message="tns:addCameraRequest"/>
+  <output message="tns:addCameraResponse"/>
+ </operation>
+ <operation name="removeCamera">
+  <documentation>Service definition of function agent__removeCamera</documentation>
+  <input message="tns:removeCameraRequest"/>
+  <output message="tns:removeCameraResponse"/>
+ </operation>
+ <operation name="setCameraInfo">
+  <documentation>Service definition of function agent__setCameraInfo</documentation>
+  <input message="tns:setCameraInfoRequest"/>
+  <output message="tns:setCameraInfoResponse"/>
+ </operation>
+ <operation name="setCameraURI">
+  <documentation>Service definition of function agent__setCameraURI</documentation>
+  <input message="tns:setCameraURI"/>
+  <output message="tns:info"/>
+ </operation>
+</portType>
+
+<binding name="agent" type="tns:agentPortType">
+ <SOAP:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+ <operation name="coreStation">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="addCamera">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="removeCamera">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="setCameraInfo">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+ <operation name="setCameraURI">
+  <SOAP:operation soapAction=""/>
+  <input>
+     <SOAP:body parts="parameters" use="literal"/>
+  </input>
+  <output>
+     <SOAP:body parts="parameters" use="literal"/>
+  </output>
+ </operation>
+</binding>
+
+<service name="agent">
+ <documentation>gSOAP 2.8.0 generated service definition</documentation>
+ <port name="agent" binding="tns:agent">
+  <SOAP:address location="http://localhost:80"/>
+ </port>
+</service>
+
+</definitions>

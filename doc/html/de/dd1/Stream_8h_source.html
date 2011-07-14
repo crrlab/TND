@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>StreamingMediaCenter-1.0:  File sorgente src/stream/Stream.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generato da Doxygen 1.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="../../main.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespace</span></a></li>
+      <li><a href="../../annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="../../files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="../../globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>src/stream/Stream.h</h1>  </div>
+</div>
+<div class="contents">
+<a href="../../de/dd1/Stream_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * Stream.h</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 09/feb/2011</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: Mario Giustiniani</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#ifndef STREAM_H_</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define STREAM_H_</span>
+<a name="l00010"></a><a class="code" href="../../de/dd1/Stream_8h.html#a32a3cf3d9dd914f5aeeca5423c157934">00010</a> <span class="preprocessor"></span><span class="preprocessor">#define _(String) gettext(String)</span>
+<a name="l00011"></a>00011 <span class="preprocessor"></span><span class="preprocessor">#include &lt;glib.h&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;gst/gst.h&gt;</span>
+<a name="l00013"></a>00013 <span class="comment">/*</span>
+<a name="l00014"></a>00014 <span class="comment"> *</span>
+<a name="l00015"></a>00015 <span class="comment"> */</span>
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 <span class="keyword">namespace </span>SMC {
+<a name="l00020"></a>00020     <span class="keyword">namespace </span>Stream {
+<a name="l00021"></a><a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html">00021</a>         <span class="keyword">class </span><a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html">Stream</a> {
+<a name="l00022"></a>00022             <span class="keyword">protected</span>:
+<a name="l00023"></a><a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#a910e1773238b6c1713b3a98e7b4159cd">00023</a>                 GstElement *<a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#a910e1773238b6c1713b3a98e7b4159cd">bin</a>;
+<a name="l00024"></a>00024             <span class="keyword">public</span>:
+<a name="l00025"></a>00025 
+<a name="l00026"></a><a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#af8d2c8d289e455e30187de53e19fc84f">00026</a>                 <span class="keyword">static</span> GstElement *<a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#af8d2c8d289e455e30187de53e19fc84f">pipeline</a>;
+<a name="l00027"></a><a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#a3d2946b0af2091e33f265ed0b465ede1">00027</a>                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#a3d2946b0af2091e33f265ed0b465ede1">SetPipeline</a>(GstElement *pipe) {<a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#af8d2c8d289e455e30187de53e19fc84f">pipeline</a> = pipe;}
+<a name="l00028"></a><a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#aa670dbd919d8accda947162fd85220ad">00028</a>                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#aa670dbd919d8accda947162fd85220ad">SetPipeline</a>() {
+<a name="l00029"></a>00029                     <span class="keywordflow">if</span>(<a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#af8d2c8d289e455e30187de53e19fc84f">pipeline</a> == NULL)
+<a name="l00030"></a>00030                     <a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#af8d2c8d289e455e30187de53e19fc84f">pipeline</a> = gst_pipeline_new(<span class="stringliteral">&quot;xvoverlay&quot;</span>);
+<a name="l00031"></a>00031                 }
+<a name="l00032"></a>00032                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#a6d36289e1bd8be8c9ba29f3c657e3212">Run</a>()=0;
+<a name="l00033"></a>00033                 <a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#a7724477f48c0f55e9f95aabdd126061f">Stream</a>();
+<a name="l00034"></a>00034                 <span class="keyword">virtual</span> <a class="code" href="../../da/db4/classSMC_1_1Stream_1_1Stream.html#a02728304330d12392602309a5e5ac519">~Stream</a>();
+<a name="l00035"></a>00035         };
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037     }
+<a name="l00038"></a>00038 }
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 <span class="preprocessor">#endif </span><span class="comment">/* STREAM_H_ */</span>
+</pre></div></div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generato il Sat Apr 2 2011 21:25:41 per StreamingMediaCenter-1.0 da&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$db/d0b/classSMC_1_1Onvif_1_1MediaRequest.html" title="SMC::Onvif::MediaRequest" alt="" coords="123,341,309,371"/>
+<area shape="rect" id="node4" href="$dc/dc3/classSMC_1_1Onvif_1_1Request.html" title="Classe Derivata di Command, che implementa i metodi per effettuare una richiesta Soap." alt="" coords="5,245,155,275"/>
+<area shape="rect" id="node6" href="$d4/d66/classPattern_1_1Command.html" title="Pattern::Command" alt="" coords="9,165,151,195"/>
+<area shape="rect" id="node8" href="$d1/d84/classSMC_1_1Onvif_1_1NetworkVideoTransmitter.html" title="SMC::Onvif::NetworkVideoTransmitter" alt="" coords="179,245,437,275"/>
+<area shape="rect" id="node10" href="$d8/df1/classSMC_1_1DeviceProxy.html" title="SMC::DeviceProxy" alt="" coords="240,165,376,195"/>
+<area shape="rect" id="node12" href="$d9/dcd/classPattern_1_1Subject.html" title="Pattern::Subject" alt="" coords="199,85,321,115"/>
+<area shape="rect" id="node14" href="$df/df0/classSMC_1_1RemoteProxy.html" title="SMC::RemoteProxy" alt="" coords="345,85,487,115"/>
+<area shape="rect" id="node16" href="$dc/d40/classPattern_1_1Observer.html" title="Pattern::Observer" alt="" coords="349,5,483,35"/>
+</map>

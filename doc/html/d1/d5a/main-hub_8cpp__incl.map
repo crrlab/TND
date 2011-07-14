@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node13" href="$d2/d48/HubAgent_8h.html" title="apps/HubAgent.h" alt="" coords="459,83,592,112"/>
+<area shape="rect" id="node17" href="$d4/d1c/Application_8h.html" title="Application.h" alt="" coords="928,160,1032,189"/>
+<area shape="rect" id="node64" href="$d8/d62/RTSPserver_8h.html" title="stream/RTSPserver.h" alt="" coords="287,160,441,189"/>
+<area shape="rect" id="node27" href="$d3/d3e/SMCagentService_8h.html" title="../soap/SMCagentService.h" alt="" coords="1101,237,1296,267"/>
+<area shape="rect" id="node35" href="$d7/dbb/CoreServerProxy_8h.html" title="observers/CoreServerProxy.h" alt="" coords="1320,237,1525,267"/>
+<area shape="rect" id="node29" href="$d3/d2c/SMCH_8h.html" title="SMCH.h" alt="" coords="1112,392,1184,421"/>
+<area shape="rect" id="node31" href="$d3/d45/SMCStub_8h.html" title="SMCStub.h" alt="" coords="1101,469,1195,499"/>
+<area shape="rect" id="node37" href="$d5/d84/RemoteProxy_8h.html" title="RemoteProxy.h" alt="" coords="1688,315,1803,344"/>
+<area shape="rect" id="node58" href="$d8/d38/SMCserverProxy_8h.html" title="soap/SMCserverProxy.h" alt="" coords="1493,315,1664,344"/>
+<area shape="rect" id="node39" href="$d8/df1/Observer_8h.html" title="Observer.h" alt="" coords="1707,392,1797,421"/>
+</map>

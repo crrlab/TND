@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>StreamingMediaCenter-1.0:  File sorgente src/gui/DeviceCollection.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generato da Doxygen 1.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="../../main.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespace</span></a></li>
+      <li><a href="../../annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="../../files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="../../globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>src/gui/DeviceCollection.h</h1>  </div>
+</div>
+<div class="contents">
+<a href="../../db/d63/DeviceCollection_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * DeviceCollection.h</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 14/mar/2011</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: Mario Giustiniani</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a><a class="code" href="../../db/d63/DeviceCollection_8h.html#a32a3cf3d9dd914f5aeeca5423c157934">00008</a> <span class="preprocessor">#define _(String) gettext(String)</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#include &lt;QtCore/QList&gt;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;QtCore/QObject&gt;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &quot;<a class="code" href="../../d4/dc7/qvideowidget_8h.html">qvideowidget.h</a>&quot;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;<a class="code" href="../../d4/d3c/DeviceContainer_8h.html">DeviceContainer.h</a>&quot;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;list&gt;</span>
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 <span class="comment">/*</span>
+<a name="l00016"></a>00016 <span class="comment"> *</span>
+<a name="l00017"></a>00017 <span class="comment"> */</span>
+<a name="l00018"></a><a class="code" href="../../d1/d02/classDeviceCollection.html">00018</a> <span class="keyword">class </span><a class="code" href="../../d1/d02/classDeviceCollection.html">DeviceCollection</a> : <span class="keyword">public</span> QObject{
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020         Q_OBJECT
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022     <span class="keyword">public</span>:
+<a name="l00023"></a>00023         <a class="code" href="../../d1/d02/classDeviceCollection.html#a5e29a7612ced3b973ebd33a91449d7aa">DeviceCollection</a>();
+<a name="l00024"></a>00024 
+<a name="l00025"></a><a class="code" href="../../d1/d02/classDeviceCollection.html#a4470346d2cfbba6c44daba5933bcfba8">00025</a>         QList&lt;DeviceContainer*&gt; <a class="code" href="../../d1/d02/classDeviceCollection.html#a4470346d2cfbba6c44daba5933bcfba8">devices</a>;
+<a name="l00026"></a><a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">00026</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">AddWidget</a>(<a class="code" href="../../d3/de2/classQVideoWidget.html">QVideoWidget</a> * widg) {
+<a name="l00027"></a>00027             <a class="code" href="../../d8/d29/classDeviceContainer.html">DeviceContainer</a> *device=<span class="keyword">new</span> <a class="code" href="../../d8/d29/classDeviceContainer.html">DeviceContainer</a>();
+<a name="l00028"></a>00028             <span class="comment">//device-&gt;setUri(QString(&quot;rtsp://10.30.1.247:8554/diretta&quot;));</span>
+<a name="l00029"></a>00029             device-&gt;<a class="code" href="../../d8/d29/classDeviceContainer.html#adb24efa442b028b50ae8c2616afb8419">setVideoWidget</a>(widg);
+<a name="l00030"></a>00030             this-&gt;<a class="code" href="../../d1/d02/classDeviceCollection.html#a4470346d2cfbba6c44daba5933bcfba8">devices</a>.append(device);
+<a name="l00031"></a>00031         }
+<a name="l00032"></a>00032 
+<a name="l00033"></a><a class="code" href="../../d1/d02/classDeviceCollection.html#ab22361417743abb3b98685f7b673f7b6">00033</a>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d02/classDeviceCollection.html#ab22361417743abb3b98685f7b673f7b6">addTree</a>(QTreeWidget* a){
+<a name="l00034"></a>00034             <a class="code" href="../../d1/d02/classDeviceCollection.html#ab22361417743abb3b98685f7b673f7b6">DeviceContainer::addTree</a>(a);
+<a name="l00035"></a>00035         }
+<a name="l00036"></a>00036         <span class="keyword">virtual</span> <a class="code" href="../../d1/d02/classDeviceCollection.html#a20ca9097f8d4d42765ba38aa17fe2d7a">~DeviceCollection</a>();
+<a name="l00037"></a>00037 };
+<a name="l00038"></a>00038 
+</pre></div></div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generato il Sat Apr 2 2011 21:25:40 per StreamingMediaCenter-1.0 da&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

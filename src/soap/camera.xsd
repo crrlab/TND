@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <schema targetNamespace="http://tempuri.org/camera.xsd"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:camera="http://tempuri.org/camera.xsd"
+  xmlns:agent="http://tempuri.org/agent.xsd"
+  xmlns:server="http://tempuri.org/server.xsd"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <complexType name="uri">
+   <sequence>
+     <element name="streamURI" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+     <element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+   </sequence>
+  </complexType>
+ </schema>
+

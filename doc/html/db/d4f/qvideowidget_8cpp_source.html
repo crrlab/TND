@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>StreamingMediaCenter-1.0:  File sorgente src/gui/qvideowidget.cpp</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generato da Doxygen 1.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="../../main.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespace</span></a></li>
+      <li><a href="../../annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="../../files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="../../globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>src/gui/qvideowidget.cpp</h1>  </div>
+</div>
+<div class="contents">
+<a href="../../db/d4f/qvideowidget_8cpp.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &quot;<a class="code" href="../../d4/dc7/qvideowidget_8h.html">qvideowidget.h</a>&quot;</span>
+<a name="l00002"></a>00002 <span class="preprocessor">#include &quot;<a class="code" href="../../d4/d3c/DeviceContainer_8h.html">DeviceContainer.h</a>&quot;</span>
+<a name="l00003"></a>00003 
+<a name="l00004"></a><a class="code" href="../../d3/de2/classQVideoWidget.html#a9556e8daac0717d705ac8c2fd7e4e2a2">00004</a> <a class="code" href="../../d3/de2/classQVideoWidget.html#a9556e8daac0717d705ac8c2fd7e4e2a2">QVideoWidget::QVideoWidget</a>(QWidget *parent)
+<a name="l00005"></a>00005     : QWidget(parent)
+<a name="l00006"></a>00006 {
+<a name="l00007"></a>00007     <a class="code" href="../../d3/de2/classQVideoWidget.html#a9ace1395e62f77a1f27cab026dea2c3d">ui</a>.<a class="code" href="../../d2/dbd/classUi__QVideoWidgetClass.html#a15f3404d4e0f2cd1a1a88b2a2e5f1e25">setupUi</a>(<span class="keyword">this</span>);
+<a name="l00008"></a>00008     <a class="code" href="../../d3/de2/classQVideoWidget.html#a9ace1395e62f77a1f27cab026dea2c3d">ui</a>.<a class="code" href="../../d2/dbd/classUi__QVideoWidgetClass.html#a0fb09b38822894748634c56a3237d65d">live</a>-&gt;click();
+<a name="l00009"></a>00009     this-&gt;<a class="code" href="../../d3/de2/classQVideoWidget.html#af54751a586cb1df8fc0631a180904052">media</a> = <span class="keyword">new</span> Phonon::MediaObject(<span class="keyword">this</span>);
+<a name="l00010"></a>00010 connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="../../d3/de2/classQVideoWidget.html#aba5daf6dd190a468989f9d851930cfa0">play</a>()),this-&gt;<a class="code" href="../../d3/de2/classQVideoWidget.html#af54751a586cb1df8fc0631a180904052">media</a>,SLOT(<a class="code" href="../../d3/de2/classQVideoWidget.html#aba5daf6dd190a468989f9d851930cfa0">play</a>()));
+<a name="l00011"></a>00011 connect(<span class="keyword">this</span>, SIGNAL(<a class="code" href="../../d3/de2/classQVideoWidget.html#ae3a05174f27f7fd8a45527ea7f6532e0">stop</a>()),this-&gt;<a class="code" href="../../d3/de2/classQVideoWidget.html#af54751a586cb1df8fc0631a180904052">media</a>,SLOT(<a class="code" href="../../d3/de2/classQVideoWidget.html#ae3a05174f27f7fd8a45527ea7f6532e0">stop</a>()));
+<a name="l00012"></a>00012 this-&gt;<a class="code" href="../../d3/de2/classQVideoWidget.html#a87af4c3274014f52d8edd0d7ed680ce9">mainvideo</a>=<span class="keyword">false</span>;
+<a name="l00013"></a>00013 
+<a name="l00014"></a>00014 }
+<a name="l00015"></a>00015 
+<a name="l00016"></a><a class="code" href="../../d3/de2/classQVideoWidget.html#a4601ff941bc44648893adf6231eb1946">00016</a> <a class="code" href="../../d3/de2/classQVideoWidget.html#a4601ff941bc44648893adf6231eb1946">QVideoWidget::~QVideoWidget</a>()
+<a name="l00017"></a>00017 {
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 }
+<a name="l00020"></a>00020 
+<a name="l00021"></a><a class="code" href="../../d3/de2/classQVideoWidget.html#a454e125db3350c14a572ff77449d6372">00021</a> <span class="keywordtype">void</span> <a class="code" href="../../d3/de2/classQVideoWidget.html#a454e125db3350c14a572ff77449d6372">QVideoWidget::setVideo</a>(<span class="keywordtype">int</span> x,<span class="keywordtype">int</span> y, <span class="keywordtype">int</span> width , <span class="keywordtype">int</span> height){
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024     this-&gt;x=x;
+<a name="l00025"></a>00025     this-&gt;y=y;
+<a name="l00026"></a>00026     this-&gt;width=width;
+<a name="l00027"></a>00027     this-&gt;width=width;
+<a name="l00028"></a>00028     this-&gt;<a class="code" href="../../d3/de2/classQVideoWidget.html#a87af4c3274014f52d8edd0d7ed680ce9">mainvideo</a>=<span class="keyword">true</span>;
+<a name="l00029"></a>00029     <a class="code" href="../../d3/de2/classQVideoWidget.html#a9ace1395e62f77a1f27cab026dea2c3d">ui</a>.<a class="code" href="../../d2/dbd/classUi__QVideoWidgetClass.html#aba072dfa7bb2f6db4b72ad8c65695d97">Video</a>-&gt;setGeometry(QRect(x, y, width, height));
+<a name="l00030"></a>00030     <a class="code" href="../../d3/de2/classQVideoWidget.html#a9ace1395e62f77a1f27cab026dea2c3d">ui</a>.<a class="code" href="../../d2/dbd/classUi__QVideoWidgetClass.html#a0fb09b38822894748634c56a3237d65d">live</a>-&gt;setGeometry(QRect(10, height+20, 71, 22));
+<a name="l00031"></a>00031     <a class="code" href="../../d3/de2/classQVideoWidget.html#a9ace1395e62f77a1f27cab026dea2c3d">ui</a>.<a class="code" href="../../d2/dbd/classUi__QVideoWidgetClass.html#a9815effc614a51142c2245c9971243cf">differita</a>-&gt;setGeometry(QRect(80, height+20, 81, 22));
+<a name="l00032"></a>00032 }
+</pre></div></div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generato il Sat Apr 2 2011 21:25:40 per StreamingMediaCenter-1.0 da&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

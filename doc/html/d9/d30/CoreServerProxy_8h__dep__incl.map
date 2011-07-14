@@ -1,0 +1,21 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d4/d1c/Application_8h.html" title="src/apps/Application.h" alt="" coords="611,83,773,112"/>
+<area shape="rect" id="node39" href="$d7/d6a/CoreServerProxy_8cpp.html" title="src/observers/CoreServerProxy.cpp" alt="" coords="797,83,1040,112"/>
+<area shape="rect" id="node5" href="$d2/db6/Application_8cpp.html" title="src/apps/Application.cpp" alt="" coords="56,160,232,189"/>
+<area shape="rect" id="node7" href="$db/d20/CoreServer_8h.html" title="src/apps/CoreServer.h" alt="" coords="256,160,419,189"/>
+<area shape="rect" id="node13" href="$d2/d48/HubAgent_8h.html" title="src/apps/HubAgent.h" alt="" coords="517,160,672,189"/>
+<area shape="rect" id="node19" href="$da/d09/ManagerAgent_8h.html" title="src/apps/ManagerAgent.h" alt="" coords="696,160,883,189"/>
+<area shape="rect" id="node25" href="$df/ddc/StorageAgent_8h.html" title="src/apps/StorageAgent.h" alt="" coords="1108,160,1289,189"/>
+<area shape="rect" id="node31" href="$d0/d1b/Frontend_8h.html" title="src/gui/Frontend.h" alt="" coords="1603,160,1739,189"/>
+<area shape="rect" id="node9" href="$d5/d33/CoreServer_8cpp.html" title="src/apps/CoreServer.cpp" alt="" coords="5,237,184,267"/>
+<area shape="rect" id="node11" href="$df/d0a/main_8cpp.html" title="src/main.cpp" alt="" coords="208,237,312,267"/>
+<area shape="rect" id="node15" href="$df/d46/HubAgent_8cpp.html" title="src/apps/HubAgent.cpp" alt="" coords="336,237,507,267"/>
+<area shape="rect" id="node17" href="$d6/d64/main-hub_8cpp.html" title="src/main&#45;hub.cpp" alt="" coords="531,237,664,267"/>
+<area shape="rect" id="node21" href="$d8/dcc/ManagerAgent_8cpp.html" title="src/apps/ManagerAgent.cpp" alt="" coords="688,237,888,267"/>
+<area shape="rect" id="node23" href="$d9/de3/main-manager_8cpp.html" title="src/main&#45;manager.cpp" alt="" coords="912,237,1077,267"/>
+<area shape="rect" id="node27" href="$d5/de7/StorageAgent_8cpp.html" title="src/apps/StorageAgent.cpp" alt="" coords="1101,237,1296,267"/>
+<area shape="rect" id="node29" href="$da/d90/main-storage_8cpp.html" title="src/main&#45;storage.cpp" alt="" coords="1320,237,1477,267"/>
+<area shape="rect" id="node33" href="$d4/d83/Frontend_8cpp.html" title="src/gui/Frontend.cpp" alt="" coords="1501,237,1651,267"/>
+<area shape="rect" id="node35" href="$dc/dc4/Frontend_8moc_8cpp.html" title="src/gui/Frontend.moc.cpp" alt="" coords="1675,237,1856,267"/>
+<area shape="rect" id="node37" href="$d7/de4/main-frontend_8cpp.html" title="src/main&#45;frontend.cpp" alt="" coords="1880,237,2043,267"/>
+</map>

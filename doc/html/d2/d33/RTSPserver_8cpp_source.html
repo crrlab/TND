@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>StreamingMediaCenter-1.0:  File sorgente src/stream/RTSPserver.cpp</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generato da Doxygen 1.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="../../main.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespace</span></a></li>
+      <li><a href="../../annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="../../files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="../../globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>src/stream/RTSPserver.cpp</h1>  </div>
+</div>
+<div class="contents">
+<a href="../../d2/d33/RTSPserver_8cpp.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * RTSPserver.cpp</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 23/mar/2011</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: paperboy</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="../../d8/d62/RTSPserver_8h.html">RTSPserver.h</a>&quot;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;gst/app/gstappsrc.h&gt;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;gst/app/gstappsink.h&gt;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;gst/app/gstappbuffer.h&gt;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;typeinfo&gt;</span>
+<a name="l00016"></a><a class="code" href="../../d2/d33/RTSPserver_8cpp.html#acb559820d9ca11295b4500f179ef6392">00016</a> <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="../../d2/d33/RTSPserver_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a> = 0;
+<a name="l00017"></a><a class="code" href="../../d2/d33/RTSPserver_8cpp.html#ad68668f19cd8fa97ce5bcf37d7c71b19">00017</a> <span class="keyword">static</span> gboolean <a class="code" href="../../d2/d33/RTSPserver_8cpp.html#ad68668f19cd8fa97ce5bcf37d7c71b19">timeout</a>(<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html">SMC::RTSPserver</a>* factory, gboolean ignored) {
+<a name="l00018"></a>00018     GstStateChangeReturn ret;
+<a name="l00019"></a>00019     GstPad *pad;
+<a name="l00020"></a>00020     GstState state;
+<a name="l00021"></a>00021     <span class="keywordtype">int</span> j;
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023     std::string location[4];
+<a name="l00024"></a>00024     location[0] = <span class="stringliteral">&quot;rtsp://10.30.1.227/video1&quot;</span>;
+<a name="l00025"></a>00025     location[1] = <span class="stringliteral">&quot;rtsp://10.30.1.235/live.sdp&quot;</span>;
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027     <span class="comment">//if (factory-&gt;source) {</span>
+<a name="l00028"></a>00028     <span class="keywordflow">if</span> (factory-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a>-&gt;pipeline) {
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030         g_object_get(factory-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a>-&gt;source, <span class="stringliteral">&quot;pattern&quot;</span>, &amp;j, NULL);
+<a name="l00031"></a>00031         <span class="keywordflow">if</span> (<a class="code" href="../../d2/d33/RTSPserver_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a> == j) {
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033             std::cout&lt;&lt;<span class="stringliteral">&quot;address:&quot;</span> &lt;&lt;factory-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a>-&gt;pipeline;
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035             <span class="keywordflow">while</span> (GST_STATE_PLAYING != state) {
+<a name="l00036"></a>00036                 gst_element_get_state(factory-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a>-&gt;pipeline, &amp;state, NULL,
+<a name="l00037"></a>00037                         GST_CLOCK_TIME_NONE);
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039             }
+<a name="l00040"></a>00040             <span class="keywordflow">if</span> (GST_STATE_PLAYING == state) {
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042                 ret = gst_element_set_state(factory-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a>-&gt;pipeline,
+<a name="l00043"></a>00043                         GST_STATE_PAUSED);
+<a name="l00044"></a>00044                 <span class="comment">/* tmp_rtcp port is busy already : retry to make rtp/rtcp pair */</span>
+<a name="l00045"></a>00045             }
+<a name="l00046"></a>00046             <span class="keywordflow">while</span> (GST_STATE_PAUSED != state) {
+<a name="l00047"></a>00047                 gst_element_get_state(factory-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a>-&gt;pipeline, &amp;state, NULL,
+<a name="l00048"></a>00048                         GST_CLOCK_TIME_NONE);
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050             }
+<a name="l00051"></a>00051             <span class="keywordflow">if</span> (GST_STATE_PAUSED == state) {
+<a name="l00052"></a>00052                 <span class="keywordflow">if</span> (<a class="code" href="../../d2/d33/RTSPserver_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a> == 1)
+<a name="l00053"></a>00053                     <a class="code" href="../../d2/d33/RTSPserver_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a> = 0;
+<a name="l00054"></a>00054                 <span class="keywordflow">else</span>
+<a name="l00055"></a>00055                     <a class="code" href="../../d2/d33/RTSPserver_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a> = 1;
+<a name="l00056"></a>00056                 <span class="comment">//  g_object_set(factory-&gt;source, &quot;location&quot;, location[i].c_str(), NULL);</span>
+<a name="l00057"></a>00057                 g_object_set(factory-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a>-&gt;source, <span class="stringliteral">&quot;pattern&quot;</span>, <a class="code" href="../../d2/d33/RTSPserver_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a>, NULL);
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059                 ret = gst_element_set_state(factory-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a>-&gt;pipeline,
+<a name="l00060"></a>00060                         GST_STATE_PLAYING);
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062             }
+<a name="l00063"></a>00063         }
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065     }
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067     <span class="keywordflow">return</span> TRUE;
+<a name="l00068"></a>00068 }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="keyword">namespace </span>SMC {
+<a name="l00071"></a>00071 GstRTSPServer *<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ae4931c68017bec22afeec65d642c528e">RTSPserver::server</a> = 0;
+<a name="l00072"></a>00072 <span class="keywordtype">bool</span> <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a5dafb7dce7efae8c38544d9e3f03c48b">RTSPserver::attach</a> = <span class="keyword">false</span>;
+<a name="l00073"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a550f8ea66959ac8ad20d14c5fc99bad5">00073</a> <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a550f8ea66959ac8ad20d14c5fc99bad5">RTSPserver::RTSPserver</a>() {
+<a name="l00074"></a>00074     <span class="keywordflow">if</span> (!<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ae4931c68017bec22afeec65d642c528e">server</a>)
+<a name="l00075"></a>00075         <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ae4931c68017bec22afeec65d642c528e">server</a> = gst_rtsp_server_new();
+<a name="l00076"></a>00076     <span class="keywordflow">if</span> (<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a5dafb7dce7efae8c38544d9e3f03c48b">attach</a> != <span class="keyword">true</span>) {
+<a name="l00077"></a>00077         <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a5dafb7dce7efae8c38544d9e3f03c48b">attach</a> = <span class="keyword">false</span>;
+<a name="l00078"></a>00078     }
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080     GstElement *<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a9edf276f34d55d6481620601a067b557">pipelineSrc1</a> = NULL;
+<a name="l00081"></a>00081     GstElement *<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ad3007ba69764a0a25bc24e8c93db6c65">pipelineSrc2</a> = NULL;
+<a name="l00082"></a>00082     GstElement *<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#afc5ec1430a051141584fc3744b99915a">AppSink1</a> = NULL;
+<a name="l00083"></a>00083     GstElement *<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a0339fd1564427a565f747a0d7b09217e">AppSink2</a> = NULL;
+<a name="l00084"></a>00084     GstElement *<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a4b56c8fcb13a15e6a23d8eaad86fc54b">AppSrc</a> = NULL;
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086     <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a> = gst_rtsp_media_factory_new();
+<a name="l00087"></a>00087     this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a0a22e7de2b8f2f7d323e044c247ab7fc">path</a> = <span class="stringliteral">&quot;/test&quot;</span>;
+<a name="l00088"></a>00088     <span class="comment">//  this-&gt;pipeline</span>
+<a name="l00089"></a>00089     <span class="comment">//          = &quot; uridecodebin uri=rtsp://10.30.1.227/video1 name=testsource ! x264enc !  &quot;</span>
+<a name="l00090"></a>00090     <span class="comment">//              &quot; rtph264pay name=pay0 pt=96 &quot;;</span>
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093     this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#afd1a54a61b13544db9baebc24f573071">pipeline</a>
+<a name="l00094"></a>00094             = <span class="stringliteral">&quot; videotestsrc is-live=true name=testsource  ! video/x-raw-yuv,width=1920,height=1080,framerate=\(fraction\)10/1 ! videmixer &quot;</span>
+<a name="l00095"></a>00095                 <span class="stringliteral">&quot;! x264enc ! rtph264pay name=pay0 pt=96 &quot;</span>;
+<a name="l00096"></a>00096     <span class="comment">//  this-&gt;pipeline</span>
+<a name="l00097"></a>00097     <span class="comment">//          = &quot;( appsrc name=testsrc caps=\&quot;video/x-raw-yuv,width=1920,height=1080,framerate=15/1\&quot; !&quot;</span>
+<a name="l00098"></a>00098     <span class="comment">//              &quot;x264enc ! rtph264pay name=pay0 pt=96 )&quot;;</span>
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 }
+<a name="l00101"></a>00101 
+<a name="l00102"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a11b1bbe56d0abf0417a9c861fda02a06">00102</a> <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a11b1bbe56d0abf0417a9c861fda02a06">RTSPserver::~RTSPserver</a>() {
+<a name="l00103"></a>00103     <span class="comment">// TODO Auto-generated destructor stub</span>
+<a name="l00104"></a>00104 }
+<a name="l00105"></a>00105 
+<a name="l00106"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#aef3b35d55767be9954cf26eb343e3183">00106</a> <span class="keywordtype">void</span> <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#aef3b35d55767be9954cf26eb343e3183">RTSPserver::run</a>() {
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108     <span class="comment">/* get the mapping for this server, every server has a default mapper object</span>
+<a name="l00109"></a>00109 <span class="comment">     * that be used to map uri mount points to media factories */</span>
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111     <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a70df21fdf8e49e1f0c58d8db824ab75e">mapping</a> = gst_rtsp_server_get_media_mapping(<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ae4931c68017bec22afeec65d642c528e">server</a>);
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113     <span class="comment">/* make a media factory for a test stream. The default media factory can use</span>
+<a name="l00114"></a>00114 <span class="comment">     * gst-launch syntax to create pipelines.</span>
+<a name="l00115"></a>00115 <span class="comment">     * any launch line works as long as it contains elements named pay%d. Each</span>
+<a name="l00116"></a>00116 <span class="comment">     * element with pay%d names will be a stream */</span>
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118     gst_rtsp_media_factory_set_launch(<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a>, this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#afd1a54a61b13544db9baebc24f573071">pipeline</a>.c_str());
+<a name="l00119"></a>00119     gst_rtsp_media_factory_set_shared(GST_RTSP_MEDIA_FACTORY(<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a>), TRUE);
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121     <span class="comment">/* attach the test factory to the /test url */</span>
+<a name="l00122"></a>00122     gst_rtsp_media_mapping_add_factory(<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a70df21fdf8e49e1f0c58d8db824ab75e">mapping</a>, this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a0a22e7de2b8f2f7d323e044c247ab7fc">path</a>.c_str(), <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a>);
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124     <span class="comment">/* don&#39;t need the ref to the mapper anymore */</span>
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126     <span class="comment">/* attach the server to the default maincontext */</span>
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128     std::cout &lt;&lt; <span class="stringliteral">&quot;Server Avviato&quot;</span> &lt;&lt; std::endl;
+<a name="l00129"></a>00129     <span class="keywordflow">if</span> (<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a5dafb7dce7efae8c38544d9e3f03c48b">attach</a> != <span class="keyword">true</span>) {
+<a name="l00130"></a>00130         gst_rtsp_server_attach(<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ae4931c68017bec22afeec65d642c528e">server</a>, NULL);
+<a name="l00131"></a>00131         <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a5dafb7dce7efae8c38544d9e3f03c48b">attach</a> = <span class="keyword">true</span>;
+<a name="l00132"></a>00132     } <span class="keywordflow">else</span>
+<a name="l00133"></a>00133         gst_rtsp_server_set_media_mapping(<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ae4931c68017bec22afeec65d642c528e">server</a>, <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a70df21fdf8e49e1f0c58d8db824ab75e">mapping</a>);
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135     <span class="comment">//g_timeout_add_seconds(2, (GSourceFunc) timeout, this);</span>
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137 }
+<a name="l00138"></a>00138 
+<a name="l00139"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#aeea17188f822b361ece2c341de562f84">00139</a> <span class="keywordtype">void</span> <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#aeea17188f822b361ece2c341de562f84">RTSPserver::setPort</a>(std::string a) {
+<a name="l00140"></a>00140     this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a58700af841605790ee67892cf89a2341">port</a> = a;
+<a name="l00141"></a>00141 }
+<a name="l00142"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a98fdf65e69bd092064e89c0fcab378cf">00142</a> std::string <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a98fdf65e69bd092064e89c0fcab378cf">RTSPserver::getPort</a>() {
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144     <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a58700af841605790ee67892cf89a2341">port</a>;
+<a name="l00145"></a>00145 }
+<a name="l00146"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a9cfa70cfd9f9ff0797231d64a27a300b">00146</a> <span class="keywordtype">void</span> <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a9cfa70cfd9f9ff0797231d64a27a300b">RTSPserver::setPath</a>(std::string a) {
+<a name="l00147"></a>00147     this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a0a22e7de2b8f2f7d323e044c247ab7fc">path</a> = a;
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149 }
+<a name="l00150"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ae3a7c2d026591aa8e24d695e5a14307c">00150</a> std::string <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ae3a7c2d026591aa8e24d695e5a14307c">RTSPserver::getPath</a>() {
+<a name="l00151"></a>00151     <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a0a22e7de2b8f2f7d323e044c247ab7fc">path</a>;
+<a name="l00152"></a>00152 }
+<a name="l00153"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ad2a3034b1225f02d6b1737bde8b6f81a">00153</a> <span class="keywordtype">void</span> <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ad2a3034b1225f02d6b1737bde8b6f81a" title="Segnale: avviso della pipeline creata.">RTSPserver::pipeline_created</a>(GstRTSPMediaFactory * elt, <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html">RTSPserver</a> *a) {
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 }
+<a name="l00156"></a>00156 
+<a name="l00157"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a3fe102101b48de92780a44197400861c">00157</a> <span class="keywordtype">void</span> <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a3fe102101b48de92780a44197400861c">RTSPserver::on_new_buffer_from_source</a>(GstElement * elt, <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html">RTSPserver</a> *a) {
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159     guint size;
+<a name="l00160"></a>00160     gpointer raw_buffer;
+<a name="l00161"></a>00161     GstBuffer *app_buffer, *buffer;
+<a name="l00162"></a>00162     GstElement *source;
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164     buffer = gst_app_sink_pull_buffer(GST_APP_SINK(a-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#afc5ec1430a051141584fc3744b99915a">AppSink1</a>));
+<a name="l00165"></a>00165     size = GST_BUFFER_SIZE(buffer);
+<a name="l00166"></a>00166     g_print(<span class="stringliteral">&quot;Pushing a buffer of size %d\n&quot;</span>, size);
+<a name="l00167"></a>00167     raw_buffer = g_malloc0(size);
+<a name="l00168"></a>00168     memcpy(raw_buffer, GST_BUFFER_DATA(buffer), size);
+<a name="l00169"></a>00169     app_buffer = gst_app_buffer_new(raw_buffer, size, g_free, raw_buffer);
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171     <span class="comment">/* newer basesrc will set caps for use automatically but it does not really</span>
+<a name="l00172"></a>00172 <span class="comment">     * hurt to set it on the buffer again */</span>
+<a name="l00173"></a>00173     gst_buffer_set_caps(app_buffer, GST_BUFFER_CAPS(buffer));
+<a name="l00174"></a>00174 
+<a name="l00175"></a>00175     <span class="comment">/* we don&#39;t need the appsink buffer anymore */</span>
+<a name="l00176"></a>00176     gst_buffer_unref(buffer);
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178     <span class="comment">/* get source an push new buffer */</span>
+<a name="l00179"></a>00179     gst_app_src_push_buffer(GST_APP_SRC(a-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a4b56c8fcb13a15e6a23d8eaad86fc54b">AppSrc</a>), app_buffer);
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181 }
+<a name="l00182"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#aa077b7cbf3b9a96199711d5b4f6a50e7">00182</a> <span class="keywordtype">void</span> <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#aa077b7cbf3b9a96199711d5b4f6a50e7">RTSPserver::setPipeline</a>(std::string a) {
+<a name="l00183"></a>00183     this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#afd1a54a61b13544db9baebc24f573071">pipeline</a> = a;
+<a name="l00184"></a>00184     gst_rtsp_media_factory_set_launch(<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a772c28dda1808fe49544b32192b30424">factory</a>, this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#afd1a54a61b13544db9baebc24f573071">pipeline</a>.c_str());
+<a name="l00185"></a>00185     <span class="comment">//clockoverlay auto-resize=false shaded-background=true</span>
+<a name="l00186"></a>00186 }
+<a name="l00187"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a722d951670d5195e61f59967162a2005">00187</a> <span class="keywordtype">void</span> <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a722d951670d5195e61f59967162a2005">RTSPserver::setLocation</a>(std::string a) {
+<a name="l00188"></a>00188     this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ab756bad3750737d6a2255c30dc6c0053">location</a> = a;
+<a name="l00189"></a>00189     this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#afd1a54a61b13544db9baebc24f573071">pipeline</a> = <span class="stringliteral">&quot;( rtspsrc location=&quot;</span> + this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ab756bad3750737d6a2255c30dc6c0053">location</a>
+<a name="l00190"></a>00190             + <span class="stringliteral">&quot; latency=1 ! rtph264depay ! rtph264pay name=pay0 pt=96 )&quot;</span>;
+<a name="l00191"></a>00191 
+<a name="l00192"></a>00192 }
+<a name="l00193"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ac4b30659a855fee4862c24b8d4e39590">00193</a> std::string <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ac4b30659a855fee4862c24b8d4e39590">RTSPserver::getLocation</a>() {
+<a name="l00194"></a>00194     <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#ab756bad3750737d6a2255c30dc6c0053">location</a>;
+<a name="l00195"></a>00195 }
+<a name="l00196"></a><a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a87161307c7972fa5f40f0107dd787810">00196</a> <span class="keywordtype">void</span> <a class="code" href="../../d3/d41/classSMC_1_1RTSPserver.html#a87161307c7972fa5f40f0107dd787810">RTSPserver::setup</a>() {
+<a name="l00197"></a>00197     <span class="comment">//  gst_rtsp_media_mapping_remove_factory(mapping, this-&gt;path.c_str());</span>
+<a name="l00198"></a>00198     <span class="comment">//  gst_rtsp_media_factory_set_launch(factory, this-&gt;pipeline.c_str());</span>
+<a name="l00199"></a>00199     <span class="comment">//</span>
+<a name="l00200"></a>00200     <span class="comment">//  gst_rtsp_media_mapping_add_factory(mapping, this-&gt;path.c_str(), factory);</span>
+<a name="l00201"></a>00201     <span class="comment">//  gst_rtsp_server_set_media_mapping(server, mapping);</span>
+<a name="l00202"></a>00202 }
+<a name="l00203"></a>00203 }
+</pre></div></div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generato il Sat Apr 2 2011 21:25:41 per StreamingMediaCenter-1.0 da&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

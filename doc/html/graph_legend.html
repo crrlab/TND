@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>StreamingMediaCenter-1.0: Legenda del grafo</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generato da Doxygen 1.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="main.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="namespaces.html"><span>Namespace</span></a></li>
+      <li><a href="annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li><a href="files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<h1>Legenda del grafo</h1>  </div>
+</div>
+<div class="contents">
+<p>Questa pagina spiega come interpretare i grafi generati da doxygen.</p>
+<p>Considerate l'esempio seguente: </p>
+<div class="fragment"><pre class="fragment"><span class="comment">/*! Classe invisibile per troncamento */</span>
+<span class="keyword">class </span>Invisible { };
+<span class="comment"></span>
+<span class="comment">/*! Classe troncata, la relazione di ereditarietà e nascosta */</span>
+<span class="keyword">class </span>Truncated : <span class="keyword">public</span> Invisible { };
+
+<span class="comment">/* Classe non documentata con i commenti speciali di doxygen*/</span>
+<span class="keyword">class </span>Undocumented { };
+<span class="comment"></span>
+<span class="comment">/*! Classe che utilizza una ereditarietà pubblica */</span>
+<span class="keyword">class </span>PublicBase : <span class="keyword">public</span> Truncated { };
+<span class="comment"></span>
+<span class="comment">/*! A template class */</span>
+<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="keyword">class </span>Templ { };
+<span class="comment"></span>
+<span class="comment">/*! Classe che utilizza una ereditarietà protetta*/</span>
+<span class="keyword">class </span>ProtectedBase { };
+<span class="comment"></span>
+<span class="comment">/*! Classe che utilizza una ereditarietà  privata*/</span>
+<span class="keyword">class </span>PrivateBase { };
+<span class="comment"></span>
+<span class="comment">/*! Classe utilizzata dalla classe Inherited */</span>
+<span class="keyword">class </span>Used { };
+<span class="comment"></span>
+<span class="comment">/*! Classe che eredita da varie classi*/</span>
+<span class="keyword">class </span>Inherited : <span class="keyword">public</span> PublicBase,
+                  <span class="keyword">protected</span> ProtectedBase,
+                  <span class="keyword">private</span> PrivateBase,
+                  <span class="keyword">public</span> Undocumented,
+                  <span class="keyword">public</span> Templ&lt;int&gt;
+{
+  <span class="keyword">private</span>:
+    Used *m_usedClass;
+};
+</pre></div><p> Se il tag <code>MAX_DOT_GRAPH_HEIGHT</code> nel file di configurazione è impostato a 200 verrà prodotto il grafo seguente:</p>
+<center><div align="center">
+<img src="graph_legend.png" alt="graph_legend.png"/>
+</div>
+</center> <p>I riquadri nel grafo qui sopra hanno il seguente significato: </p>
+<ul>
+<li>
+Il riquadro nero pieno rappresenta la struct o la classe per la quale il grafo è stato generato. </li>
+<li>
+Un riquadro con un bordo nero denota una struct o una classe documentata. </li>
+<li>
+Un riquadro con un bordo grigio indica una struct o una classe non documentata. </li>
+<li>
+Un riquadro con un bordo rosso indica una struct o una classe per la quale non sono mostrate tutte le relazioni di ereditarietà/contenimento (un grafo viene troncato se non rientra nei limiti prestabiliti).</li>
+</ul>
+<p>Le frecce hanno il seguente significato: </p>
+<ul>
+<li>
+Una freccia blu scuro indica una relazione di ereditarietà pubblica tra due classi. </li>
+<li>
+Una freccia verde indica un'ereditarietà protetta. </li>
+<li>
+Una freccia rossa indica un'ereditarietà privata. </li>
+<li>
+Una freccia viola tratteggiata indica che una classe è contenuta o usata da un'altra classe. La freccia viene etichettata con la o le variabili attraverso cui la struct o la classe puntata dalla freccia è accessibile. </li>
+</ul>
+</div>
+<hr class="footer"/><address class="footer"><small>Generato il Sat Apr 2 2011 21:25:42 per StreamingMediaCenter-1.0 da&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <schema targetNamespace="http://tempuri.org/agent.xsd"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:camera="http://tempuri.org/camera.xsd"
+  xmlns:agent="http://tempuri.org/agent.xsd"
+  xmlns:server="http://tempuri.org/server.xsd"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <!-- operation request element -->
+  <element name="coreStation">
+   <complexType>
+    <sequence>
+     <element name="command" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="coreStationResponse">
+   <complexType>
+    <sequence>
+     <element name="message" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="addCamera">
+   <complexType>
+    <sequence>
+     <element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="addCameraResponse">
+   <complexType>
+    <sequence>
+     <element name="message" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="removeCamera">
+   <complexType>
+    <sequence>
+     <element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="removeCameraResponse">
+   <complexType>
+    <sequence>
+     <element name="message" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="setCameraInfo">
+   <complexType>
+    <sequence>
+     <element name="info" type="camera:info" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="setCameraInfoResponse">
+   <complexType>
+    <sequence>
+     <element name="message" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation request element -->
+  <element name="setCameraURI">
+   <complexType>
+    <sequence>
+     <element name="info" type="camera:uri" minOccurs="0" maxOccurs="1" nillable="true"/>
+    </sequence>
+   </complexType>
+  </element>
+  <!-- operation response element -->
+  <element name="info">
+   <complexType>
+    <sequence>
+     <element name="Info-type" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+     <element name="Info" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+     <element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </sequence>
+   </complexType>
+  </element>
+ </schema>
+

@@ -1,0 +1,21 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d4/d1c/Application_8h.html" title="src/apps/Application.h" alt="" coords="800,83,963,112"/>
+<area shape="rect" id="node15" href="$df/d46/HubAgent_8cpp.html" title="src/apps/HubAgent.cpp" alt="" coords="907,237,1077,267"/>
+<area shape="rect" id="node21" href="$d8/dcc/ManagerAgent_8cpp.html" title="src/apps/ManagerAgent.cpp" alt="" coords="5,237,205,267"/>
+<area shape="rect" id="node33" href="$d4/d83/Frontend_8cpp.html" title="src/gui/Frontend.cpp" alt="" coords="1493,237,1643,267"/>
+<area shape="rect" id="node42" href="$d5/dd7/SMCagentService_8cpp.html" title="src/soap/SMCagentService.cpp" alt="" coords="1335,83,1553,112"/>
+<area shape="rect" id="node5" href="$d2/db6/Application_8cpp.html" title="src/apps/Application.cpp" alt="" coords="420,160,596,189"/>
+<area shape="rect" id="node7" href="$db/d20/CoreServer_8h.html" title="src/apps/CoreServer.h" alt="" coords="620,160,783,189"/>
+<area shape="rect" id="node13" href="$d2/d48/HubAgent_8h.html" title="src/apps/HubAgent.h" alt="" coords="807,160,961,189"/>
+<area shape="rect" id="node19" href="$da/d09/ManagerAgent_8h.html" title="src/apps/ManagerAgent.h" alt="" coords="209,160,396,189"/>
+<area shape="rect" id="node25" href="$df/ddc/StorageAgent_8h.html" title="src/apps/StorageAgent.h" alt="" coords="1655,160,1836,189"/>
+<area shape="rect" id="node31" href="$d0/d1b/Frontend_8h.html" title="src/gui/Frontend.h" alt="" coords="1124,160,1260,189"/>
+<area shape="rect" id="node9" href="$d5/d33/CoreServer_8cpp.html" title="src/apps/CoreServer.cpp" alt="" coords="547,237,725,267"/>
+<area shape="rect" id="node11" href="$df/d0a/main_8cpp.html" title="src/main.cpp" alt="" coords="419,237,523,267"/>
+<area shape="rect" id="node17" href="$d6/d64/main-hub_8cpp.html" title="src/main&#45;hub.cpp" alt="" coords="749,237,883,267"/>
+<area shape="rect" id="node23" href="$d9/de3/main-manager_8cpp.html" title="src/main&#45;manager.cpp" alt="" coords="229,237,395,267"/>
+<area shape="rect" id="node27" href="$d5/de7/StorageAgent_8cpp.html" title="src/apps/StorageAgent.cpp" alt="" coords="1848,237,2043,267"/>
+<area shape="rect" id="node29" href="$da/d90/main-storage_8cpp.html" title="src/main&#45;storage.cpp" alt="" coords="1667,237,1824,267"/>
+<area shape="rect" id="node35" href="$dc/dc4/Frontend_8moc_8cpp.html" title="src/gui/Frontend.moc.cpp" alt="" coords="1101,237,1283,267"/>
+<area shape="rect" id="node37" href="$d7/de4/main-frontend_8cpp.html" title="src/main&#45;frontend.cpp" alt="" coords="1307,237,1469,267"/>
+</map>

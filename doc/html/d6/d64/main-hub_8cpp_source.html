@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>StreamingMediaCenter-1.0:  File sorgente src/main-hub.cpp</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generato da Doxygen 1.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="../../main.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespace</span></a></li>
+      <li><a href="../../annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="../../files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="../../globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>src/main-hub.cpp</h1>  </div>
+</div>
+<div class="contents">
+<a href="../../d6/d64/main-hub_8cpp.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * main-storage.cpp</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 09/feb/2011</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: Mario Giustiniani</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;glib.h&gt;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;gst/gst.h&gt;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;map&gt;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;<a class="code" href="../../d2/d48/HubAgent_8h.html">apps/HubAgent.h</a>&gt;</span>
+<a name="l00013"></a>00013 
+<a name="l00014"></a><a class="code" href="../../d6/d64/main-hub_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00014</a> <span class="keywordtype">int</span> <a class="code" href="../../d7/d97/3main-storage_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) {
+<a name="l00015"></a>00015     GMainLoop * <a class="code" href="../../d7/d97/3main-storage_8cpp.html#a35126dd286141bc2cc1f045de5e1f81a">loop</a>;
+<a name="l00016"></a>00016     gst_init(NULL, NULL);
+<a name="l00017"></a>00017     loop = g_main_loop_new(NULL, FALSE);
+<a name="l00018"></a>00018     <a class="code" href="../../d6/d01/classSMC_1_1HubAgent.html">SMC::HubAgent</a>* Storage;
+<a name="l00019"></a>00019     gst_init(&amp;argc, &amp;argv);
+<a name="l00020"></a>00020     Storage-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a6ae469c41abc2954620c0281713587af">start</a>();
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022     g_main_loop_run(loop);
+<a name="l00023"></a>00023     <span class="keywordflow">return</span> 0;
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 }
+</pre></div></div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generato il Sat Apr 2 2011 21:25:40 per StreamingMediaCenter-1.0 da&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

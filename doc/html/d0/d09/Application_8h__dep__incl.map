@@ -1,0 +1,19 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/db6/Application_8cpp.html" title="src/apps/Application.cpp" alt="" coords="56,83,232,112"/>
+<area shape="rect" id="node5" href="$db/d20/CoreServer_8h.html" title="src/apps/CoreServer.h" alt="" coords="256,83,419,112"/>
+<area shape="rect" id="node11" href="$d2/d48/HubAgent_8h.html" title="src/apps/HubAgent.h" alt="" coords="517,83,672,112"/>
+<area shape="rect" id="node17" href="$da/d09/ManagerAgent_8h.html" title="src/apps/ManagerAgent.h" alt="" coords="696,83,883,112"/>
+<area shape="rect" id="node23" href="$df/ddc/StorageAgent_8h.html" title="src/apps/StorageAgent.h" alt="" coords="1108,83,1289,112"/>
+<area shape="rect" id="node29" href="$d0/d1b/Frontend_8h.html" title="src/gui/Frontend.h" alt="" coords="1603,83,1739,112"/>
+<area shape="rect" id="node7" href="$d5/d33/CoreServer_8cpp.html" title="src/apps/CoreServer.cpp" alt="" coords="5,160,184,189"/>
+<area shape="rect" id="node9" href="$df/d0a/main_8cpp.html" title="src/main.cpp" alt="" coords="208,160,312,189"/>
+<area shape="rect" id="node13" href="$df/d46/HubAgent_8cpp.html" title="src/apps/HubAgent.cpp" alt="" coords="336,160,507,189"/>
+<area shape="rect" id="node15" href="$d6/d64/main-hub_8cpp.html" title="src/main&#45;hub.cpp" alt="" coords="531,160,664,189"/>
+<area shape="rect" id="node19" href="$d8/dcc/ManagerAgent_8cpp.html" title="src/apps/ManagerAgent.cpp" alt="" coords="688,160,888,189"/>
+<area shape="rect" id="node21" href="$d9/de3/main-manager_8cpp.html" title="src/main&#45;manager.cpp" alt="" coords="912,160,1077,189"/>
+<area shape="rect" id="node25" href="$d5/de7/StorageAgent_8cpp.html" title="src/apps/StorageAgent.cpp" alt="" coords="1101,160,1296,189"/>
+<area shape="rect" id="node27" href="$da/d90/main-storage_8cpp.html" title="src/main&#45;storage.cpp" alt="" coords="1320,160,1477,189"/>
+<area shape="rect" id="node31" href="$d4/d83/Frontend_8cpp.html" title="src/gui/Frontend.cpp" alt="" coords="1501,160,1651,189"/>
+<area shape="rect" id="node33" href="$dc/dc4/Frontend_8moc_8cpp.html" title="src/gui/Frontend.moc.cpp" alt="" coords="1675,160,1856,189"/>
+<area shape="rect" id="node35" href="$d7/de4/main-frontend_8cpp.html" title="src/main&#45;frontend.cpp" alt="" coords="1880,160,2043,189"/>
+</map>

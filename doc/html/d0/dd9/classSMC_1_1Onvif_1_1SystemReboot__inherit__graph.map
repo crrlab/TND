@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$d0/d08/classSMC_1_1Onvif_1_1DeviceRequest.html" title="Classe Virtuale che implementa il Device_Service dello standard ONVIF." alt="" coords="5,160,197,189"/>
+<area shape="rect" id="node4" href="$dc/dc3/classSMC_1_1Onvif_1_1Request.html" title="Classe Derivata di Command, che implementa i metodi per effettuare una richiesta Soap." alt="" coords="27,83,176,112"/>
+<area shape="rect" id="node6" href="$d4/d66/classPattern_1_1Command.html" title="Pattern::Command" alt="" coords="31,5,172,35"/>
+</map>

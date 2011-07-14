@@ -1,0 +1,30 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d2/d3f/Request_8h.html" title="src/onvif/Request.h" alt="" coords="1173,83,1315,112"/>
+<area shape="rect" id="node54" href="$d9/d3f/NetworkVideoTransmitter_8h.html" title="src/onvif/NetworkVideoTransmitter.h" alt="" coords="2099,83,2349,112"/>
+<area shape="rect" id="node68" href="$d5/df8/Command_8cpp.html" title="src/patterns/Command.cpp" alt="" coords="2373,83,2571,112"/>
+<area shape="rect" id="node5" href="$de/d7d/DeviceRequest_8h.html" title="src/onvif/DeviceRequest.h" alt="" coords="1869,160,2053,189"/>
+<area shape="rect" id="node31" href="$d2/da4/MediaRequest_8h.html" title="src/onvif/MediaRequest.h" alt="" coords="1155,160,1333,189"/>
+<area shape="rect" id="node50" href="$d1/d8c/Request_01_07VGN-SZ3VP-X&#39;s_01conflicted_01copy_012011-03-30_08_8cpp.html" title="src/onvif/Request (VGN&#45;SZ3VP&#45;X&#39;s conflicted copy 2011&#45;03&#45;30).cpp" alt="" coords="187,160,635,189"/>
+<area shape="rect" id="node52" href="$d9/d08/Request_8cpp.html" title="src/onvif/Request.cpp" alt="" coords="5,160,163,189"/>
+<area shape="rect" id="node7" href="$d0/d51/GetDeviceInformation_8h.html" title="src/onvif/GetDeviceInformation.h" alt="" coords="2184,237,2413,267"/>
+<area shape="rect" id="node19" href="$d0/dc2/SystemReboot_8h.html" title="src/onvif/SystemReboot.h" alt="" coords="1765,237,1949,267"/>
+<area shape="rect" id="node24" href="$df/d31/GetCapabilities_8h.html" title="src/onvif/GetCapabilities.h" alt="" coords="1973,237,2160,267"/>
+<area shape="rect" id="node29" href="$db/d15/DeviceRequest_8cpp.html" title="src/onvif/DeviceRequest.cpp" alt="" coords="1541,237,1741,267"/>
+<area shape="rect" id="node9" href="$d6/d17/onvifdefs_8h.html" title="src/onvif/onvifdefs.h" alt="" coords="1549,315,1696,344"/>
+<area shape="rect" id="node17" href="$df/d2f/GetDeviceInformation_8cpp.html" title="src/onvif/GetDeviceInformation.cpp" alt="" coords="2168,315,2413,344"/>
+<area shape="rect" id="node11" href="$df/d0a/main_8cpp.html" title="src/main.cpp" alt="" coords="2449,392,2553,421"/>
+<area shape="rect" id="node13" href="$d7/db0/NetworkVideoTransmitter_01_07VGN-SZ3VP-X&#39;s_01conflicted_01copy_012011-03-30_08_8cpp.html" title="src/onvif/NetworkVideoTransmitter (VGN&#45;SZ3VP&#45;X&#39;s conflicted copy 2011&#45;03&#45;30).cpp" alt="" coords="987,392,1544,421"/>
+<area shape="rect" id="node15" href="$d3/d2b/NetworkVideoTransmitter_8cpp.html" title="src/onvif/NetworkVideoTransmitter.cpp" alt="" coords="1825,392,2089,421"/>
+<area shape="rect" id="node22" href="$d7/d1c/SystemReboot_8cpp.html" title="src/onvif/SystemReboot.cpp" alt="" coords="1720,315,1917,344"/>
+<area shape="rect" id="node27" href="$de/dd6/GetCapabilities_8cpp.html" title="src/onvif/GetCapabilities.cpp" alt="" coords="1941,315,2144,344"/>
+<area shape="rect" id="node33" href="$df/d0e/GetProfiles_8h.html" title="src/onvif/GetProfiles.h" alt="" coords="1357,237,1517,267"/>
+<area shape="rect" id="node38" href="$d9/d8b/GetVideoSources_8h.html" title="src/onvif/GetVideoSources.h" alt="" coords="928,237,1131,267"/>
+<area shape="rect" id="node43" href="$db/d83/GetStreamUri_8h.html" title="src/onvif/GetStreamUri.h" alt="" coords="1155,237,1333,267"/>
+<area shape="rect" id="node48" href="$db/d78/MediaRequest_8cpp.html" title="src/onvif/MediaRequest.cpp" alt="" coords="709,237,904,267"/>
+<area shape="rect" id="node36" href="$da/d85/GetProfiles_8cpp.html" title="src/onvif/GetProfiles.cpp" alt="" coords="1352,315,1525,344"/>
+<area shape="rect" id="node41" href="$d5/dbb/GetVideoSources_8cpp.html" title="src/onvif/GetVideoSources.cpp" alt="" coords="893,315,1109,344"/>
+<area shape="rect" id="node46" href="$d1/ddc/GetStreamUri_8cpp.html" title="src/onvif/GetStreamUri.cpp" alt="" coords="1133,315,1328,344"/>
+<area shape="rect" id="node56" href="$db/d20/CoreServer_8h.html" title="src/apps/CoreServer.h" alt="" coords="2420,160,2583,189"/>
+<area shape="rect" id="node64" href="$da/d8c/AgentProxy_8cpp.html" title="src/observers/AgentProxy.cpp" alt="" coords="2607,160,2817,189"/>
+<area shape="rect" id="node58" href="$d5/d33/CoreServer_8cpp.html" title="src/apps/CoreServer.cpp" alt="" coords="2539,237,2717,267"/>
+</map>

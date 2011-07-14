@@ -1,0 +1,135 @@
+2010-11-11  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+2010-11-10  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+2010-11-09  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+2010-11-08  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+2010-11-05  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+2010-11-04  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+2010-11-03  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+2010-11-02  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+
+2010-10-29  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+
+	* libonvif/Makefile.am: Aggiunto supporto per WS-Security
+		
+	
+2010-10-28  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+
+	* src/core/onvif/Device.cpp (Device::Device): 
+	* src/core/onvif/Device.h (SMC::Core::Onvif::Device): Classe Wrapper del deviceManager
+ 
+2010-10-27  Mario Giustiniani  <mario.giustiniani@posix-shell.com>	
+	
+	* libgsoap/duration.h: 
+	* libgsoap/duration.cpp: 
+	* libonvif/Makefile.am: configurazione iniziale
+	* libgsoap/stdsoap2.h: header gSoap
+	* libgsoap/stdsoap2.cpp: Libreria gSoap embedded
+
+2010-10-26  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+
+	* libonvif/analytics/OnvifAnalyticsEngineBindingProxy.cpp: 
+	* libonvif/analytics/OnvifAnalyticsEngineBindingProxy.h: 
+	* libonvif/analytics/OnvifRuleEngineBindingProxy.cpp: 
+	* libonvif/analytics/OnvifRuleEngineBindingProxy.h: 
+	* libonvif/analytics/OnvifC.cpp: Sorgente Soap Client
+	* libonvif/analytics/OnvifH.h: Header Soap Client
+	* libonvif/analytics/OnvifStub.h: Definizione strutture dati
+	* libonvif/analytics/Onvif.nsmap: wsdl di media 
+
+2010-10-25  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+
+	* libonvif/imaging/OnvifImagingBindingProxy.cpp: 
+	* libonvif/imaging/OnvifImagingBindingProxy.h:
+	* libonvif/imaging/OnvifC.cpp: Sorgente Soap Client
+	* libonvif/imaging/OnvifH.h: Header Soap Client
+	* libonvif/imaging/OnvifStub.h: Definizione strutture dati
+	* libonvif/imaging/Onvif.nsmap: wsdl di media 
+
+2010-10-22  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+
+	* libonvif/media/OnvifMediaBindingProxy.cpp: 
+	* libonvif/media/OnvifMediaBindingProxy.h: 
+	* libonvif/media/OnvifC.cpp: Sorgente Soap Client
+	* libonvif/media/OnvifH.h: Header Soap Client
+	* libonvif/media/OnvifStub.h: Definizione strutture dati
+	* libonvif/media/Onvif.nsmap: wsdl di media
+
+2010-10-21  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+
+	* libonvif/device/OnvifDeviceBindingProxy.h: sorgente device manager Class
+	* libonvif/device/OnvifDeviceBindingProxy.cpp: header device manager Class
+	* libonvif/device/OnvifC.cpp: Sorgente Soap Client
+	* libonvif/device/OnvifH.h: Header Soap Client
+	* libonvif/device/OnvifStub.h: Definizione strutture dati
+	* libonvif/device/Onvif.nsmap: wsdl di device manager
+	
+
+2010-10-20  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+
+	* libonvif/remotediscovery/OnvifRemoteDiscoveryBindingProxy.cpp: sorgente announce telecamere
+	* libonvif/remotediscovery/OnvifRemoteDiscoveryBindingProxy.h: Header announce telecamere	
+	* libonvif/remotediscovery/OnvifDiscoveryLookupBindingProxy.cpp: sorgente ricerca telecamere
+	* libonvif/remotediscovery/OnvifDiscoveryLookupBindingProxy.h: header ricerca telecamere
+	* libonvif/remotediscovery/OnvifC.cpp: Sorgente Soap Client
+	* libonvif/remotediscovery/OnvifH.h: Header Soap Client
+	* libonvif/remotediscovery/OnvifStub.h: Definizione strutture dati
+	* libonvif/remotediscovery/Onvif.nsmap: wsdl di remotediscovery
+
+2010-10-19  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+
+	* libonvif: Integrazione header nel sistema
+	* libonvif/remotediscovery.h: 
+	* libonvif/media.h: 
+	* libonvif/imaging.h: 
+	* libonvif/devicemgmt.h: 
+	* libonvif/analytics.h: 
+	* data/onvif/Makefile.am: Creazione Header
+	* data/Makefile.am (SUBDIRS): add onvif
+	* configure.ac (AC_CONFIG_FILES): add data/Makefile.in data/onvif/Makefile.in
+	* Makefile.am (SUBDIRS): add data
+	* data/onvif/typemap.dat: customizzazione dei namespace in gsoap
+	* gsoap-2.8: Installazione Gsoap 2.8
+
+2010-10-18  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+
+    * doc/onvif/10596r01ONVIF_CC-Core.pdf: Specifiche protocollo Onvif
+    * data/onvif/analytics.wsdl: funzionalita' di diagnostica
+	* data/onvif/imaging.wsdl: Configurazione scatti fotocamera
+	* data/onvif/media.wsdl: Configurazione canali video
+	* data/onvif/devicemgmt.wsdl: configurazione hardware di ogni telecamera
+	* data/onvif/remotediscovery.wsdl: Ricerca delle telecamere collegate
+
+2010-10-15 gettextize  <bug-gnu-gettext@gnu.org>
+
+	* m4/gettext.m4: New file, from gettext-0.18.1.
+	* m4/iconv.m4: New file, from gettext-0.18.1.
+	* m4/lib-ld.m4: New file, from gettext-0.18.1.
+	* m4/lib-link.m4: New file, from gettext-0.18.1.
+	* m4/lib-prefix.m4: New file, from gettext-0.18.1.
+	* m4/nls.m4: New file, from gettext-0.18.1.
+	* m4/po.m4: New file, from gettext-0.18.1.
+	* m4/progtest.m4: New file, from gettext-0.18.1.
+	* Makefile.am (SUBDIRS): Add po.
+	(EXTRA_DIST): New variable.
+	* configure.ac (AC_CONFIG_FILES): Add po/Makefile.in.
+
+2010-10-14  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+	* data/: presenti i file risorsa del software (immagini, xml, etc...)
+	* data/onvif/: file wsdl del protocollo Onvif
+	* common/: codice importato da altri sorgenti
+	* libonvif/: sorgenti del protocollo onvif
+	* src/: sorgenti della suite Streaming Media Center
+	* doc/: Documentazione del software
+	* m4/: macro per integrazione librerie
+	* po/: Internazionalizzzaione software
+	* test/: software
+	* package/: scripts di installazione package
+
+2010-10-13  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+
+	* src/Makefile.am: configurazione processi smc
+	* Makefile.am: inizializzazione e configurazione gsoap
+
+2010-10-12  Mario Giustiniani  <mario.giustiniani@posix-shell.com>
+
+	* configure.ac: Setup Iniziale

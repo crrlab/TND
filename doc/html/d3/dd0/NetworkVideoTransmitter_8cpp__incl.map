@@ -1,0 +1,19 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d9/d3f/NetworkVideoTransmitter_8h.html" title="NetworkVideoTransmitter.h" alt="" coords="455,315,647,344"/>
+<area shape="rect" id="node36" href="$d6/d17/onvifdefs_8h.html" title="onvifdefs.h" alt="" coords="679,83,769,112"/>
+<area shape="rect" id="node11" href="$d1/d55/Command_8h.html" title="patterns/Command.h" alt="" coords="837,392,995,421"/>
+<area shape="rect" id="node13" href="$db/de8/Subject_8h.html" title="patterns/Subject.h" alt="" coords="637,469,776,499"/>
+<area shape="rect" id="node21" href="$d4/dfa/DeviceProxy_8h.html" title="observers/DeviceProxy.h" alt="" coords="493,392,669,421"/>
+<area shape="rect" id="node29" href="$d4/df3/Profile_8h.html" title="Profile.h" alt="" coords="352,469,424,499"/>
+<area shape="rect" id="node15" href="$d8/df1/Observer_8h.html" title="Observer.h" alt="" coords="559,547,649,576"/>
+<area shape="rect" id="node23" href="$d5/d84/RemoteProxy_8h.html" title="RemoteProxy.h" alt="" coords="499,469,613,499"/>
+<area shape="rect" id="node38" href="$d0/d51/GetDeviceInformation_8h.html" title="GetDeviceInformation.h" alt="" coords="464,160,637,189"/>
+<area shape="rect" id="node50" href="$d0/dc2/SystemReboot_8h.html" title="SystemReboot.h" alt="" coords="661,160,787,189"/>
+<area shape="rect" id="node53" href="$df/d0e/GetProfiles_8h.html" title="GetProfiles.h" alt="" coords="811,160,912,189"/>
+<area shape="rect" id="node61" href="$df/d31/GetCapabilities_8h.html" title="GetCapabilities.h" alt="" coords="309,160,440,189"/>
+<area shape="rect" id="node64" href="$d9/d8b/GetVideoSources_8h.html" title="GetVideoSources.h" alt="" coords="936,160,1080,189"/>
+<area shape="rect" id="node67" href="$db/d83/GetStreamUri_8h.html" title="GetStreamUri.h" alt="" coords="1104,160,1227,189"/>
+<area shape="rect" id="node40" href="$de/d7d/DeviceRequest_8h.html" title="DeviceRequest.h" alt="" coords="487,237,615,267"/>
+<area shape="rect" id="node42" href="$d2/d3f/Request_8h.html" title="Request.h" alt="" coords="873,315,959,344"/>
+<area shape="rect" id="node55" href="$d2/da4/MediaRequest_8h.html" title="MediaRequest.h" alt="" coords="885,237,1008,267"/>
+</map>

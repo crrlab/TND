@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node7" href="$db/dad/classSMC_1_1Onvif_1_1GetProfiles.html" title="SMC::Onvif::GetProfiles" alt="" coords="5,237,173,267"/>
+<area shape="rect" id="node9" href="$d4/dfd/classSMC_1_1Onvif_1_1GetStreamUri.html" title="SMC::Onvif::GetStreamUri" alt="" coords="197,237,384,267"/>
+<area shape="rect" id="node11" href="$da/d8f/classSMC_1_1Onvif_1_1GetVideoSources.html" title="SMC::Onvif::GetVideoSources" alt="" coords="408,237,619,267"/>
+<area shape="rect" id="node2" href="$dc/dc3/classSMC_1_1Onvif_1_1Request.html" title="Classe Derivata di Command, che implementa i metodi per effettuare una richiesta Soap." alt="" coords="216,83,365,112"/>
+<area shape="rect" id="node4" href="$d4/d66/classPattern_1_1Command.html" title="Pattern::Command" alt="" coords="220,5,361,35"/>
+</map>

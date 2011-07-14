@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>StreamingMediaCenter-1.0:  File sorgente src/apps/Application.cpp</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generato da Doxygen 1.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="../../main.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespace</span></a></li>
+      <li><a href="../../annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="../../files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="../../globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>src/apps/Application.cpp</h1>  </div>
+</div>
+<div class="contents">
+<a href="../../d2/db6/Application_8cpp.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * Application.cpp</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 27/feb/2011</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: Mario Giustiniani</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="../../d4/d1c/Application_8h.html">Application.h</a>&quot;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &quot;Remotedpws_discoveryProxy.h&quot;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &quot;Remote.nsmap&quot;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<a name="l00012"></a><a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a43e4ba054f92a0a172878a5b52c382a2">00012</a> <span class="preprocessor">#include &lt;string.h&gt;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;sys/types.h&gt;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;sys/socket.h&gt;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;sys/ioctl.h&gt;</span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;netinet/in.h&gt;</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;net/if.h&gt;</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include &lt;signal.h&gt;</span>
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 
+<a name="l00025"></a><a class="code" href="../../d7/d64/namespaceSMC.html">00025</a> <span class="keyword">namespace </span>SMC {
+<a name="l00026"></a>00026 
+<a name="l00028"></a>00028 <a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a43e4ba054f92a0a172878a5b52c382a2" title="costruttore della classe astratta">Application::Application</a>() {
+<a name="l00029"></a>00029     uuid_t uuid_temp;
+<a name="l00030"></a>00030     <span class="keywordtype">char</span> uuid_string[80];
+<a name="l00031"></a>00031     <span class="comment">// TODO Auto-generated constructor stub</span>
+<a name="l00032"></a>00032     this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a72b186b47ba184d23a6c295e90ca081e">subtype</a> = <span class="stringliteral">&quot;Application&quot;</span>;
+<a name="l00033"></a>00033     this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a688f7cc32efe49d389fe02559ea5dc1a">type</a> = <span class="stringliteral">&quot;\&quot;StreamingMediaCenter\&quot;:&quot;</span>;
+<a name="l00034"></a>00034 
+<a name="l00036"></a>00036     this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a536b704a3870aae8b777b36ed1ca0561">port</a> = <span class="stringliteral">&quot;50055&quot;</span>;
+<a name="l00042"></a>00042     uuid_generate_time(uuid_temp);
+<a name="l00043"></a>00043     uuid_unparse(uuid_temp, uuid_string);
+<a name="l00044"></a>00044     this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a6f1a78f42e7f1e586ae5f76fb82ce256">uuid</a> =uuid_string;
+<a name="l00046"></a>00046     std::cout &lt;&lt; <span class="stringliteral">&quot;uuid: &quot;</span> &lt;&lt; <a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a6f1a78f42e7f1e586ae5f76fb82ce256">uuid</a> &lt;&lt; std::endl;
+<a name="l00047"></a>00047 
+<a name="l00049"></a><a class="code" href="../../dc/d5f/classSMC_1_1Application.html#ae616f287e264961746f08bd8dc834ed3">00049</a>     signal(SIGINT, <a class="code" href="../../dc/d5f/classSMC_1_1Application.html#ad3b6b4d3d93b29fee544ed344185cb11">Application::segnale_ricevuto</a>);
+<a name="l00050"></a>00050     signal(SIGTERM, <a class="code" href="../../dc/d5f/classSMC_1_1Application.html#ad3b6b4d3d93b29fee544ed344185cb11">Application::segnale_ricevuto</a>);
+<a name="l00051"></a>00051     signal(SIGHUP, <a class="code" href="../../dc/d5f/classSMC_1_1Application.html#ad3b6b4d3d93b29fee544ed344185cb11">Application::segnale_ricevuto</a>);
+<a name="l00052"></a>00052 
+<a name="l00053"></a><a class="code" href="../../dc/d5f/classSMC_1_1Application.html#aa4e0dc358eb0011798f05aeaa619c8c5">00053</a> }
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055 <span class="comment">/*void Application::Hello() {</span>
+<a name="l00056"></a>00056 <span class="comment"></span>
+<a name="l00057"></a>00057 <span class="comment"></span>
+<a name="l00058"></a>00058 <span class="comment"></span>
+<a name="l00059"></a>00059 <span class="comment"> }*/</span>
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061 <span class="keywordtype">void</span> <a class="code" href="../../dc/d5f/classSMC_1_1Application.html#ad3b6b4d3d93b29fee544ed344185cb11">Application::segnale_ricevuto</a>(<span class="keywordtype">int</span> signum) {
+<a name="l00062"></a>00062     std::cout &lt;&lt; <span class="stringliteral">&quot;Segnale Ricevuto&quot;</span> &lt;&lt; std::endl;
+<a name="l00063"></a>00063     exit(1);
+<a name="l00064"></a>00064 }
+<a name="l00065"></a>00065 <a class="code" href="../../dc/d5f/classSMC_1_1Application.html#ae616f287e264961746f08bd8dc834ed3">Application::~Application</a>() {
+<a name="l00066"></a>00066     <span class="comment">// TODO Auto-generated destructor stub</span>
+<a name="l00067"></a>00067 }
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 <span class="keywordtype">void</span> <a class="code" href="../../dc/d5f/classSMC_1_1Application.html#aa4e0dc358eb0011798f05aeaa619c8c5">Application::Hello</a>() {
+<a name="l00070"></a>00070     Remote::dpws_discoveryProxy * test = <span class="keyword">new</span> Remote::dpws_discoveryProxy();
+<a name="l00071"></a>00071     Remote::wsd__HelloType * hello = <span class="keyword">new</span> Remote::wsd__HelloType();
+<a name="l00072"></a>00072     test-&gt;soap_endpoint = <span class="stringliteral">&quot;soap.udp://239.255.255.250:3702&quot;</span>;
+<a name="l00073"></a>00073     std::string temp = this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a688f7cc32efe49d389fe02559ea5dc1a">type</a> + this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a72b186b47ba184d23a6c295e90ca081e">subtype</a>;
+<a name="l00074"></a>00074     hello-&gt;wsa__EndpointReference.Address = this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a8f92d3755908ff8c4f76ac6e2ecc847e">getIP</a>();
+<a name="l00075"></a><a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a8f92d3755908ff8c4f76ac6e2ecc847e">00075</a>     <span class="keywordtype">char</span> adr[256];
+<a name="l00076"></a>00076     <span class="comment">//  strcpy(adr,&quot;http://&quot;);</span>
+<a name="l00077"></a>00077     strcpy(adr, this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a8f92d3755908ff8c4f76ac6e2ecc847e">getIP</a>());
+<a name="l00078"></a>00078     strcat(adr, <span class="stringliteral">&quot;:&quot;</span>);
+<a name="l00079"></a>00079     strcat(adr, this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a536b704a3870aae8b777b36ed1ca0561">port</a>.c_str());
+<a name="l00080"></a>00080     hello-&gt;XAddrs = adr;
+<a name="l00081"></a>00081     hello-&gt;Types = (<span class="keywordtype">char</span>*) temp.c_str();
+<a name="l00082"></a>00082     hello-&gt;__anyAttribute = <span class="stringliteral">&quot;ciao&quot;</span>;
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084     <span class="keywordflow">if</span> (SOAP_OK != test-&gt;send_Hello(hello))
+<a name="l00085"></a>00085         std::cout &lt;&lt; <span class="stringliteral">&quot;SOAP ERROR&quot;</span> &lt;&lt; std::endl;
+<a name="l00086"></a>00086     <span class="keywordflow">else</span> {
+<a name="l00087"></a>00087         std::cout &lt;&lt; <span class="stringliteral">&quot;SOAP SEND&quot;</span> &lt;&lt; std::endl;
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089     }
+<a name="l00090"></a>00090 }
+<a name="l00091"></a>00091 <span class="keywordtype">char</span>* <a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a8f92d3755908ff8c4f76ac6e2ecc847e">Application::getIP</a>() {
+<a name="l00092"></a>00092     <span class="keywordtype">char</span> *address;
+<a name="l00093"></a>00093     <span class="keywordtype">int</span> fd;
+<a name="l00094"></a>00094     <span class="keyword">struct </span>ifreq ifr;
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096     fd = socket(AF_INET, SOCK_DGRAM, 0);
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098     ifr.ifr_addr.sa_family = AF_INET;
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100     snprintf(ifr.ifr_name, IFNAMSIZ, <span class="stringliteral">&quot;eth0&quot;</span>);
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102     ioctl(fd, SIOCGIFADDR, &amp;ifr);
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104     <span class="comment">/* and more importantly */</span>
+<a name="l00105"></a>00105     address = inet_ntoa(((<span class="keyword">struct</span> sockaddr_in *) &amp;ifr.ifr_addr)-&gt;sin_addr);
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107     close(fd);
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109     <span class="keywordflow">return</span> address;
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 }
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113 }
+</pre></div></div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generato il Sat Apr 2 2011 21:25:40 per StreamingMediaCenter-1.0 da&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

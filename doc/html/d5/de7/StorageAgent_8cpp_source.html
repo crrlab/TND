@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>StreamingMediaCenter-1.0:  File sorgente src/apps/StorageAgent.cpp</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generato da Doxygen 1.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="../../main.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespace</span></a></li>
+      <li><a href="../../annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="../../files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="../../globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>src/apps/StorageAgent.cpp</h1>  </div>
+</div>
+<div class="contents">
+<a href="../../d5/de7/StorageAgent_8cpp.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * StorageAgent.cpp</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 27/feb/2011</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: Mario Giustiniani</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="../../df/ddc/StorageAgent_8h.html">StorageAgent.h</a>&quot;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;<a class="code" href="../../d6/dcd/VideoCamStorage_8h.html">stream/VideoCamStorage.h</a>&gt;</span>
+<a name="l00010"></a>00010 
+<a name="l00011"></a><a class="code" href="../../d1/dde/classSMC_1_1StorageAgent.html#a36100cd5a64d4c43833198ee0df07c72">00011</a> <span class="keyword">namespace </span>SMC {
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 <a class="code" href="../../d1/dde/classSMC_1_1StorageAgent.html#a36100cd5a64d4c43833198ee0df07c72">StorageAgent::StorageAgent</a>() {
+<a name="l00014"></a>00014     <span class="comment">// TODO Auto-generated constructor stub</span>
+<a name="l00015"></a>00015     this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a72b186b47ba184d23a6c295e90ca081e">subtype</a> = <span class="stringliteral">&quot;StorageAgent&quot;</span>;
+<a name="l00016"></a>00016     this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a536b704a3870aae8b777b36ed1ca0561">port</a> = <span class="stringliteral">&quot;40440&quot;</span>;
+<a name="l00017"></a><a class="code" href="../../d1/dde/classSMC_1_1StorageAgent.html#aed84e3313d71819f9adb6fdc2fd995cc">00017</a> }
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019 <a class="code" href="../../d1/dde/classSMC_1_1StorageAgent.html#aed84e3313d71819f9adb6fdc2fd995cc">StorageAgent::~StorageAgent</a>() {
+<a name="l00020"></a><a class="code" href="../../d1/dde/classSMC_1_1StorageAgent.html#ae7bc2045d084a54579db10aec18d12a9">00020</a> 
+<a name="l00021"></a>00021 }
+<a name="l00022"></a>00022 <span class="keywordtype">void</span> <a class="code" href="../../d1/dde/classSMC_1_1StorageAgent.html#ae7bc2045d084a54579db10aec18d12a9">StorageAgent::run</a>() {
+<a name="l00023"></a>00023     this-&gt;<a class="code" href="../../d1/dde/classSMC_1_1StorageAgent.html#a72f62a87981c782d3fe9918bd4f0caf8">PipelineServe</a>();
+<a name="l00024"></a>00024 
+<a name="l00025"></a><a class="code" href="../../d1/dde/classSMC_1_1StorageAgent.html#aaa72aa080a2ef1941b0c195be3a4a654">00025</a> }
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 <span class="keywordtype">void</span> <a class="code" href="../../d1/dde/classSMC_1_1StorageAgent.html#aaa72aa080a2ef1941b0c195be3a4a654">StorageAgent::Serve</a>() {
+<a name="l00028"></a><a class="code" href="../../d1/dde/classSMC_1_1StorageAgent.html#a72f62a87981c782d3fe9918bd4f0caf8">00028</a> 
+<a name="l00029"></a>00029 }
+<a name="l00030"></a>00030 <span class="keywordtype">void</span> <a class="code" href="../../d1/dde/classSMC_1_1StorageAgent.html#a72f62a87981c782d3fe9918bd4f0caf8">StorageAgent::PipelineServe</a>() {
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032     <span class="keywordflow">if</span> (!g_thread_supported())
+<a name="l00033"></a>00033         g_thread_init(NULL);
+<a name="l00034"></a>00034     <span class="comment">//SMC::Stream::Streaming pipe;</span>
+<a name="l00035"></a>00035     <span class="comment">//pipe.setStream(new SMC::Stream::VideoCamStorage());</span>
+<a name="l00036"></a>00036     <span class="comment">// pipe.play();</span>
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038     <span class="comment">/*g_print(&quot;Returned, stopping playback\n&quot;);</span>
+<a name="l00039"></a>00039 <span class="comment">     gst_element_set_state(pipelines, GST_STATE_NULL);</span>
+<a name="l00040"></a>00040 <span class="comment"></span>
+<a name="l00041"></a>00041 <span class="comment">     g_print(&quot;Deleting pipeline\n&quot;);</span>
+<a name="l00042"></a>00042 <span class="comment">     gst_object_unref(GST_OBJECT(pipelines));*/</span>
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 }
+<a name="l00045"></a>00045 <span class="keywordtype">int</span> <a class="code" href="../../de/d63/classSMC_1_1agentService.html#a2490fa0c1d5c06aa671cd1b7b7ea45c3" title="Service operations (you should define these):">agentService::coreStation</a>(std::string command, std::string &amp;message) {
+<a name="l00046"></a>00046     message = <span class="stringliteral">&quot;OK&quot;</span>;
+<a name="l00047"></a>00047         StorageAgent* server = <span class="keyword">static_cast&lt;</span>StorageAgent*<span class="keyword">&gt;</span> (this-&gt;user);
+<a name="l00048"></a>00048         server-&gt;CoreProxy = <span class="keyword">new</span> CoreServerProxy();
+<a name="l00049"></a>00049         server-&gt;CoreProxy-&gt;setEndpoint(command);
+<a name="l00050"></a>00050         std::cout &lt;&lt; <span class="stringliteral">&quot;CoreServer &quot;</span> &lt;&lt; server-&gt;CoreProxy-&gt;getEndpoint()&lt;&lt; std::endl;
+<a name="l00051"></a>00051         <span class="keywordflow">return</span> SOAP_OK;
+<a name="l00052"></a>00052 }
+<a name="l00053"></a>00053 ;
+<a name="l00054"></a>00054 
+<a name="l00056"></a>00056 <span class="keywordtype">int</span> <a class="code" href="../../de/d63/classSMC_1_1agentService.html#a9458407796c135701454f442f41ff843" title="Web service operation &amp;#39;addCamera&amp;#39; (returns error code or SOAP_OK).">agentService::addCamera</a>(std::string uuid, std::string &amp;message) {
+<a name="l00057"></a>00057     <span class="keywordflow">return</span> 0;
+<a name="l00058"></a>00058 }
+<a name="l00059"></a>00059 ;
+<a name="l00060"></a>00060 
+<a name="l00062"></a>00062 <span class="keywordtype">int</span> <a class="code" href="../../de/d63/classSMC_1_1agentService.html#a293124c91100d9e4a882e79af747e9b2" title="Web service operation &amp;#39;removeCamera&amp;#39; (returns error code or SOAP_OK).">agentService::removeCamera</a>(std::string uuid, std::string &amp;message) {
+<a name="l00063"></a>00063     <span class="keywordflow">return</span> 0;
+<a name="l00064"></a>00064 }
+<a name="l00065"></a>00065 ;
+<a name="l00066"></a>00066 
+<a name="l00068"></a>00068 <span class="keywordtype">int</span> <a class="code" href="../../de/d63/classSMC_1_1agentService.html#aafb17c654de0dd5a9b5779b6367b533b" title="Web service operation &amp;#39;setCameraInfo&amp;#39; (returns error code or SOAP_OK).">agentService::setCameraInfo</a>(<span class="keyword">struct</span> <a class="code" href="../../d1/dac/structcamera____info.html">camera__info</a> *_info,
+<a name="l00069"></a>00069         std::string &amp;message) {
+<a name="l00070"></a>00070     message = <span class="stringliteral">&quot;OK&quot;</span>;
+<a name="l00071"></a>00071     StorageAgent* server = <span class="keyword">static_cast&lt;</span>StorageAgent*<span class="keyword">&gt;</span> (this-&gt;user);
+<a name="l00072"></a>00072     std::cout &lt;&lt; _info-&gt;<a class="code" href="../../d1/dac/structcamera____info.html#a449cc254d0fdc9a5c13e7132e2651f57">Info_type</a> &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; _info-&gt;<a class="code" href="../../d1/dac/structcamera____info.html#aeafac9f8088c5a7ad9fa5313c77a2e16">Info</a> &lt;&lt; std::endl;
+<a name="l00073"></a>00073     <span class="keywordflow">if</span> (server-&gt;servers.find(_info-&gt;<a class="code" href="../../d1/dac/structcamera____info.html#a11330aa79f6e15c6b23cfcecb3602c19">uuid</a>) == server-&gt;servers.end()) {
+<a name="l00074"></a>00074         server-&gt;servers[_info-&gt;<a class="code" href="../../d1/dac/structcamera____info.html#a11330aa79f6e15c6b23cfcecb3602c19">uuid</a>] = <span class="keyword">new</span> StorageFile();
+<a name="l00075"></a>00075     }
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077     <span class="keywordflow">return</span> SOAP_OK;
+<a name="l00078"></a>00078 }
+<a name="l00079"></a>00079 ;
+<a name="l00080"></a>00080 
+<a name="l00082"></a>00082 <span class="keywordtype">int</span> <a class="code" href="../../de/d63/classSMC_1_1agentService.html#a573aaabf9f697ad09fb9a892fc7bd27c" title="Web service operation &amp;#39;setCameraURI&amp;#39; (returns error code or SOAP_OK).">agentService::setCameraURI</a>(<span class="keyword">struct</span> <a class="code" href="../../d9/d3c/structcamera____uri.html">camera__uri</a> *_info,
+<a name="l00083"></a>00083         <span class="keyword">struct</span> <a class="code" href="../../d1/dac/structcamera____info.html">camera__info</a> &amp;_infoResponse) {
+<a name="l00084"></a>00084     StorageAgent* server = <span class="keyword">static_cast&lt;</span>StorageAgent*<span class="keyword">&gt;</span> (this-&gt;user);
+<a name="l00085"></a>00085     <span class="keywordflow">if</span> (server-&gt;servers.find(_info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#aeab4e89f6bee3936c9cf3dd957b467dc">uuid</a>) != server-&gt;servers.end()) {
+<a name="l00086"></a>00086         <span class="keywordflow">if</span> (server-&gt;servers[_info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#aeab4e89f6bee3936c9cf3dd957b467dc">uuid</a>]-&gt;getUri().empty()) {
+<a name="l00087"></a>00087             server-&gt;servers[_info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#aeab4e89f6bee3936c9cf3dd957b467dc">uuid</a>] -&gt; setUri(_info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#a91f1b625b0ac64f14f4b52ffa16a99f6">streamURI</a>);
+<a name="l00088"></a>00088             server-&gt;servers[_info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#aeab4e89f6bee3936c9cf3dd957b467dc">uuid</a>] -&gt; setFile(<span class="stringliteral">&quot;/home/paperboy/&quot;</span> + _info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#aeab4e89f6bee3936c9cf3dd957b467dc">uuid</a>
+<a name="l00089"></a>00089                     + <span class="stringliteral">&quot;.avi&quot;</span>);
+<a name="l00090"></a>00090             server-&gt;servers[_info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#aeab4e89f6bee3936c9cf3dd957b467dc">uuid</a>]-&gt;run();
+<a name="l00091"></a>00091             std::cout &lt;&lt; <span class="stringliteral">&quot;CoreServer &quot;</span> &lt;&lt; server-&gt;CoreProxy-&gt;getEndpoint()
+<a name="l00092"></a>00092                     &lt;&lt; std::endl;
+<a name="l00093"></a>00093             std::cout &lt;&lt; <span class="stringliteral">&quot;StreamURI: &quot;</span> &lt;&lt; _info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#a91f1b625b0ac64f14f4b52ffa16a99f6">streamURI</a> &lt;&lt; std::endl;
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096             <span class="comment">//boost::thread* serve;</span>
+<a name="l00097"></a>00097             _infoResponse.<a class="code" href="../../d1/dac/structcamera____info.html#a11330aa79f6e15c6b23cfcecb3602c19">uuid</a> = _info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#aeab4e89f6bee3936c9cf3dd957b467dc">uuid</a>;
+<a name="l00098"></a>00098             _infoResponse.<a class="code" href="../../d1/dac/structcamera____info.html#a449cc254d0fdc9a5c13e7132e2651f57">Info_type</a> = <span class="stringliteral">&quot;StorageFile&quot;</span>;
+<a name="l00099"></a>00099             _infoResponse.<a class="code" href="../../d1/dac/structcamera____info.html#aeafac9f8088c5a7ad9fa5313c77a2e16">Info</a> = server-&gt;servers[_info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#aeab4e89f6bee3936c9cf3dd957b467dc">uuid</a>]-&gt;getFile();
+<a name="l00100"></a>00100             <span class="comment">//serve = new boost::thread(boost::bind(&amp;SMC::CoreServerProxy::run,server-&gt;CoreProxy));</span>
+<a name="l00101"></a>00101         }
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103     }
+<a name="l00104"></a>00104     <span class="keywordflow">return</span> SOAP_OK;
+<a name="l00105"></a>00105 }
+<a name="l00106"></a>00106 ;
+<a name="l00107"></a>00107 }
+</pre></div></div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generato il Sat Apr 2 2011 21:25:40 per StreamingMediaCenter-1.0 da&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

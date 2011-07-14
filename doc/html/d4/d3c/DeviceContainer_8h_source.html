@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>StreamingMediaCenter-1.0:  File sorgente src/gui/DeviceContainer.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generato da Doxygen 1.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="../../main.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespace</span></a></li>
+      <li><a href="../../annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="../../files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="../../globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>src/gui/DeviceContainer.h</h1>  </div>
+</div>
+<div class="contents">
+<a href="../../d4/d3c/DeviceContainer_8h.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * DeviceContainer.h</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 14/mar/2011</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: Mario Giustiniani</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#ifndef DEVICECONTAINER_H_</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span><span class="preprocessor">#define DEVICECONTAINER_H_</span>
+<a name="l00010"></a><a class="code" href="../../d4/d3c/DeviceContainer_8h.html#a32a3cf3d9dd914f5aeeca5423c157934">00010</a> <span class="preprocessor"></span><span class="preprocessor">#define _(String) gettext(String)</span>
+<a name="l00011"></a>00011 <span class="preprocessor"></span>
+<a name="l00012"></a>00012 <span class="comment">/*</span>
+<a name="l00013"></a>00013 <span class="comment"> *</span>
+<a name="l00014"></a>00014 <span class="comment"> */</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;glib.h&gt;</span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;gst/gst.h&gt;</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;QtCore/QObject&gt;</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include &lt;QtCore/QUrl&gt;</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#include &lt;gst/interfaces/xoverlay.h&gt;</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#include &quot;<a class="code" href="../../d0/dd2/VideoOutput_8h.html">stream/VideoOutput.h</a>&quot;</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#include &quot;<a class="code" href="../../da/d4b/ui__frontend_8ui_8h.html">ui_frontend.ui.h</a>&quot;</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include &quot;<a class="code" href="../../d8/d38/SMCserverProxy_8h.html">soap/SMCserverProxy.h</a>&quot;</span>
+<a name="l00023"></a><a class="code" href="../../d8/d29/classDeviceContainer.html">00023</a> <span class="keyword">class </span><a class="code" href="../../d8/d29/classDeviceContainer.html">DeviceContainer</a>: <span class="keyword">public</span> QObject {
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 Q_OBJECT
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 <span class="keyword">protected</span>:
+<a name="l00028"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#a6a98e2af84cd833f16a835eeeab6623c">00028</a>     <span class="keyword">static</span> <a class="code" href="../../d8/d29/classDeviceContainer.html">DeviceContainer</a>* <a class="code" href="../../d8/d29/classDeviceContainer.html#a6a98e2af84cd833f16a835eeeab6623c">Main</a>;
+<a name="l00029"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#a81824847cfc538ad5147b0d45bf13750">00029</a>     <span class="keyword">static</span> QTreeWidget* <a class="code" href="../../d8/d29/classDeviceContainer.html#a81824847cfc538ad5147b0d45bf13750">camTree</a>;
+<a name="l00030"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#a5d745de750ca9b73aef0d0d29c5e9da4">00030</a>     <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#a5d745de750ca9b73aef0d0d29c5e9da4">lock</a>;
+<a name="l00031"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#a02670fd79835e529fa26deba6356da05">00031</a>     Phonon::MediaObject *<a class="code" href="../../d8/d29/classDeviceContainer.html#a02670fd79835e529fa26deba6356da05">media</a>;
+<a name="l00032"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#adcfbf95f938ab14343247361774fe8e5">00032</a>     <a class="code" href="../../d3/de2/classQVideoWidget.html">QVideoWidget</a>* <a class="code" href="../../d8/d29/classDeviceContainer.html#adcfbf95f938ab14343247361774fe8e5">video</a>;
+<a name="l00033"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#a90bc66c5785789137d1164b2ae9e8b07">00033</a>     QTreeWidgetItem* <a class="code" href="../../d8/d29/classDeviceContainer.html#a90bc66c5785789137d1164b2ae9e8b07">leaf</a>;
+<a name="l00034"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#a27cdb7582fc6c06a83707ec6fed013a8">00034</a>     QString <a class="code" href="../../d8/d29/classDeviceContainer.html#a27cdb7582fc6c06a83707ec6fed013a8">uri</a>;
+<a name="l00035"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#ae6141f6905ca59e777d99ee3a1e01915">00035</a>     std::string <a class="code" href="../../d8/d29/classDeviceContainer.html#ae6141f6905ca59e777d99ee3a1e01915">uuid</a>;
+<a name="l00036"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#a07d394e76e90967b10547ea1bbab7a10">00036</a>     std::string <a class="code" href="../../d8/d29/classDeviceContainer.html#a07d394e76e90967b10547ea1bbab7a10">name</a>;
+<a name="l00037"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#a03831296c22c57039416aacd92a8eec4">00037</a>     std::map&lt;std::string,std::string&gt; <a class="code" href="../../d8/d29/classDeviceContainer.html#a03831296c22c57039416aacd92a8eec4">info</a>;
+<a name="l00038"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#ac2a37db4e5a706c07eed448b4af4382c">00038</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#ac2a37db4e5a706c07eed448b4af4382c">video_flag</a>;
+<a name="l00039"></a>00039 <span class="keyword">public</span>:
+<a name="l00040"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#a6953c2f4eb86a5bad0ddca91c97af2c6">00040</a>     <span class="keyword">static</span> <span class="keywordtype">char</span> * <a class="code" href="../../d8/d29/classDeviceContainer.html#a6953c2f4eb86a5bad0ddca91c97af2c6">coreServer</a>;
+<a name="l00041"></a>00041     <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#a1d57459a8097c485471a257bdd842bcf">addTree</a>(QTreeWidget* a);
+<a name="l00042"></a>00042     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#a38c20b1527ca423438ef75fec56d343e">setDiretta</a>() ;
+<a name="l00043"></a>00043     <a class="code" href="../../d8/d29/classDeviceContainer.html#a78b3b4a2c4087749fa22515b125c91ae">DeviceContainer</a>();
+<a name="l00044"></a>00044     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#a96852b80f961d915cca2495369c68124">setUuid</a>(<span class="keyword">const</span> std::string&amp;a);
+<a name="l00045"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#a8c22fbdac1ddd79e5089d18d82ef2d08">00045</a>     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#a8c22fbdac1ddd79e5089d18d82ef2d08">setInfo</a>(<span class="keyword">const</span> std::string&amp;a, <span class="keyword">const</span> std::string&amp;b){
+<a name="l00046"></a>00046         <a class="code" href="../../d8/d29/classDeviceContainer.html#a03831296c22c57039416aacd92a8eec4">info</a>[a]=b;
+<a name="l00047"></a>00047     }
+<a name="l00048"></a>00048     <span class="keyword">virtual</span> <span class="keyword">const</span> std::string <a class="code" href="../../d8/d29/classDeviceContainer.html#ae7709c17c6d07602ecef6e3a1f4b133e">getUuid</a>();
+<a name="l00049"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#ae37d1dbc6d1a64e9a029ee34da0fa210">00049</a>     <span class="keyword">virtual</span> QUrl <a class="code" href="../../d8/d29/classDeviceContainer.html#ae37d1dbc6d1a64e9a029ee34da0fa210">getUrl</a>(){
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051         QUrl a(this-&gt;<a class="code" href="../../d8/d29/classDeviceContainer.html#a27cdb7582fc6c06a83707ec6fed013a8">uri</a>);
+<a name="l00052"></a>00052         <span class="keywordflow">return</span> a;
+<a name="l00053"></a>00053     }
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#adb24efa442b028b50ae8c2616afb8419">setVideoWidget</a>(<a class="code" href="../../d3/de2/classQVideoWidget.html">QVideoWidget</a>* temp);
+<a name="l00056"></a><a class="code" href="../../d8/d29/classDeviceContainer.html#a650b8724b2f3d71139aa39bcb686c61f">00056</a>     <a class="code" href="../../d3/de2/classQVideoWidget.html">QVideoWidget</a> * <a class="code" href="../../d8/d29/classDeviceContainer.html#a650b8724b2f3d71139aa39bcb686c61f">getVideoWidget</a>(){
+<a name="l00057"></a>00057         <span class="keywordflow">return</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#adcfbf95f938ab14343247361774fe8e5">video</a>;
+<a name="l00058"></a>00058     }
+<a name="l00059"></a>00059     <span class="keyword">virtual</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#a091b785bfa203cf9421f4c7c72a25711">~DeviceContainer</a>();
+<a name="l00060"></a>00060     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#a3a1f8d86a4a1447dffbf124ff4c4cc4c">setUri</a>(<span class="keyword">const</span> QString&amp; a);
+<a name="l00061"></a>00061     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#a0101c30f7afb446fb2a52c8c33169d6a">changeVideo</a>(<a class="code" href="../../d3/de2/classQVideoWidget.html">QVideoWidget</a>* a);
+<a name="l00062"></a>00062 <span class="keyword">public</span> slots:
+<a name="l00063"></a>00063     <span class="keywordtype">void</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#a4c15fec067ebbb136b96d00a90a934be">switchVideo</a>(QTreeWidgetItem* item, <span class="keywordtype">int</span> column);
+<a name="l00064"></a>00064 signals:
+<a name="l00065"></a>00065     <span class="keywordtype">void</span> <span class="keyword">set</span>(QUrl* a);
+<a name="l00066"></a>00066     <span class="keywordtype">void</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#a25ceb127fea1f2ed3d38187bf9ad9bc9">changed</a>(QUrl* a);
+<a name="l00067"></a>00067     <span class="keywordtype">void</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#a33ff4d43cf7bf56ca4d34d7efc4729f1">play</a>();
+<a name="l00068"></a>00068     <span class="keywordtype">void</span> <a class="code" href="../../d8/d29/classDeviceContainer.html#a2eadd979186684955e4a31c5a31e926b">stop</a>();
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 };
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="preprocessor">#endif </span><span class="comment">/* DEVICECONTAINER_H_ */</span>
+</pre></div></div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generato il Sat Apr 2 2011 21:25:40 per StreamingMediaCenter-1.0 da&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

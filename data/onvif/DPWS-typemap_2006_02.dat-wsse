@@ -1,0 +1,143 @@
+# WS4D-gSOAP - Implementation of the Devices Profile for Web Services
+# (DPWS) on top of gSOAP 
+# Copyright (C) 2007 University of Rostock
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public License
+# as published by the Free Software Foundation; either version 2.1 of
+# the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+# 02110-1301 USA
+
+wsa	= <http://schemas.xmlsoap.org/ws/2004/08/addressing>
+wsd     = <http://schemas.xmlsoap.org/ws/2005/04/discovery>
+wsdp    = <http://schemas.xmlsoap.org/ws/2006/02/devprof>
+wsm     = <http://schemas.xmlsoap.org/ws/2004/09/mex>
+wse     = <http://schemas.xmlsoap.org/ws/2004/08/eventing>
+wst     = <http://schemas.xmlsoap.org/ws/2004/09/transfer>
+
+wsse	= <http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd>
+wsu	= <http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd>
+ds	= <http://www.w3.org/2000/09/xmldsig#>
+
+xmlmime = <http://www.w3.org/2004/11/xmlmime>
+xop     = <http://www.w3.org/2004/08/xop/include>
+
+
+xsd__ID			= | char* /*ID*/
+
+xsd__NCName		= | char* /*NCName*/
+
+xsd__anyURI		= | char* /*URI*/
+
+xsd__QName		= | _QName | _QName
+
+xsd__integer		= | int
+
+xsd__nonNegativeInteger	= | unsigned int
+
+xsd__base64Binary	= | char* /*base64*/
+
+xsd__boolean		= enum xsd__boolean_ { _false, _true }; | enum xsd__boolean_
+
+
+_wsdp__Relationship =\
+typedef struct _wsdp__Relationship\n\
+{\n\
+     struct wsdp__HostServiceType*   wsdp__Host                         ;\n\
+     int                                 __sizeHosted                   ;\n\
+     struct wsdp__HostServiceType*   wsdp__Hosted                       ;\n\
+    _XML                                 __any                          ;\n\
+    @enum wsdp__DeviceRelationshipTypeURIs Type                        1;\n\
+   @_XML                                 __anyAttribute                 ;\n\
+} _wsdp__Relationship;\n
+
+# MetadataExchange
+
+_wsm__MetadataSection =\
+typedef struct _wsm__MetadataSection \n\
+{\n\
+    int                                  __union_MetadataSection         ;\n\
+    union _wsm__union_MetadataSection \n\
+    { \n\
+    wsa__EndpointReferenceType           MetadataReference               ;\n\
+    char* /*URI*/                        Location                        ;\n\
+    struct wsdp__ThisDeviceType     *wsdp__ThisDevice                    ;\n\
+    struct wsdp__ThisModelType      *wsdp__ThisModel                     ;\n\
+    struct _wsdp__Relationship	    *wsdp__Relationship                  ;\n\
+    _XML				 __any                           ;\n\
+    }                                    union_MetadataSection           ;\n\
+   @char* /*URI*/                        Dialect                        1;\n\
+   @char* /*URI*/                        Identifier                     0;\n\
+   @_XML                                 __anyAttribute                  ;\n\
+} _wsm__MetadataSection;\n
+
+wsdp__AssertionType =\
+typedef struct _wsdp__AssertionType \n\
+{\n\
+		int 				 __type;\n\
+		void				 *p;\n\
+} wsdp__AssertionType;\n
+
+wsdp__LocalizedStringType =\
+typedef struct wsdp__LocalizedStringType\n\
+{\n\
+	char *__item;\n\
+	@char *xml__lang      0;	\n\
+} wsdp__LocalizedStringType;\n
+
+wse__ExpirationType = | xsd__duration
+
+wse__DeliveryType =\
+typedef struct wse__DeliveryType\n\
+{\n\
+   wsa__EndpointReferenceType            wse__NotifyTo                0;\n\
+   @char* /*URI*/                        Mode                         0;\n\
+   @_XML                                 __anyAttribute                ;\n\
+    _XML                                 __mixed                       ;\n\
+} wse__DeliveryType; | wse__DeliveryType* | wse__DeliveryType*
+
+wse__FilterType =\
+typedef struct wse__FilterType\n\
+{\n\
+    int                                  __sizeftype                   ;\n\
+    struct wse__FilterAnyType\n\
+    {\n\
+        int                              __type                        ;\n\
+        void                            *__any                         ;\n\
+    }                                   *__ftype                       ;\n\
+   @char* /*URI*/                        Dialect                      0;\n\
+   @_XML                                 __anyAttribute                ;\n\
+    _XML                                 __mixed                       ;\n\
+} wse__FilterType; | wse__FilterType* | wse__FilterType*
+
+wsd__QNameListType = extern typedef char* wsd__QNameListType; | wsd__QNameListType | wsd__QNameListType
+
+wsdp__QNameListType = extern typedef char* wsdp__QNameListType; | wsdp__QNameListType | wsdp__QNameListType
+
+_wse__NotifyTo = typedef struct wsa__EndpointReferenceType wse__NotifyTo; | wse__NotifyTo | wse__NotifyTo
+
+wsa__ReferenceParametersType =\
+typedef struct wsa__ReferenceParametersType\n\
+{\n\
+    int                                  __sizepar                     ;\n\
+    struct wsa_ReferenceParameterAny\n\
+    {\n\
+        int                              __type                        ;\n\
+        void                            *__any                         ;\n\
+    }\n\                                   *__par                      ;\n\
+} wsa__ReferenceParametersType; | wsa__ReferenceParametersType* | wsa__ReferenceParametersType*
+
+wsa__AttributedQName	= | _QName
+
+wsa__AttributedURI	= | char*
+
+wsa__ReplyAfterType	= | unsigned int

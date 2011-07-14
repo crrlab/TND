@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node5" href="$d7/dd1/classSMC_1_1AgentProxy.html" title="SMC::AgentProxy" alt="" coords="5,160,136,189"/>
+<area shape="rect" id="node9" href="$d7/d14/classSMC_1_1CoreServerProxy.html" title="SMC::CoreServerProxy" alt="" coords="160,160,325,189"/>
+<area shape="rect" id="node11" href="$d8/df1/classSMC_1_1DeviceProxy.html" title="SMC::DeviceProxy" alt="" coords="349,160,485,189"/>
+<area shape="rect" id="node2" href="$dc/d40/classPattern_1_1Observer.html" title="Pattern::Observer" alt="" coords="176,5,309,35"/>
+<area shape="rect" id="node7" href="$da/d32/classSMC_1_1HubProxy.html" title="SMC::HubProxy" alt="" coords="11,237,131,267"/>
+<area shape="rect" id="node13" href="$d1/d84/classSMC_1_1Onvif_1_1NetworkVideoTransmitter.html" title="SMC::Onvif::NetworkVideoTransmitter" alt="" coords="288,237,547,267"/>
+</map>

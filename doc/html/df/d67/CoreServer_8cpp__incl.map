@@ -1,0 +1,19 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$db/d20/CoreServer_8h.html" title="CoreServer.h" alt="" coords="1461,83,1565,112"/>
+<area shape="rect" id="node5" href="$d4/d1c/Application_8h.html" title="Application.h" alt="" coords="1025,160,1129,189"/>
+<area shape="rect" id="node55" href="$dc/d36/AgentProxy_8h.html" title="AgentProxy.h" alt="" coords="1461,237,1565,267"/>
+<area shape="rect" id="node61" href="$d9/d3f/NetworkVideoTransmitter_8h.html" title="onvif/NetworkVideoTransmitter.h" alt="" coords="1581,160,1808,189"/>
+<area shape="rect" id="node82" href="$da/d9f/SMCserverService_8h.html" title="soap/SMCserverService.h" alt="" coords="335,160,519,189"/>
+<area shape="rect" id="node17" href="$d3/d3e/SMCagentService_8h.html" title="../soap/SMCagentService.h" alt="" coords="120,237,315,267"/>
+<area shape="rect" id="node25" href="$d7/dbb/CoreServerProxy_8h.html" title="observers/CoreServerProxy.h" alt="" coords="477,237,683,267"/>
+<area shape="rect" id="node19" href="$d3/d2c/SMCH_8h.html" title="SMCH.h" alt="" coords="20,392,92,421"/>
+<area shape="rect" id="node21" href="$d3/d45/SMCStub_8h.html" title="SMCStub.h" alt="" coords="9,469,103,499"/>
+<area shape="rect" id="node27" href="$d5/d84/RemoteProxy_8h.html" title="RemoteProxy.h" alt="" coords="1968,315,2083,344"/>
+<area shape="rect" id="node49" href="$d8/d38/SMCserverProxy_8h.html" title="soap/SMCserverProxy.h" alt="" coords="32,315,203,344"/>
+<area shape="rect" id="node29" href="$d8/df1/Observer_8h.html" title="Observer.h" alt="" coords="1980,392,2071,421"/>
+<area shape="rect" id="node58" href="$d2/d29/SMCagentProxy_8h.html" title="soap/SMCagentProxy.h" alt="" coords="872,315,1040,344"/>
+<area shape="rect" id="node66" href="$d1/d55/Command_8h.html" title="patterns/Command.h" alt="" coords="1787,237,1944,267"/>
+<area shape="rect" id="node68" href="$db/de8/Subject_8h.html" title="patterns/Subject.h" alt="" coords="2107,315,2245,344"/>
+<area shape="rect" id="node73" href="$d4/dfa/DeviceProxy_8h.html" title="observers/DeviceProxy.h" alt="" coords="2019,237,2195,267"/>
+<area shape="rect" id="node77" href="$d4/df3/Profile_8h.html" title="Profile.h" alt="" coords="1691,237,1763,267"/>
+</map>

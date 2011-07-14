@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$dc/d5f/classSMC_1_1Application.html" title="SMC::Application" alt="" coords="152,261,280,291"/>
+<area shape="rect" id="node4" href="$d7/d14/classSMC_1_1CoreServerProxy.html" title="SMC::CoreServerProxy" alt="" coords="5,165,171,195"/>
+<area shape="rect" id="node6" href="$df/df0/classSMC_1_1RemoteProxy.html" title="SMC::RemoteProxy" alt="" coords="17,85,159,115"/>
+<area shape="rect" id="node8" href="$dc/d40/classPattern_1_1Observer.html" title="Pattern::Observer" alt="" coords="21,5,155,35"/>
+<area shape="rect" id="node10" href="$de/d63/classSMC_1_1agentService.html" title="SMC::agentService" alt="" coords="195,165,336,195"/>
+<area shape="rect" id="node12" href="$df/d90/classSMC_1_1serverService.html" title="SMC::serverService" alt="" coords="304,261,451,291"/>
+</map>

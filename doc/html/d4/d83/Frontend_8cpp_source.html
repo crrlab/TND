@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>StreamingMediaCenter-1.0:  File sorgente src/gui/Frontend.cpp</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generato da Doxygen 1.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="../../main.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespace</span></a></li>
+      <li><a href="../../annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="../../files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="../../globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>src/gui/Frontend.cpp</h1>  </div>
+</div>
+<div class="contents">
+<a href="../../d4/d83/Frontend_8cpp.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &quot;<a class="code" href="../../d0/d1b/Frontend_8h.html">Frontend.h</a>&quot;</span>
+<a name="l00002"></a>00002 
+<a name="l00003"></a>00003 <span class="preprocessor">#include &lt;QtCore/QDebug&gt;</span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;QtCore/QString&gt;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &quot;<a class="code" href="../../d3/d3e/SMCagentService_8h.html">soap/SMCagentService.h</a>&quot;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;<a class="code" href="../../d4/d3c/DeviceContainer_8h.html">DeviceContainer.h</a>&quot;</span>
+<a name="l00007"></a><a class="code" href="../../d1/de7/classFrontend.html#afe07362f1564f92136e2098fcea6014b">00007</a> <a class="code" href="../../d1/de7/classFrontend.html#afe07362f1564f92136e2098fcea6014b">Frontend::Frontend</a>(QWidget *parent) :
+<a name="l00008"></a>00008     QMainWindow(parent) {
+<a name="l00009"></a>00009     <a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#a383b5cd6212920ee5c5283e4f71521a3">setupUi</a>(<span class="keyword">this</span>);
+<a name="l00010"></a>00010     this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a72b186b47ba184d23a6c295e90ca081e">subtype</a> = <span class="stringliteral">&quot;Frontend&quot;</span>;
+<a name="l00011"></a>00011     <a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#a2bb39481c8be26532b33628cd9469315">MainVideo</a>-&gt;<a class="code" href="../../d3/de2/classQVideoWidget.html#a454e125db3350c14a572ff77449d6372">setVideo</a>(40, 10, 480, 270);
+<a name="l00012"></a>00012     <a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#ab22361417743abb3b98685f7b673f7b6">addTree</a>(<a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#a6a3e10f94c2775de34b4c4b3ca88c437">DevicesControl</a>);
+<a name="l00013"></a>00013     <a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">AddWidget</a>(<a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#a2bb39481c8be26532b33628cd9469315">MainVideo</a>);
+<a name="l00014"></a>00014     <a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">AddWidget</a>(<a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#a7c8c00df34daddd036b1f1bfe3dee43c">VideoWidget_2</a>);
+<a name="l00015"></a>00015     <a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">AddWidget</a>(<a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#a02a91170523f9309218bea68db1098e2">VideoWidget_4</a>);
+<a name="l00016"></a>00016     <a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">AddWidget</a>(<a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#a8839bcbd2fdcc5e433fb130f2bb41197">VideoWidget_3</a>);
+<a name="l00017"></a>00017     <a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">AddWidget</a>(<a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#aea8cef673c25e55f7b67a4971e1043e4">VideoWidget_6</a>);
+<a name="l00018"></a>00018     <a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">AddWidget</a>(<a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#a8255bf208cd4f69de0faf28a48c1d836">VideoWidget_7</a>);
+<a name="l00019"></a>00019     <a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">AddWidget</a>(<a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#af7957e4bac7c40c77315ac6e7dbece6f">VideoWidget_8</a>);
+<a name="l00020"></a>00020     <a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">AddWidget</a>(<a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#aeac75df51ab34758f812e6de517975db">VideoWidget_1</a>);
+<a name="l00021"></a>00021     <a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">AddWidget</a>(<a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#ac16d8b9ab796bf7a46a02e16b127642d">VideoWidget_9</a>);
+<a name="l00022"></a>00022     <a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">AddWidget</a>(<a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#a751eb58b396905c688ec61efb0937cb0">VideoWidget_5</a>);
+<a name="l00023"></a>00023     <a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#ab4c15fabee43ffc0a402a3b0b6890258">AddWidget</a>(<a class="code" href="../../d1/de7/classFrontend.html#aefab9f0e5ad8940f0def32f5ab9313cf">ui</a>.<a class="code" href="../../de/d7b/classUi__Frontend.html#a9e5b2591d45f3e63568f1ebb6780ed12">VideoWidget_10</a>);
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 }
+<a name="l00026"></a>00026 
+<a name="l00027"></a><a class="code" href="../../d1/de7/classFrontend.html#a113b3e1845c9fa807a89bb69123f6d6b">00027</a> <a class="code" href="../../d1/de7/classFrontend.html#a113b3e1845c9fa807a89bb69123f6d6b">Frontend::~Frontend</a>() {
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029 }
+<a name="l00030"></a><a class="code" href="../../d1/de7/classFrontend.html#a6296646bad503244ad460cc8e93582b8">00030</a> <span class="keywordtype">void</span> <a class="code" href="../../d1/de7/classFrontend.html#a6296646bad503244ad460cc8e93582b8">Frontend::run</a>() {
+<a name="l00031"></a>00031     this-&gt;<a class="code" href="../../d1/de7/classFrontend.html#a3c4d648c608354e282eb848d8e2ff073">setup</a>();
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033     <a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a311ef894e9186ab339932285de0c6411">server</a> = <span class="keyword">new</span> <a class="code" href="../../de/d63/classSMC_1_1agentService.html">SMC::agentService</a>();
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035             this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#a311ef894e9186ab339932285de0c6411">server</a>-&gt;user = (<span class="keywordtype">void</span>*) <span class="keyword">this</span>;
+<a name="l00036"></a>00036 <span class="preprocessor">#ifndef CORE_EXCEPTION</span>
+<a name="l00037"></a>00037 <span class="preprocessor"></span>                <a class="code" href="../../dc/d5f/classSMC_1_1Application.html#acdda8a4d606245ad8d1b8ae1fcb7a8c0">serve</a> = <span class="keyword">new</span> boost::thread(boost::bind(&amp;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html#aa2b2229e0b6a66c3288e867d42ecde9d">Frontend::Serve</a>, <span class="keyword">this</span>));
+<a name="l00038"></a>00038 <span class="preprocessor">#endif</span>
+<a name="l00039"></a>00039 <span class="preprocessor"></span>}
+<a name="l00040"></a>00040 <span class="keyword">namespace </span>SMC {
+<a name="l00041"></a>00041     <span class="keywordtype">int</span> <a class="code" href="../../de/d63/classSMC_1_1agentService.html#a2490fa0c1d5c06aa671cd1b7b7ea45c3" title="Service operations (you should define these):">agentService::coreStation</a>(std::string command, std::string &amp;message) {
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043         <a class="code" href="../../d8/d29/classDeviceContainer.html#a6953c2f4eb86a5bad0ddca91c97af2c6">DeviceContainer::coreServer</a> =( <span class="keywordtype">char</span> *)(command.c_str());
+<a name="l00044"></a>00044         <span class="keywordflow">return</span> SOAP_OK;
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046     }
+<a name="l00047"></a>00047     ;
+<a name="l00048"></a>00048 
+<a name="l00050"></a>00050     <span class="keywordtype">int</span> <a class="code" href="../../de/d63/classSMC_1_1agentService.html#a9458407796c135701454f442f41ff843" title="Web service operation &amp;#39;addCamera&amp;#39; (returns error code or SOAP_OK).">agentService::addCamera</a>(std::string uuid, std::string &amp;message) {
+<a name="l00051"></a>00051         <span class="keywordflow">return</span> SOAP_OK;
+<a name="l00052"></a>00052     }
+<a name="l00053"></a>00053     ;
+<a name="l00054"></a>00054 
+<a name="l00056"></a>00056     <span class="keywordtype">int</span> <a class="code" href="../../de/d63/classSMC_1_1agentService.html#a293124c91100d9e4a882e79af747e9b2" title="Web service operation &amp;#39;removeCamera&amp;#39; (returns error code or SOAP_OK).">agentService::removeCamera</a>(std::string uuid, std::string &amp;message) {
+<a name="l00057"></a>00057         <span class="keywordflow">return</span> SOAP_OK;
+<a name="l00058"></a>00058     }
+<a name="l00059"></a>00059     ;
+<a name="l00060"></a>00060 
+<a name="l00062"></a>00062     <span class="keywordtype">int</span> <a class="code" href="../../de/d63/classSMC_1_1agentService.html#aafb17c654de0dd5a9b5779b6367b533b" title="Web service operation &amp;#39;setCameraInfo&amp;#39; (returns error code or SOAP_OK).">agentService::setCameraInfo</a>(<span class="keyword">struct</span> <a class="code" href="../../d1/dac/structcamera____info.html">camera__info</a> *_info,
+<a name="l00063"></a>00063             std::string &amp;message) {
+<a name="l00064"></a>00064         message = <span class="stringliteral">&quot;OK&quot;</span>;
+<a name="l00065"></a>00065         <a class="code" href="../../d1/de7/classFrontend.html">Frontend</a>* server = <span class="keyword">static_cast&lt;</span><a class="code" href="../../d1/de7/classFrontend.html">Frontend</a>*<span class="keyword">&gt;</span> (this-&gt;user);
+<a name="l00066"></a>00066         std::cout&lt;&lt;_info-&gt;<a class="code" href="../../d1/dac/structcamera____info.html#a449cc254d0fdc9a5c13e7132e2651f57">Info_type</a>&lt;&lt;<span class="stringliteral">&quot;: &quot;</span>&lt;&lt;_info-&gt;<a class="code" href="../../d1/dac/structcamera____info.html#aeafac9f8088c5a7ad9fa5313c77a2e16">Info</a>&lt;&lt;std::endl;
+<a name="l00067"></a>00067         <span class="keywordtype">int</span> state = FALSE;
+<a name="l00068"></a>00068         QList&lt;DeviceContainer*&gt;::iterator it;
+<a name="l00069"></a>00069 <span class="comment">//       QListIterator&lt;DeviceContainer*&gt; it(server-&gt;devices.devices);</span>
+<a name="l00070"></a>00070 <span class="comment">//              while(it.hasNext())</span>
+<a name="l00071"></a>00071 <span class="comment">//              {</span>
+<a name="l00072"></a>00072 <span class="comment">//                  qDebug() &lt;&lt; it.next();</span>
+<a name="l00073"></a>00073 <span class="comment">//</span>
+<a name="l00074"></a>00074 <span class="comment">//</span>
+<a name="l00075"></a>00075 <span class="comment">//              }</span>
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077          qDebug() &lt;&lt;server;
+<a name="l00078"></a>00078         <span class="keywordflow">for</span> (it = server-&gt;<a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#a4470346d2cfbba6c44daba5933bcfba8">devices</a>.begin(); it != server-&gt;<a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#a4470346d2cfbba6c44daba5933bcfba8">devices</a>.end() &amp;&amp; !state ;++it  )
+<a name="l00079"></a>00079         {
+<a name="l00080"></a>00080             <span class="keywordflow">if</span>((*it)-&gt;getUuid()==_info-&gt;<a class="code" href="../../d1/dac/structcamera____info.html#a11330aa79f6e15c6b23cfcecb3602c19">uuid</a>) {
+<a name="l00081"></a>00081                 (*it)-&gt;getUuid();
+<a name="l00082"></a>00082                 (*it)-&gt;setInfo(_info-&gt;<a class="code" href="../../d1/dac/structcamera____info.html#a449cc254d0fdc9a5c13e7132e2651f57">Info_type</a>, _info-&gt;<a class="code" href="../../d1/dac/structcamera____info.html#aeafac9f8088c5a7ad9fa5313c77a2e16">Info</a>);
+<a name="l00083"></a>00083                                 state = TRUE;
+<a name="l00084"></a>00084                                 qDebug()&lt;&lt; <span class="stringliteral">&quot;insertID&quot;</span>;
+<a name="l00085"></a>00085             }
+<a name="l00086"></a>00086             <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((*it)-&gt;getUuid().empty())
+<a name="l00087"></a>00087             {
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089                 (*it)-&gt;setUuid(_info-&gt;<a class="code" href="../../d1/dac/structcamera____info.html#a11330aa79f6e15c6b23cfcecb3602c19">uuid</a>);
+<a name="l00090"></a>00090                 (*it)-&gt;setInfo(_info-&gt;<a class="code" href="../../d1/dac/structcamera____info.html#a449cc254d0fdc9a5c13e7132e2651f57">Info_type</a>, _info-&gt;<a class="code" href="../../d1/dac/structcamera____info.html#aeafac9f8088c5a7ad9fa5313c77a2e16">Info</a>);
+<a name="l00091"></a>00091                                 state = TRUE;
+<a name="l00092"></a>00092                                 qDebug()&lt;&lt; <span class="stringliteral">&quot;insertID&quot;</span>;
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094             }
+<a name="l00095"></a>00095         }
+<a name="l00096"></a>00096         <span class="keywordflow">if</span>(!state){
+<a name="l00097"></a>00097             server-&gt;<a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#a4470346d2cfbba6c44daba5933bcfba8">devices</a>.append(<span class="keyword">new</span> <a class="code" href="../../d8/d29/classDeviceContainer.html">DeviceContainer</a>());
+<a name="l00098"></a>00098         }
+<a name="l00099"></a>00099         <span class="keywordflow">return</span> SOAP_OK;
+<a name="l00100"></a>00100     }
+<a name="l00101"></a>00101     ;
+<a name="l00102"></a>00102 
+<a name="l00104"></a>00104     <span class="keywordtype">int</span> <a class="code" href="../../de/d63/classSMC_1_1agentService.html#a573aaabf9f697ad09fb9a892fc7bd27c" title="Web service operation &amp;#39;setCameraURI&amp;#39; (returns error code or SOAP_OK).">agentService::setCameraURI</a>(<span class="keyword">struct</span> <a class="code" href="../../d9/d3c/structcamera____uri.html">camera__uri</a> *_info, <span class="keyword">struct</span> <a class="code" href="../../d1/dac/structcamera____info.html">camera__info</a> &amp;_infoResponse) {
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106                 <a class="code" href="../../d1/de7/classFrontend.html">Frontend</a>* server = <span class="keyword">static_cast&lt;</span><a class="code" href="../../d1/de7/classFrontend.html">Frontend</a>*<span class="keyword">&gt;</span> (this-&gt;user);
+<a name="l00107"></a>00107                 std::cout&lt;&lt;_info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#aeab4e89f6bee3936c9cf3dd957b467dc">uuid</a>&lt;&lt;<span class="stringliteral">&quot;: &quot;</span>&lt;&lt;_info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#a91f1b625b0ac64f14f4b52ffa16a99f6">streamURI</a>&lt;&lt;std::endl;
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109                 <span class="comment">//server-&gt;devices.devices.front()-&gt;setUri(QString(_info-&gt;streamURI.c_str()));</span>
+<a name="l00110"></a>00110             <span class="comment">//  QObject::connect(server-&gt;devices.devices.front(), SIGNAL(play(QString&amp;)),</span>
+<a name="l00111"></a>00111                 <span class="comment">//                      server-&gt;devices.devices.front(), SLOT(setUri(QString&amp;)));</span>
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113                 <span class="comment">//emit server-&gt;devices.devices.front()-&gt;play(QString(_info-&gt;streamURI.c_str()));</span>
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115                 QList&lt;DeviceContainer*&gt;::iterator it;
+<a name="l00116"></a>00116                 <span class="keywordflow">for</span> (it = server-&gt;<a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#a4470346d2cfbba6c44daba5933bcfba8">devices</a>.begin(); it != server-&gt;<a class="code" href="../../d1/de7/classFrontend.html#a4d26d7abfb87a4e3f0befb4763292fbd">devices</a>.<a class="code" href="../../d1/d02/classDeviceCollection.html#a4470346d2cfbba6c44daba5933bcfba8">devices</a>.end() || !state ;++it  )
+<a name="l00117"></a>00117                         {
+<a name="l00118"></a>00118                             <span class="keywordflow">if</span>((*it)-&gt;getUuid()==_info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#aeab4e89f6bee3936c9cf3dd957b467dc">uuid</a>) {
+<a name="l00119"></a>00119                                 <span class="keywordflow">if</span>(! _info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#a91f1b625b0ac64f14f4b52ffa16a99f6">streamURI</a>.empty()) {
+<a name="l00120"></a>00120                                 (*it)-&gt;setUri(QString(_info-&gt;<a class="code" href="../../d9/d3c/structcamera____uri.html#a91f1b625b0ac64f14f4b52ffa16a99f6">streamURI</a>.c_str()));
+<a name="l00121"></a>00121                                                 state = TRUE;
+<a name="l00122"></a>00122                                 }
+<a name="l00123"></a>00123                             }
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125                         }
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127         <span class="keywordflow">return</span> SOAP_OK;
+<a name="l00128"></a>00128     }
+<a name="l00129"></a>00129     ;
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131 }
+</pre></div></div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generato il Sat Apr 2 2011 21:25:40 per StreamingMediaCenter-1.0 da&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

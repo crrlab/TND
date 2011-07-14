@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$d4/d66/classPattern_1_1Command.html" title="Pattern::Command" alt="" coords="7,125,148,155"/>
+<area shape="rect" id="node3" href="$dc/dc3/classSMC_1_1Onvif_1_1Request.html" title="Classe Derivata di Command, che implementa i metodi per effettuare una richiesta Soap." alt="" coords="199,125,348,155"/>
+<area shape="rect" id="node5" href="$d0/d08/classSMC_1_1Onvif_1_1DeviceRequest.html" title="Classe Virtuale che implementa il Device_Service dello standard ONVIF." alt="" coords="399,85,591,115"/>
+<area shape="rect" id="node13" href="$db/d0b/classSMC_1_1Onvif_1_1MediaRequest.html" title="SMC::Onvif::MediaRequest" alt="" coords="401,192,588,221"/>
+<area shape="rect" id="node7" href="$d6/de8/classSMC_1_1Onvif_1_1GetCapabilities.html" title="SMC::Onvif::GetCapabilities" alt="" coords="663,5,857,35"/>
+<area shape="rect" id="node9" href="$da/d11/classSMC_1_1Onvif_1_1GetDeviceInformation.html" title="Richiede le informazioni di base della telecamera." alt="" coords="641,59,879,88"/>
+<area shape="rect" id="node11" href="$de/db5/classSMC_1_1Onvif_1_1SystemReboot.html" title="Riavvia la telecamera prescelta." alt="" coords="664,112,856,141"/>
+<area shape="rect" id="node15" href="$db/dad/classSMC_1_1Onvif_1_1GetProfiles.html" title="SMC::Onvif::GetProfiles" alt="" coords="676,165,844,195"/>
+<area shape="rect" id="node17" href="$d4/dfd/classSMC_1_1Onvif_1_1GetStreamUri.html" title="SMC::Onvif::GetStreamUri" alt="" coords="667,219,853,248"/>
+<area shape="rect" id="node19" href="$da/d8f/classSMC_1_1Onvif_1_1GetVideoSources.html" title="SMC::Onvif::GetVideoSources" alt="" coords="655,272,865,301"/>
+</map>

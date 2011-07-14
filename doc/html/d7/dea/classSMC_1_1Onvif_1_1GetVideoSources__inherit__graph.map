@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$db/d0b/classSMC_1_1Onvif_1_1MediaRequest.html" title="SMC::Onvif::MediaRequest" alt="" coords="17,160,204,189"/>
+<area shape="rect" id="node4" href="$dc/dc3/classSMC_1_1Onvif_1_1Request.html" title="Classe Derivata di Command, che implementa i metodi per effettuare una richiesta Soap." alt="" coords="36,83,185,112"/>
+<area shape="rect" id="node6" href="$d4/d66/classPattern_1_1Command.html" title="Pattern::Command" alt="" coords="40,5,181,35"/>
+</map>

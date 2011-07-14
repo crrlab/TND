@@ -1,0 +1,30 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d8/dcc/ManagerAgent_8cpp.html" title="src/apps/ManagerAgent.cpp" alt="" coords="829,315,1029,344"/>
+<area shape="rect" id="node5" href="$d4/d3c/DeviceContainer_8h.html" title="src/gui/DeviceContainer.h" alt="" coords="384,83,568,112"/>
+<area shape="rect" id="node28" href="$d7/dbb/CoreServerProxy_8h.html" title="src/observers/CoreServerProxy.h" alt="" coords="1013,83,1243,112"/>
+<area shape="rect" id="node61" href="$d4/dd5/SMCserverProxy_8cpp.html" title="src/soap/SMCserverProxy.cpp" alt="" coords="1291,83,1499,112"/>
+<area shape="rect" id="node7" href="$db/d63/DeviceCollection_8h.html" title="src/gui/DeviceCollection.h" alt="" coords="487,160,671,189"/>
+<area shape="rect" id="node15" href="$d4/d83/Frontend_8cpp.html" title="src/gui/Frontend.cpp" alt="" coords="92,315,241,344"/>
+<area shape="rect" id="node21" href="$d9/d58/DeviceContainer_8cpp.html" title="src/gui/DeviceContainer.cpp" alt="" coords="695,160,892,189"/>
+<area shape="rect" id="node23" href="$d0/d99/DeviceContainer_8moc_8cpp.html" title="src/gui/DeviceContainer.moc.cpp" alt="" coords="31,160,260,189"/>
+<area shape="rect" id="node26" href="$db/d4f/qvideowidget_8cpp.html" title="src/gui/qvideowidget.cpp" alt="" coords="284,160,463,189"/>
+<area shape="rect" id="node9" href="$db/d58/DeviceCollection_8cpp.html" title="src/gui/DeviceCollection.cpp" alt="" coords="432,237,632,267"/>
+<area shape="rect" id="node11" href="$d0/d2a/DeviceCollection_8moc_8cpp.html" title="src/gui/DeviceCollection.moc.cpp" alt="" coords="176,237,408,267"/>
+<area shape="rect" id="node13" href="$d0/d1b/Frontend_8h.html" title="src/gui/Frontend.h" alt="" coords="656,237,792,267"/>
+<area shape="rect" id="node17" href="$dc/dc4/Frontend_8moc_8cpp.html" title="src/gui/Frontend.moc.cpp" alt="" coords="437,315,619,344"/>
+<area shape="rect" id="node19" href="$d7/de4/main-frontend_8cpp.html" title="src/main&#45;frontend.cpp" alt="" coords="643,315,805,344"/>
+<area shape="rect" id="node30" href="$d4/d1c/Application_8h.html" title="src/apps/Application.h" alt="" coords="1139,160,1301,189"/>
+<area shape="rect" id="node58" href="$d7/d6a/CoreServerProxy_8cpp.html" title="src/observers/CoreServerProxy.cpp" alt="" coords="1325,160,1568,189"/>
+<area shape="rect" id="node32" href="$d2/db6/Application_8cpp.html" title="src/apps/Application.cpp" alt="" coords="1177,237,1353,267"/>
+<area shape="rect" id="node34" href="$db/d20/CoreServer_8h.html" title="src/apps/CoreServer.h" alt="" coords="1377,237,1540,267"/>
+<area shape="rect" id="node40" href="$d2/d48/HubAgent_8h.html" title="src/apps/HubAgent.h" alt="" coords="1564,237,1719,267"/>
+<area shape="rect" id="node46" href="$da/d09/ManagerAgent_8h.html" title="src/apps/ManagerAgent.h" alt="" coords="967,237,1153,267"/>
+<area shape="rect" id="node51" href="$df/ddc/StorageAgent_8h.html" title="src/apps/StorageAgent.h" alt="" coords="1913,237,2095,267"/>
+<area shape="rect" id="node36" href="$d5/d33/CoreServer_8cpp.html" title="src/apps/CoreServer.cpp" alt="" coords="1371,315,1549,344"/>
+<area shape="rect" id="node38" href="$df/d0a/main_8cpp.html" title="src/main.cpp" alt="" coords="1243,315,1347,344"/>
+<area shape="rect" id="node42" href="$df/d46/HubAgent_8cpp.html" title="src/apps/HubAgent.cpp" alt="" coords="1731,315,1901,344"/>
+<area shape="rect" id="node44" href="$d6/d64/main-hub_8cpp.html" title="src/main&#45;hub.cpp" alt="" coords="1573,315,1707,344"/>
+<area shape="rect" id="node49" href="$d9/de3/main-manager_8cpp.html" title="src/main&#45;manager.cpp" alt="" coords="1053,315,1219,344"/>
+<area shape="rect" id="node53" href="$d5/de7/StorageAgent_8cpp.html" title="src/apps/StorageAgent.cpp" alt="" coords="2107,315,2301,344"/>
+<area shape="rect" id="node55" href="$da/d90/main-storage_8cpp.html" title="src/main&#45;storage.cpp" alt="" coords="1925,315,2083,344"/>
+</map>

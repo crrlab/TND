@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>StreamingMediaCenter-1.0:  File sorgente src/onvif/GetCapabilities.cpp</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Generato da Doxygen 1.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul class="tablist">
+      <li><a href="../../main.html"><span>Pagina&nbsp;Principale</span></a></li>
+      <li><a href="../../namespaces.html"><span>Namespace</span></a></li>
+      <li><a href="../../annotated.html"><span>Strutture&nbsp;dati</span></a></li>
+      <li class="current"><a href="../../files.html"><span>File</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>Elenco&nbsp;dei&nbsp;file</span></a></li>
+      <li><a href="../../globals.html"><span>Elementi&nbsp;globali</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>src/onvif/GetCapabilities.cpp</h1>  </div>
+</div>
+<div class="contents">
+<a href="../../de/dd6/GetCapabilities_8cpp.html">Vai alla documentazione di questo file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * GetCapabilities.cpp</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *  Created on: 27/feb/2011</span>
+<a name="l00005"></a>00005 <span class="comment"> *      Author: Mario Giustiniani</span>
+<a name="l00006"></a>00006 <span class="comment"> */</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="../../df/d31/GetCapabilities_8h.html">GetCapabilities.h</a>&quot;</span>
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 <span class="keyword">namespace </span>SMC {
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012     <span class="keyword">namespace </span>Onvif {
+<a name="l00013"></a>00013 
+<a name="l00014"></a><a class="code" href="../../d6/de8/classSMC_1_1Onvif_1_1GetCapabilities.html#a456d000f3a32dcf9156b5a604fab80f9">00014</a>         <a class="code" href="../../d6/de8/classSMC_1_1Onvif_1_1GetCapabilities.html#a456d000f3a32dcf9156b5a604fab80f9">GetCapabilities::GetCapabilities</a>( <a class="code" href="../../d1/d84/classSMC_1_1Onvif_1_1NetworkVideoTransmitter.html">NetworkVideoTransmitter</a> * apps): <a class="code" href="../../d0/d08/classSMC_1_1Onvif_1_1DeviceRequest.html" title="Classe Virtuale che implementa il Device_Service dello standard ONVIF.">DeviceRequest</a>(apps) {
+<a name="l00015"></a>00015             <span class="comment">// TODO Auto-generated constructor stub</span>
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017         }
+<a name="l00018"></a>00018 
+<a name="l00019"></a><a class="code" href="../../d6/de8/classSMC_1_1Onvif_1_1GetCapabilities.html#aa466d5ebff9c85c4b78170cee22cf494">00019</a>         <a class="code" href="../../d6/de8/classSMC_1_1Onvif_1_1GetCapabilities.html#aa466d5ebff9c85c4b78170cee22cf494">GetCapabilities::~GetCapabilities</a>() {
+<a name="l00020"></a>00020             <span class="comment">// TODO Auto-generated destructor stub</span>
+<a name="l00021"></a>00021         }
+<a name="l00022"></a><a class="code" href="../../d6/de8/classSMC_1_1Onvif_1_1GetCapabilities.html#a1d13c48f22da86b5a506df0393e49c06">00022</a>         <span class="keywordtype">void</span> <a class="code" href="../../d6/de8/classSMC_1_1Onvif_1_1GetCapabilities.html#a1d13c48f22da86b5a506df0393e49c06" title="da ridefinire nelle classi derivate">GetCapabilities::getRequest</a>() {
+<a name="l00023"></a>00023             Device::_tds__GetCapabilities input;
+<a name="l00024"></a>00024             Device::_tds__GetCapabilitiesResponse output;
+<a name="l00025"></a>00025             input.Category.push_back(Device::onv__CapabilityCategory__All );
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027             <span class="keywordflow">if</span> (SOAP_OK != this-&gt;<a class="code" href="../../d0/d08/classSMC_1_1Onvif_1_1DeviceRequest.html#adaf81429f9db0a2ee50f36fb4561b79a" title="attributo da ridefinire nelle classi che implementano i servizi di accesso">Proxy</a>.GetCapabilities(&amp;input, &amp;output))
+<a name="l00028"></a>00028                 <span class="keywordflow">throw</span> &amp;this-&gt;<a class="code" href="../../d0/d08/classSMC_1_1Onvif_1_1DeviceRequest.html#adaf81429f9db0a2ee50f36fb4561b79a" title="attributo da ridefinire nelle classi che implementano i servizi di accesso">Proxy</a>;
+<a name="l00029"></a>00029             <span class="keywordflow">else</span> {
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031                 this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html">Application</a>-&gt;SetEndpoint(<span class="stringliteral">&quot;Analytics&quot;</span>, output.Capabilities-&gt;Analytics-&gt;XAddr);
+<a name="l00032"></a>00032                 this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html">Application</a>-&gt;SetEndpoint(<span class="stringliteral">&quot;Events&quot;</span>, output.Capabilities-&gt;Events-&gt;XAddr);
+<a name="l00033"></a>00033                 this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html">Application</a>-&gt;SetEndpoint(<span class="stringliteral">&quot;Imaging&quot;</span>, output.Capabilities-&gt;Imaging-&gt;XAddr);
+<a name="l00034"></a>00034                 this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html">Application</a>-&gt;SetEndpoint(<span class="stringliteral">&quot;Media&quot;</span>, output.Capabilities-&gt;Media-&gt;XAddr);
+<a name="l00035"></a>00035                 this-&gt;<a class="code" href="../../dc/d5f/classSMC_1_1Application.html">Application</a>-&gt;SetEndpoint(<span class="stringliteral">&quot;PTZ&quot;</span>, output.Capabilities-&gt;PTZ-&gt;XAddr);
+<a name="l00036"></a>00036             }
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038         }
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040     }
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 }
+</pre></div></div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generato il Sat Apr 2 2011 21:25:40 per StreamingMediaCenter-1.0 da&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+</body>
+</html>

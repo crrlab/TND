@@ -1,0 +1,17 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d0/d1b/Frontend_8h.html" title="Frontend.h" alt="" coords="991,83,1081,112"/>
+<area shape="rect" id="node7" href="$da/d4b/ui__frontend_8ui_8h.html" title="ui_frontend.ui.h" alt="" coords="616,315,736,344"/>
+<area shape="rect" id="node51" href="$d4/d1c/Application_8h.html" title="apps/Application.h" alt="" coords="2228,160,2367,189"/>
+<area shape="rect" id="node96" href="$db/d63/DeviceCollection_8h.html" title="DeviceCollection.h" alt="" coords="1215,160,1353,189"/>
+<area shape="rect" id="node30" href="$d4/dc7/qvideowidget_8h.html" title="qvideowidget.h" alt="" coords="1159,392,1276,421"/>
+<area shape="rect" id="node35" href="$d1/d8a/ui__qvideowidget_8ui_8h.html" title="ui_qvideowidget.ui.h" alt="" coords="688,469,837,499"/>
+<area shape="rect" id="node62" href="$d3/d3e/SMCagentService_8h.html" title="../soap/SMCagentService.h" alt="" coords="2448,237,2643,267"/>
+<area shape="rect" id="node68" href="$d7/dbb/CoreServerProxy_8h.html" title="observers/CoreServerProxy.h" alt="" coords="2195,237,2400,267"/>
+<area shape="rect" id="node64" href="$d3/d2c/SMCH_8h.html" title="SMCH.h" alt="" coords="2484,392,2556,421"/>
+<area shape="rect" id="node66" href="$d3/d45/SMCStub_8h.html" title="SMCStub.h" alt="" coords="2473,469,2567,499"/>
+<area shape="rect" id="node70" href="$d5/d84/RemoteProxy_8h.html" title="RemoteProxy.h" alt="" coords="1865,315,1980,344"/>
+<area shape="rect" id="node90" href="$d8/d38/SMCserverProxy_8h.html" title="soap/SMCserverProxy.h" alt="" coords="2004,315,2175,344"/>
+<area shape="rect" id="node72" href="$d8/df1/Observer_8h.html" title="Observer.h" alt="" coords="1889,392,1980,421"/>
+<area shape="rect" id="node103" href="$d4/d3c/DeviceContainer_8h.html" title="DeviceContainer.h" alt="" coords="1143,237,1281,267"/>
+<area shape="rect" id="node113" href="$d0/dd2/VideoOutput_8h.html" title="stream/VideoOutput.h" alt="" coords="1431,315,1593,344"/>
+</map>
