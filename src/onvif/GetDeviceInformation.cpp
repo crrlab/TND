@@ -24,8 +24,9 @@ namespace SMC {
 			Device::_tds__GetDeviceInformation input;
 			Device::_tds__GetDeviceInformationResponse output;
 
-			if (SOAP_OK != this->Proxy.GetDeviceInformation(&input, &output))
-				throw &this->Proxy;
+			if (SOAP_OK != this->Proxy.GetDeviceInformation(&input, &output)) {
+this->Application->Call("GetDeviceInformation");
+}
 			else {
 
 				this->Application->SetInfo("Manufacturer", output.Manufacturer);
@@ -33,6 +34,9 @@ namespace SMC {
 				this->Application->SetInfo("FirmwareVersion", output.FirmwareVersion);
 				this->Application->SetInfo("SerialNumber", output.SerialNumber);
 				this->Application->SetInfo("HardwareId", output.HardwareId);
+
+this->Application->Call("GetCapabilities");
+	this->Application->		Call("GetProfiles");
 			}
 
 		}
