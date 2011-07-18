@@ -29,11 +29,10 @@ bool QVideoWidget::eventFilter(QObject* o, QEvent* e)
 {
   switch(e->type()) {
     case QEvent::MouseButtonRelease: {
-    if (clickListener)
-	this->clickListener->onClick();
-    //  QMessageBox::information(this, "Camera Info", "Camera n."+QString::number(id));
-      qDebug()<<"eventFilter: mouse button released";
-       break;
+      //QMessageBox::information(this, "Camera Info", "Camera n."+QString::number(id));
+      //qDebug()<<"QVideoWidget::eventFilter: mouse button released";
+      select(true);
+      break;
     }
     default:
       break;
@@ -69,15 +68,16 @@ void QVideoWidget::switchUri(QUrl* url)
   emit sigStop();
   // while( this->media->state() != Phonon::StoppedState);
   this->media->setCurrentSource(*url);
-  qDebug() <<"--"<< media<< " = " << *url;
+  //qDebug() <<"--"<< media<< " = " << *url;
   emit sigPlay();
 }
 
-void QVideoWidget::select()
+void QVideoWidget::select(bool activateTree)
 {
     if(clickListener) clickListener->onClick();
-    if(!itemTree) return;
-    itemTree->setSelected(true);
+    if(!activateTree || !itemTree || mainvideo) return;
+    itemTree->treeWidget()->setCurrentItem(itemTree);
+    //qDebug() << "itemTree selected: id " << id;
 }
 
 void QVideoWidget::fixAspectRatio(bool fixed)

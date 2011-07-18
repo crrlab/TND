@@ -46,7 +46,7 @@ public:
     QVideoWidget** mainCellAt(int row, int col) const;
     QVideoWidget*   subCellAt(int row, int col, QVideoWidget** mainCell) const;
     QVideoWidget*   subCellAt(int row, int col, int mainRow, int mainCol) const;
-    QList<QVideoWidget*> videoList() const;
+    QList<QVideoWidget*> videoList() const { return _videoList; }
 
 public slots:
     // cri
@@ -61,9 +61,10 @@ protected:
     bool eventFilter(QObject* o, QEvent* e);
 
 private:
-   // cri!
    void _initOptions();
    void _initVideos(int mainRows, int mainCols, int subRows, int subCols);
+   void _initVideoList();
+   void _appendVideoList(int k, int row, int col, int mainRow, int mainCol);
    QVideoWidget* _addVideoWidget(int id, int row, int col, QGridLayout* lay, const QString& name = "");
    QGridLayout*  _addVideoLayout(int row, int col, QGridLayout* lay);
 
@@ -76,6 +77,7 @@ private:
    RestoreUI _restoreUi;
    QFuture <void> Qserve;
    int currentCell;
+   QList<QVideoWidget*> _videoList;
    QTimer timer;
 
    Ui::Frontend ui;

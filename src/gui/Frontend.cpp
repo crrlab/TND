@@ -30,6 +30,7 @@ Frontend::Frontend(int mainRows, int mainCols, int subRows, int subCols,
 
     _initOptions();
     _initVideos(mainRows, mainCols, subRows, subCols);
+    _initVideoList();
     _restoreUi.load();
     ui.splitter->setStretchFactor(0, 1);
     ui.splitter->setStretchFactor(1, 10);
@@ -249,22 +250,6 @@ QVideoWidget* Frontend::subCellAt(int row, int col, int mainRow, int mainCol) co
   return subCellAt(row, col, mainCellAt(mainRow, mainCol));
 }
 
-QList<QVideoWidget*> Frontend::videoList() const
-{
-  QList<QVideoWidget*> list;
-  list.reserve(_totalCells);
-  for(int j=1; j<_mainCols; j++)
-    for(int c=0; c<_subCols; c++)
-      for(int r=0; r<_subRows; r++)
-	list << subCellAt(r, c, 0, j);
-  for(int i=1; i<_mainRows; i++)
-    for(int r=0; r<_subRows; r++)
-      for(int j=0; j<_mainCols; j++)
-	for(int c=0; c<_subCols; c++)
-	  list << subCellAt(r, c, i, j);
-  return list;
-}
-
 void Frontend::fixAspectRatio(bool fixed)
     {
     QSettings settings(QApplication::organizationName(),
@@ -315,7 +300,7 @@ void Frontend::_initVideos(int mainRows, int mainCols, int subRows, int subCols)
   _videoLayout->setMargin(0);
   _mainVideo   = _addVideoWidget(0, 0, 0, _videoLayout, VIDEO_MAIN_LABEL);
   _mainVideo->installEventFilter(this);
-  _mainVideo->itemTree->setDisabled(true);
+  ui.DevicesControl->addTopLevelItem(_mainVideo->itemTree);
   _mainRows    = mainRows;
   _mainCols    = mainCols;
   _subRows     = subRows;
@@ -342,6 +327,31 @@ void Frontend::_initVideos(int mainRows, int mainCols, int subRows, int subCols)
   }
 }
 
+void Frontend::_initVideoList()
+{
+    int k = 0;
+    _videoList.reserve(_totalCells);
+    for(int j=1; j<_mainCols; j++)
+      for(int c=0; c<_subCols; c++)
+        for(int r=0; r<_subRows; r++)
+          _appendVideoList(++k, r, c, 0, j);
+    for(int i=1; i<_mainRows; i++)
+      for(int r=0; r<_subRows; r++)
+        for(int j=0; j<_mainCols; j++)
+          for(int c=0; c<_subCols; c++)
+            _appendVideoList(++k, r, c, i, j);
+}
+
+void Frontend::_appendVideoList(int k, int row, int col, int mainRow, int mainCol)
+{
+    QVideoWidget* vw = subCellAt(row, col, mainRow, mainCol);
+    _videoList << vw;
+    QTreeWidgetItem* item = vw->itemTree;
+    if(!item) return;
+    item->setText(0, VIDEO_CAM_LABEL + QString::number(k));
+    ui.DevicesControl->addTopLevelItem(item);
+}
+
 void Frontend::currItemChanged(QTreeWidgetItem* curr, QTreeWidgetItem* prev)
 {
     static int idLast = -1;
@@ -352,8 +362,7 @@ void Frontend::currItemChanged(QTreeWidgetItem* curr, QTreeWidgetItem* prev)
     for(int i=0; i<n; i++) {
 	QVideoWidget* vw = _videos[i];
 	if(!vw || vw->getId()!=id) continue;
-	vw->select();
-	qDebug()<<"select tree item: id="<<id;
+	vw->select(false);
     }
 }
 
@@ -363,13 +372,12 @@ QVideoWidget* Frontend::_addVideoWidget(int id, int row, int col, QGridLayout* l
   lay->addWidget(child, row, col);
   //devices.AddWidget(child);
   if(!name.isEmpty()) {
-    QTreeWidgetItem* item = new QTreeWidgetItem(ui.DevicesControl, 0);
+    QTreeWidgetItem* item = new QTreeWidgetItem(0);
     item->setText(0, name);
     item->setDisabled(true);
     item->setData(0, Qt::UserRole, id);
     connect(ui.DevicesControl, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(currItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
-    // TODO: aggiungi un'azione per il QTreeWidgetItem appena creato?!
-    ui.DevicesControl->addTopLevelItem(item);
+    //ui.DevicesControl->addTopLevelItem(item);
     child->itemTree = item;
   }
   return child;

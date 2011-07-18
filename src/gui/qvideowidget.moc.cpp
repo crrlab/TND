@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'qvideowidget.h'
 **
-** Created: Thu Jun 30 20:55:47 2011
+** Created: Mon Jul 18 15:26:19 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,41 +23,40 @@ static const uint qt_meta_data_QVideoWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       4,       // signalCount
+       3,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
       14,   13,   13,   13, 0x05,
       24,   13,   13,   13, 0x05,
       34,   13,   13,   13, 0x05,
-      45,   13,   13,   13, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      74,   57,   13,   13, 0x0a,
-     104,  100,   13,   13, 0x0a,
-     118,  100,   13,   13, 0x0a,
-     141,  135,   13,   13, 0x0a,
-     169,  162,   13,   13, 0x0a,
-     190,   13,   13,   13, 0x0a,
-     199,   13,   13,   13, 0x0a,
-     206,   13,   13,   13, 0x0a,
+      62,   45,   13,   13, 0x0a,
+      92,   88,   13,   13, 0x0a,
+     106,   88,   13,   13, 0x0a,
+     129,  123,   13,   13, 0x0a,
+     157,  150,   13,   13, 0x0a,
+     191,  178,   13,   13, 0x0a,
+     204,   13,   13,   13, 0x2a,
      213,   13,   13,   13, 0x0a,
+     220,   13,   13,   13, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_QVideoWidget[] = {
     "QVideoWidget\0\0sigPlay()\0sigStop()\0"
-    "sigClick()\0sigChange()\0x,y,width,height\0"
+    "sigClick()\0x,y,width,height\0"
     "setVideo(int,int,int,int)\0url\0"
     "setUri(QUrl*)\0switchUri(QUrl*)\0fixed\0"
     "fixAspectRatio(bool)\0enable\0"
-    "enableCropSize(bool)\0select()\0play()\0"
-    "stop()\0change()\0"
+    "enableCropSize(bool)\0activateTree\0"
+    "select(bool)\0select()\0play()\0stop()\0"
 };
 
 const QMetaObject QVideoWidget::staticMetaObject = {
@@ -92,19 +91,18 @@ int QVideoWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 0: sigPlay(); break;
         case 1: sigStop(); break;
         case 2: sigClick(); break;
-        case 3: sigChange(); break;
-        case 4: setVideo((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
-        case 5: setUri((*reinterpret_cast< QUrl*(*)>(_a[1]))); break;
-        case 6: switchUri((*reinterpret_cast< QUrl*(*)>(_a[1]))); break;
-        case 7: fixAspectRatio((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 8: enableCropSize((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 3: setVideo((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
+        case 4: setUri((*reinterpret_cast< QUrl*(*)>(_a[1]))); break;
+        case 5: switchUri((*reinterpret_cast< QUrl*(*)>(_a[1]))); break;
+        case 6: fixAspectRatio((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 7: enableCropSize((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 8: select((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 9: select(); break;
         case 10: play(); break;
         case 11: stop(); break;
-        case 12: change(); break;
         default: ;
         }
-        _id -= 13;
+        _id -= 12;
     }
     return _id;
 }
@@ -125,11 +123,5 @@ void QVideoWidget::sigStop()
 void QVideoWidget::sigClick()
 {
     QMetaObject::activate(this, &staticMetaObject, 2, 0);
-}
-
-// SIGNAL 3
-void QVideoWidget::sigChange()
-{
-    QMetaObject::activate(this, &staticMetaObject, 3, 0);
 }
 QT_END_MOC_NAMESPACE

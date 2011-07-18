@@ -21,9 +21,7 @@ class QVideoWidget : public QWidget
   int x, y, width, height, id;
   bool mainvideo;
   bool fixedAspectRatio, cropSize;
-  static QVideoWidget* MainVideoAddress;
   Phonon::MediaObject* media;
-  QObject* ref;
 
 public:
   ClickListener * clickListener;
@@ -38,19 +36,7 @@ public:
 
   int getId() const { return id; }
   Phonon::VideoWidget* getVideo() const { return ui.Video; }
-  QObject *getRef() const
-  {
-      return ref;
-  }
 
-
-  void setRef(QObject *ref)
-  {
-
-      this->ref = ref;
-
-      connect(this, SIGNAL(sigClick()), this->ref, SLOT(setDiretta()));
-  }
   void switchVideo(Phonon::VideoWidget* a) { ui.Video = a; }
 
 protected:
@@ -62,30 +48,17 @@ public slots:
     void switchUri(QUrl *url);
     void fixAspectRatio(bool fixed);
     void enableCropSize(bool enable);
-    void select();
+    void select(bool activateTree = true);
 
-    void play()
-    {
-        media->play();
-    }
-
-    void stop()
-    {
-        qDebug() << "test signal:";
-        media->stop();
-    }
-
-    void change()
-    {
-        qDebug() << "test signal CHange:";
-        sigChange();
-    }
+    void play() { media->play(); }
+    void stop() { media->stop(); }
+    //void change() { emit sigChange(); }
 
 signals:
   void sigPlay();
   void sigStop();
   void sigClick();
-  void sigChange();
+  //void sigChange();
 
 private:
   void _fixAspectRatio();
