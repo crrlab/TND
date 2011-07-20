@@ -24,7 +24,7 @@
 #include "observers/CoreServerProxy.h"
 namespace SMC {
 
-class CoreServerProxy: public SMC::RemoteProxy {
+class CoreServerProxy {
 	std::string endpoint;
 	std::string uuid;
 	std::string type;
@@ -40,8 +40,7 @@ public:
 		return this->endpoint;
 	}
 
-	virtual void Update(Pattern::Subject* a) {
-	}
+
 
 	virtual void run() {
 		SMC::serverProxy SoapClient;

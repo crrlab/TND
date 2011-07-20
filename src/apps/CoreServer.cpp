@@ -130,12 +130,30 @@ namespace SMC
     }
 void CoreServer::Serve()
     {
-
+int s;
     std::clog << "[SMC::Core]: CoreServer is running..." << std::endl;
     server = new SMC::serverService();
 
     this->server->user = (void*) this;
-    server->run(atoi(this->port.c_str()));
+   	if (soap_valid_socket(soap_bind(server, NULL, atoi(this->port.c_str()), 100)))
+	{	for (;;)
+		{	s=soap_valid_socket(server->accept());
+		  if (s < 0)
+         {
+            soap_print_fault(server, stderr);
+            break;
+         } 
+ 
+			(void)server->serve();
+			soap_destroy(server);
+			soap_end(server);
+		}
+	}
+	else
+		{
+	soap_print_fault(server, stderr);
+	exit(1);
+	}
 
     }
 void* CoreServer::DiscoveryServe()

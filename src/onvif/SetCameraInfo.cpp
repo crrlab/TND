@@ -28,6 +28,7 @@ namespace SMC
 			if (Proxy.setCameraInfo(&_send, message) == SOAP_OK)
 
 			{
+std::clog << "* setCameraInfoResponse: " <<message <<std::endl;
 
 			} else
 				soap_print_fault(&Proxy, stderr);

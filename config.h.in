@@ -1,5 +1,8 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* Debug Mode */
+#undef DEBUG
+
 /* define if the Boost library is available */
 #undef HAVE_BOOST
 
@@ -54,6 +57,9 @@
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
    */
 #undef LT_OBJDIR
+
+/* No-debug Mode */
+#undef NDEBUG
 
 /* Name of package */
 #undef PACKAGE

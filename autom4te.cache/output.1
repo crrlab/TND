@@ -793,6 +793,7 @@ DX_ENV
 DX_DOCDIR
 DX_CONFIG
 DX_PROJECT
+AM_CXXFLAGS
 QT_LIBS
 QT_LDFLAGS
 QT_LFLAGS
@@ -941,6 +942,7 @@ with_gnu_ld
 enable_libtool_lock
 with_core
 with_qt
+enable_debug
 enable_doxygen_doc
 enable_doxygen_dot
 enable_doxygen_man
@@ -1599,6 +1601,7 @@ Optional Features:
   --enable-fast-install@<:@=PKGS@:>@ 
                           optimize for fast installation @<:@default=yes@:>@
   --disable-libtool-lock  avoid locking (might break parallel builds)
+  --enable-debug          enable debug data generation (def=no)
   --disable-doxygen-doc   don't generate any doxygen documentation
   --disable-doxygen-dot   don't generate graphics for doxygen documentation
   --enable-doxygen-man    generate doxygen manual pages
@@ -16033,7 +16036,35 @@ $as_echo "$at_cv_env_QT_LIBS" >&6; }
 
 
 
+##########################################################################
+# debug compilation support
+##########################################################################
 
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to build with debug information" >&5
+$as_echo_n "checking whether to build with debug information... " >&6; }
+@%:@ Check whether --enable-debug was given.
+if test "${enable_debug+set}" = set; then :
+  enableval=$enable_debug; debugit="$enableval"
+else
+  debugit=no
+fi
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $debugit" >&5
+$as_echo "$debugit" >&6; }
+
+if test x"$debugit" = x"yes"; then
+    
+$as_echo "@%:@define DEBUG /**/" >>confdefs.h
+
+    AM_CXXFLAGS="$AM_CXXFLAGS -g -Wall  -Wno-uninitialized -O0"
+else
+    
+$as_echo "@%:@define NDEBUG /**/" >>confdefs.h
+
+    AM_CXXFLAGS="$AM_CXXFLAGS -O3"
+fi
+
+##########################################################################
 ######################################################################
 # DOXYGEN SUPPORT
 ######################################################################
