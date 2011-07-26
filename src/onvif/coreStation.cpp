@@ -30,7 +30,11 @@ namespace SMC
 
 		}
 	    else
+{
+
 		soap_print_fault(&Proxy, stderr);
+this->Application->Call("coreStation");
+}
 
 	    }
 
