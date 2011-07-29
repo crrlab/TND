@@ -142,6 +142,10 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run aclocal-1.11
 AMTAR = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run tar
+<<<<<<< HEAD
+=======
+AM_CXXFLAGS =  -g -Wall  -Wno-uninitialized -O0
+>>>>>>> origin/master
 AR = ar
 AUTOCONF = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run autoconf
 AUTOHEADER = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run autoheader

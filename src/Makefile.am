@@ -20,6 +20,8 @@ mediadir = $(wsdl)/Media
 imagingdir = $(wsdl)/Imaging
 analyticsdir = $(wsdl)/Analytics
 
+DEBUG_FLAGS = -DDEBUG -g -rdynamic
+
 COMMON = $(top_srcdir)/common
 INCLUDE = \
 	 -I$(ONVIFLIB)/Media -I$(ONVIFLIB)/Device  -I$(ONVIFLIB)/Remote -I$(ONVIFLIB) \
@@ -27,7 +29,7 @@ INCLUDE = \
 	 -I$(top_srcdir)/src/observers \
 	 -I$(top_srcdir)/src/SMC \
 	 -I$(top_srcdir)/src/apps 
-FLAGS = -DWITH_DOM  -DWITH_OPENSSL  $(BOOST_SYSTEM_LIB) $(BOOST_THREAD_LIB) -luuid
+FLAGS = -DWITH_DOM  -DWITH_OPENSSL  $(BOOST_SYSTEM_LIB) $(BOOST_THREAD_LIB) -luuid $(DEBUG_FLAGS) -DHAVE_PTHREAD
 LIBGSTREAMER = `pkg-config --cflags  --libs gstreamer-app-0.10 --libs gstreamer-0.10 --libs gst-rtsp-server-0.10`
 bin_PROGRAMS = \
 	smc-cored \
@@ -35,6 +37,7 @@ bin_PROGRAMS = \
 	smc-hubd \
 	smc-manager \
 	frontend
+
 PROXY = \
 	patterns/Subject.cpp \
 	patterns/Observer.cpp \
@@ -54,6 +57,8 @@ AGENTPROXY = 	patterns/Subject.cpp \
 	observers/CoreServerProxy.cpp
 	
 SMC_SERVER = \
+	dbg.cpp \
+	mutex.cpp \
 	soap/SMCserverService.cpp \
 	soap/SMCagentProxy.cpp \
 	soap/SMCC.cpp \
@@ -61,6 +66,8 @@ SMC_SERVER = \
 	SMC/DiscoveryServer.cpp
 	
 SMC_AGENT = \
+	dbg.cpp \
+	mutex.cpp \
 	onvif/Request.cpp \
 	onvif/DiscoveryRequest.cpp \
 	soap/SMCagentService.cpp \
@@ -146,11 +153,12 @@ frontend_SOURCES =   main-frontend.cpp \
 	gui/restoreui.cpp \
 	gui/ClickListener.cpp \
 	$(AGENTPROXY)
-frontend_CXXFLAGS = $(INCLUDE)  -lphonon $(QT_CXXFLAGS) $(FLAGS) $(AM_CXXFLAGS) `pkg-config --cflags --libs gstreamer-app-0.10 --libs gstreamer-0.10` -I$(top_srcdir)/src/gui \
+frontend_CXXFLAGS = $(INCLUDE) -lphonon $(QT_CXXFLAGS) $(FLAGS) $(AM_CXXFLAGS) `pkg-config --cflags --libs gstreamer-app-0.10 --libs gstreamer-0.10` -I$(top_srcdir)/src/gui \
 	-I$(ONVIFLIB)/Remote  \
 	-I$(top_srcdir)/src/patterns \
 	-I$(top_srcdir)/src/observers \
-	-I$(top_srcdir)/src/stream -lgstinterfaces-0.10
+	-I$(top_srcdir)/src/stream -lgstinterfaces-0.10 \
+	-DHAVE_QT
 frontend_CPPFLAGS = $(INCLUDE)  $(QT_CPPFLAGS) $(AM_CPPFLAGS) 
 frontend_LDFLAGS  = $(QT_LDFLAGS) $(LDFLAGS)
 frontend_LDADD    = $(QT_LIBS) $(LDADD) \

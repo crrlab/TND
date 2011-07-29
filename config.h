@@ -1,6 +1,9 @@
 /* config.h.  Generated from config.h.in by configure.  */
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* Debug Mode */
+#define DEBUG /**/
+
 /* define if the Boost library is available */
 #define HAVE_BOOST /**/
 
@@ -55,6 +58,9 @@
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
    */
 #define LT_OBJDIR ".libs/"
+
+/* No-debug Mode */
+/* #undef NDEBUG */
 
 /* Name of package */
 #define PACKAGE "streamingmediacenter"

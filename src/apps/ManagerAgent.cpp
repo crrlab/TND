@@ -84,16 +84,18 @@ namespace SMC
     int agentService::setCameraInfo(struct camera__info *_info,
 	    std::string &message)
 	{
-	message = "OK";
+	message = "Not OK";
 	ManagerAgent* server = static_cast<ManagerAgent*> (this->user);
 	std::clog << _info->Info_type << ": " << _info->Info << std::endl;
 	if(_info->Info_type == "url_differita") {
-
+message = "urlDifferita OK";
 	server->urls[_info->uuid]["differita"] = _info->Info;
 
 	}
 
 	if (_info->Info_type == "switch") {
+
+message = "Switch OK";
 	std::string s;
 			std::stringstream out;
 			out << RTSPserver::port1;
@@ -104,6 +106,8 @@ namespace SMC
 	}
 
 	if (_info->Info_type == "live") {
+
+message = "Live OK";
 	std::string s;
 			std::stringstream out;
 			out << RTSPserver::port1;
@@ -115,6 +119,7 @@ namespace SMC
 	}
 
 	if (_info->Info_type == "differita") {
+message = "Differita OK";
 	std::string s;
 			std::stringstream out;
 			out << RTSPserver::port1;

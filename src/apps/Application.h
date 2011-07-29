@@ -42,18 +42,29 @@ mapCommand comandi;
 #ifndef CORE_EXCEPTION
 				std::clog << "[SMC::"<<this->subtype<<"]: agentServer is running..."<<this->port
 						<< std::endl;
-							server->run(atoi(this->port.c_str()));
 
-
+				if (!soap_valid_socket(soap_bind(server, NULL, atoi(this->port.c_str()), 100))) {
+				    soap_print_fault(server, stderr);
+				    exit(1);
+				}
+				for (;;) {
+				    int s = soap_valid_socket(server->accept());
+				    if (s < 0) {
+				        soap_print_fault(server, stderr);
+				        break;
+				    }
+				    (void)server->serve();
+				    soap_destroy(server);
+				    soap_end(server);
+				}
 #endif
-			}
-			;
+			};
 		public:
 
 			std::string uuid;
-				std::string type;
-				std::string subtype;
-				std::string port;
+			std::string type;
+			std::string subtype;
+			std::string port;
 #ifndef CORE_EXCEPTION
 			CoreServerProxy *CoreProxy;
 			std::string coreServer;
@@ -65,9 +76,8 @@ mapCommand comandi;
 			virtual void run()=0;
 			virtual void start() {
 				load();
-
 				run();
-                                sleep(5);
+                                //sleep(5);
 				this->comandi["Hello"]->Execute();
 				this->comandi["Hello"]->Execute();
 				this->comandi["Hello"]->Execute();

@@ -1,21 +1,29 @@
 #include "qvideowidget.h"
 #include "DeviceContainer.h"
+#include "ClickListener.h"
 #include <QTreeWidget>
+#include "dbg.h"
 
 
-QVideoWidget::QVideoWidget(int id, bool fixedAspectRatio, bool cropSize, QWidget* parent) : QWidget(parent)
+QVideoWidget::QVideoWidget(int id, bool fixedAspectRatio, bool cropSize, QTreeWidget* tree, QWidget* parent) : QWidget(parent)
 {
   ui.setupUi(this);
-  this->clickListener=0;
-  this->itemTree=0;
+  this->clickListener = 0;
   this->id = id;
   this->media = new Phonon::MediaObject(this);
   this->mainvideo = false;
   this->fixedAspectRatio = fixedAspectRatio;
   this->cropSize = cropSize;
-  // cri: rinominati i signals play e stop in sigPlay e sigStop!!
+  QTreeWidgetItem* item = new QTreeWidgetItem(0);
+  item->setDisabled(true);
+  item->setData(0, Qt::UserRole, id);
+  this->_itemTree = item;
   connect(this, SIGNAL(sigPlay()), this, SLOT(play()));
   connect(this, SIGNAL(sigStop()), this, SLOT(stop()));
+  if(tree) {
+    connect(tree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(currItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
+    ui.Video->setCursor(Qt::PointingHandCursor);
+  }
   ui.Video->hide();
   ui.Video->installEventFilter(this);
 }
@@ -29,8 +37,7 @@ bool QVideoWidget::eventFilter(QObject* o, QEvent* e)
 {
   switch(e->type()) {
     case QEvent::MouseButtonRelease: {
-      //QMessageBox::information(this, "Camera Info", "Camera n."+QString::number(id));
-      //qDebug()<<"QVideoWidget::eventFilter: mouse button released";
+      qDebug()<<"QVideoWidget::eventFilter : mouse button released";
       select(true);
       break;
     }
@@ -54,19 +61,17 @@ void QVideoWidget::setUri(QUrl* url)
 {
   this->media->setCurrentSource(*url);
   qDebug()<<"--"<<media<<" = " << *url;
-  //&	if(!video_flag) {
   Phonon::createPath(this->media, ui.Video);
   ui.Video->show();
   _fixAspectRatio();
   _enableCropSize();
   play();
-  if(itemTree) itemTree->setDisabled(false);
+  _itemTree->setDisabled(false);
 }
 
 void QVideoWidget::switchUri(QUrl* url)
 {
   emit sigStop();
-  // while( this->media->state() != Phonon::StoppedState);
   this->media->setCurrentSource(*url);
   //qDebug() <<"--"<< media<< " = " << *url;
   emit sigPlay();
@@ -74,10 +79,21 @@ void QVideoWidget::switchUri(QUrl* url)
 
 void QVideoWidget::select(bool activateTree)
 {
+    if(mainvideo) return;
     if(clickListener) clickListener->onClick();
-    if(!activateTree || !itemTree || mainvideo) return;
-    itemTree->treeWidget()->setCurrentItem(itemTree);
+    if(!activateTree) return;
+    QTreeWidget* tree = _itemTree->treeWidget();
+    if(tree) tree->setCurrentItem(_itemTree);
     //qDebug() << "itemTree selected: id " << id;
+}
+
+void QVideoWidget::currItemChanged(QTreeWidgetItem* curr, QTreeWidgetItem* /*prev*/)
+{
+    static int idSelected = -666;
+    const int id = curr->data(0, Qt::UserRole).toInt();
+    if(idSelected == id) return;
+    idSelected = id;
+    select(false);
 }
 
 void QVideoWidget::fixAspectRatio(bool fixed)

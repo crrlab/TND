@@ -5,13 +5,11 @@
 #include <QtGui/QWidget>
 #include <phonon/mediaobject.h>
 #include <QtCore/QUrl>
-#include <QMessageBox>
-#include <QTreeWidget>
-#include "ClickListener.h"
-
-// cri
-//include "ui_qvideowidget.h"
 #include "ui_qvideowidget.ui.h"
+
+class QTreeWidget;
+class QTreeWidgetItem;
+class ClickListener;
 
 
 class QVideoWidget : public QWidget
@@ -22,13 +20,13 @@ class QVideoWidget : public QWidget
   bool mainvideo;
   bool fixedAspectRatio, cropSize;
   Phonon::MediaObject* media;
+  QTreeWidgetItem* _itemTree;
 
 public:
-  ClickListener * clickListener;
+  ClickListener* clickListener;
   Ui::QVideoWidgetClass ui;
-  QTreeWidgetItem* itemTree;
 
-  QVideoWidget(int id, bool fixedAspectRatio, bool cropSize, QWidget* parent = 0);
+  QVideoWidget(int id, bool fixedAspectRatio, bool cropSize, QTreeWidget* tree = 0, QWidget* parent = 0);
   ~QVideoWidget();
 
   bool eventFilter(QObject* o, QEvent* e);
@@ -36,6 +34,7 @@ public:
 
   int getId() const { return id; }
   Phonon::VideoWidget* getVideo() const { return ui.Video; }
+  QTreeWidgetItem* itemTree() const { return _itemTree; }
 
   void switchVideo(Phonon::VideoWidget* a) { ui.Video = a; }
 
@@ -44,21 +43,20 @@ protected:
 
 public slots:
     void setVideo(int x, int y, int width, int height);
-    void setUri(QUrl *url);
-    void switchUri(QUrl *url);
+    void setUri(QUrl* url);
+    void switchUri(QUrl* url);
     void fixAspectRatio(bool fixed);
     void enableCropSize(bool enable);
     void select(bool activateTree = true);
+    void currItemChanged(QTreeWidgetItem* curr, QTreeWidgetItem* prev);
 
     void play() { media->play(); }
     void stop() { media->stop(); }
-    //void change() { emit sigChange(); }
 
 signals:
   void sigPlay();
   void sigStop();
   void sigClick();
-  //void sigChange();
 
 private:
   void _fixAspectRatio();

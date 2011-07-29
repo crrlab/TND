@@ -2,13 +2,9 @@
 #define FRONTEND_H
 
 #include <QtGui/QMainWindow>
-#include <QTimer>
-#include "restoreui.h"
 #include <QFuture>
-
-// cri
-//#include "ui_frontend.h"
 #include "ui_frontend.ui.h"
+#include "restoreui.h"
 #include "apps/Application.h"
 #include "DeviceCollection.h"
 
@@ -23,17 +19,13 @@ public:
     Frontend(int mainRows, int mainCols, int subRows, int subCols, QWidget* parent = 0);
     ~Frontend();
 
-    virtual void setup(){
-    // cri
-    //gst_element_set_state (SMC::Stream::Stream::pipeline, GST_STATE_PLAYING);
-    }
+    virtual void setup() {}
     virtual void run();
 
-    //DeviceCollection devices;
     mapString Endpoints;
     QMap<QString, DeviceContainer*> devices;
     QList<QVideoWidget*>nullvideos;
-    // cri!
+
     int  mainRows () const { return  _mainRows ; }
     int  mainCols () const { return  _mainCols ; }
     int   subRows () const { return   _subCols ; }
@@ -49,13 +41,8 @@ public:
     QList<QVideoWidget*> videoList() const { return _videoList; }
 
 public slots:
-    // cri
-    //virtual void dateChanged();
     void fixAspectRatio(bool fixed);
     void enableCropSize(bool enable);
-    void currItemChanged(QTreeWidgetItem* curr, QTreeWidgetItem* prev);
-
-    void timerSlot();
 
 protected:
     bool eventFilter(QObject* o, QEvent* e);
@@ -68,7 +55,6 @@ private:
    QVideoWidget* _addVideoWidget(int id, int row, int col, QGridLayout* lay, const QString& name = "");
    QGridLayout*  _addVideoLayout(int row, int col, QGridLayout* lay);
 
-   // cri!
    bool _fixedAspectRatio, _cropSize;
    int _mainRows, _mainCols, _subRows, _subCols, _mainCells, _subCells, _rowCells, _totalCells;
    QVideoWidget* _mainVideo;
@@ -78,7 +64,7 @@ private:
    QFuture <void> Qserve;
    int currentCell;
    QList<QVideoWidget*> _videoList;
-   QTimer timer;
+   QSize prevMainVideoSize;
 
    Ui::Frontend ui;
 };

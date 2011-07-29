@@ -23,9 +23,12 @@
 #include <unistd.h>
 
 #include <boost/property_tree/ptree.hpp>
-
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/property_tree/xml_parser.hpp>
+
+#include "dbg.h"
+#include "mutex.h"
+
 
 /** Namespace del software streaming Media Center
  *
@@ -33,67 +36,60 @@
  */
 namespace SMC {
 
-Application * Application::app;
+Application * Application::app = 0;
 
 /** costruttore della classe astratta */
 Application::Application() {
-	app = this;
-	// TODO Auto-generated constructor stub
-	this->subtype = "Application";
-	this->type = "\"StreamingMediaCenter\":";
+    app = this;
 
-	/** porta di default dei web service soap */
+    dbgSetupSignals();
+    dbgRegShutdown(segnale_ricevuto);
+
+    this->subtype = "Application";
+    this->type = "\"StreamingMediaCenter\":";
+
+    /** porta di default dei web service soap */
     this->port = "50055";
 
-
-	this->comandi["Hello"] = new SMC::Soap::Hello(this);
-	this->comandi["Bye"] = new SMC::Soap::Bye(this);
-	/** Segnali per la chiusura inaspettata */
-	signal(SIGINT, Application::segnale_ricevuto);
-	signal(SIGTERM, Application::segnale_ricevuto);
-	signal(SIGHUP, Application::segnale_ricevuto);
-	signal(SIGSEGV, Application::segnale_ricevuto);
-
+    this->comandi["Hello"] = new SMC::Soap::Hello(this);
+    this->comandi["Bye"] = new SMC::Soap::Bye(this);
 }
 
-void Application::segnale_ricevuto(int signum) {
-	if(signum == SIGSEGV)
-		std::clog << "[SMC::"<<Application::app->subtype<<"] Segmentation Fault" << std::endl;
-	else
-	std::clog << "[SMC::"<<Application::app->subtype<<"] Segnale Ricevuto" << std::endl;
-	delete Application::app;
+void Application::segnale_ricevuto(int /*signum*/) {
+    if(app) delete app;
 }
 
 Application::~Application() {
+    app = 0;
 #ifndef CORE_EXCEPTION
 
 #endif
-save();
-exit(1);
+    save();
+    //exit(1);
 }
 
 
 void Application::Hello() {
-	Remote::dpws_discoveryProxy * test = new Remote::dpws_discoveryProxy();
-	Remote::wsd__HelloType * hello = new Remote::wsd__HelloType();
-	test->soap_endpoint = "soap.udp://239.255.255.250:3702";
-	std::string temp = this->type + this->subtype;
-	hello->wsa__EndpointReference.Address = this->getIP();
-	char adr[256];
-	//	strcpy(adr,"http://");
-	strcpy(adr, this->getIP());
-	strcat(adr, ":");
-	strcat(adr, this->port.c_str());
-	hello->XAddrs = adr;
-	hello->Types = (char*) temp.c_str();
+    Remote::dpws_discoveryProxy * test = new Remote::dpws_discoveryProxy();
+    Remote::wsd__HelloType * hello = new Remote::wsd__HelloType();
+    test->soap_endpoint = "soap.udp://239.255.255.250:3702";
+    std::string temp = this->type + this->subtype;
+    hello->wsa__EndpointReference.Address = this->getIP();
+    char adr[256];
+    //	strcpy(adr,"http://");
+    strcpy(adr, this->getIP());
+    strcat(adr, ":");
+    strcat(adr, this->port.c_str());
+    hello->XAddrs = adr;
+    hello->Types = (char*) temp.c_str();
 
-	if (SOAP_OK != test->send_Hello(hello))
-		std::cerr << "[SMC::"<<this->subtype<<"::ERROR] Hello Error" << std::endl;
-	else {
-		std::clog << "[SMC::"<<this->subtype<<"] Hello Send" << std::endl;
-
-	}
+    if (SOAP_OK != test->send_Hello(hello)) {
+	std::cerr << "[SMC::"<<this->subtype<<"::ERROR] Hello Error" << std::endl;
+    } else {
+	std::clog << "[SMC::"<<this->subtype<<"] Hello Send" << std::endl;
+    }
 }
+
 char* Application::getIP() {
 	char *address;
 	int fd;

@@ -142,6 +142,10 @@ distuninstallcheck_listfiles = find . -type f -print
 distcleancheck_listfiles = find . -type f -print
 ACLOCAL = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run aclocal-1.11
 AMTAR = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run tar
+<<<<<<< HEAD
+=======
+AM_CXXFLAGS =  -g -Wall  -Wno-uninitialized -O0
+>>>>>>> origin/master
 AR = ar
 AUTOCONF = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run autoconf
 AUTOHEADER = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run autoheader
