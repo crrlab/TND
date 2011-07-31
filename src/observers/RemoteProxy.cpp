@@ -6,7 +6,7 @@
  */
 
 #include "RemoteProxy.h"
-
+#include "dbg.h"
 namespace SMC
     {
 
@@ -21,6 +21,11 @@ namespace SMC
 	// TODO Auto-generated destructor stub
 	}
 
+
+    /*!
+     * Chiamata di una class command e inserita nella coda
+     *
+     */
     RemoteProxy& RemoteProxy::Call(const std::string& Command)
 	{
 
@@ -65,13 +70,14 @@ namespace SMC
 
 	    std::clog << "[SMC::Core] Fine Command" << std::endl;
 
-	    if (this->queueCommands.empty()&&this->isRunning())
+	    if (this->queueCommands.empty() && this->isRunning())
 		{
 		this->wait();
 
 		}
 
 	    }
+	this->exit();
 
 	}
 

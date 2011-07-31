@@ -29,6 +29,9 @@ public:
 	virtual void unlock();
 	virtual void wait();
 	virtual void notify();
+
+	virtual void stop();
+	virtual void exit();
 protected:
 	/** definisce una classe astratta
 	 *
@@ -45,7 +48,10 @@ private:
 	boost::thread* runThread;
 	mutable boost::mutex the_mutex;
 	mutable boost::mutex wait_mutex;
+
+	mutable boost::mutex exit_mutex;
 	mutable boost::condition_variable condition;
+	mutable boost::condition_variable stopped;
 };
 
 }

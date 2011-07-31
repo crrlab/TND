@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'qvideowidget.h'
 **
-** Created: Mon Jul 18 15:26:19 2011
+** Created: Sun Jul 31 19:19:06 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_QVideoWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -43,8 +43,9 @@ static const uint qt_meta_data_QVideoWidget[] = {
      157,  150,   13,   13, 0x0a,
      191,  178,   13,   13, 0x0a,
      204,   13,   13,   13, 0x2a,
-     213,   13,   13,   13, 0x0a,
-     220,   13,   13,   13, 0x0a,
+     223,  213,   13,   13, 0x0a,
+     274,   13,   13,   13, 0x0a,
+     281,   13,   13,   13, 0x0a,
 
        0        // eod
 };
@@ -56,7 +57,9 @@ static const char qt_meta_stringdata_QVideoWidget[] = {
     "setUri(QUrl*)\0switchUri(QUrl*)\0fixed\0"
     "fixAspectRatio(bool)\0enable\0"
     "enableCropSize(bool)\0activateTree\0"
-    "select(bool)\0select()\0play()\0stop()\0"
+    "select(bool)\0select()\0curr,prev\0"
+    "currItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)\0"
+    "play()\0stop()\0"
 };
 
 const QMetaObject QVideoWidget::staticMetaObject = {
@@ -98,11 +101,12 @@ int QVideoWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 7: enableCropSize((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 8: select((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 9: select(); break;
-        case 10: play(); break;
-        case 11: stop(); break;
+        case 10: currItemChanged((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< QTreeWidgetItem*(*)>(_a[2]))); break;
+        case 11: play(); break;
+        case 12: stop(); break;
         default: ;
         }
-        _id -= 12;
+        _id -= 13;
     }
     return _id;
 }

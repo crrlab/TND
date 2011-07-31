@@ -61,9 +61,7 @@ SMC_SERVER = \
 	mutex.cpp \
 	soap/SMCserverService.cpp \
 	soap/SMCagentProxy.cpp \
-	soap/SMCC.cpp \
-	SMC/SoapServer.cpp \
-	SMC/DiscoveryServer.cpp
+	soap/SMCC.cpp 
 	
 SMC_AGENT = \
 	dbg.cpp \
@@ -74,7 +72,6 @@ SMC_AGENT = \
 	soap/SMCserverProxy.cpp \
 	soap/SMCC.cpp \
 	patterns/Thread.cpp \
-	SMC/SoapServer.cpp \
 	onvif/Hello.cpp \
 	onvif/Bye.cpp 
 

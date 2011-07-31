@@ -41,6 +41,8 @@ Application * Application::app = 0;
 /** costruttore della classe astratta */
 Application::Application() {
     app = this;
+    this->running = true;
+    this->stopped = false;
 
     dbgSetupSignals();
     dbgRegShutdown(segnale_ricevuto);
@@ -142,6 +144,9 @@ void Application::load() {
 }
 
 void Application::save() {
+
+
+
 	std::string path = getenv("HOME");
 	path += "/.StreamingMediaCenter";
 
@@ -160,10 +165,15 @@ void Application::save() {
 	pt.put(this->subtype + ".port", this->port);
 
 	write_json(path + "/smc.conf", pt);
+
+#ifndef CORE_EXCEPTION
 	this->comandi["Bye"]->Execute();
 	this->comandi["Bye"]->Execute();
 	this->comandi["Bye"]->Execute();
 	this->comandi["Bye"]->Execute();
+
+
+#endif
 }
 
 }

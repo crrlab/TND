@@ -91,12 +91,12 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am__objects_1 = frontend-Request.$(OBJEXT) \
-	frontend-DiscoveryRequest.$(OBJEXT) \
+am__objects_1 = frontend-dbg.$(OBJEXT) frontend-mutex.$(OBJEXT) \
+	frontend-Request.$(OBJEXT) frontend-DiscoveryRequest.$(OBJEXT) \
 	frontend-SMCagentService.$(OBJEXT) \
 	frontend-SMCserverProxy.$(OBJEXT) frontend-SMCC.$(OBJEXT) \
-	frontend-Thread.$(OBJEXT) frontend-SoapServer.$(OBJEXT) \
-	frontend-Hello.$(OBJEXT) frontend-Bye.$(OBJEXT)
+	frontend-Thread.$(OBJEXT) frontend-Hello.$(OBJEXT) \
+	frontend-Bye.$(OBJEXT)
 am__objects_2 = frontend-Subject.$(OBJEXT) frontend-Observer.$(OBJEXT) \
 	frontend-Command.$(OBJEXT) frontend-RemoteProxy.$(OBJEXT) \
 	frontend-CoreServerProxy.$(OBJEXT)
@@ -145,10 +145,9 @@ am__objects_6 = smc_cored-Subject.$(OBJEXT) \
 	smc_cored-FrontendProxy.$(OBJEXT) smc_cored-HubProxy.$(OBJEXT) \
 	smc_cored-ManagerProxy.$(OBJEXT) \
 	smc_cored-StorageProxy.$(OBJEXT)
-am__objects_7 = smc_cored-SMCserverService.$(OBJEXT) \
-	smc_cored-SMCagentProxy.$(OBJEXT) smc_cored-SMCC.$(OBJEXT) \
-	smc_cored-SoapServer.$(OBJEXT) \
-	smc_cored-DiscoveryServer.$(OBJEXT)
+am__objects_7 = smc_cored-dbg.$(OBJEXT) smc_cored-mutex.$(OBJEXT) \
+	smc_cored-SMCserverService.$(OBJEXT) \
+	smc_cored-SMCagentProxy.$(OBJEXT) smc_cored-SMCC.$(OBJEXT)
 am_smc_cored_OBJECTS = smc_cored-main.$(OBJEXT) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6) $(am__objects_7)
 smc_cored_OBJECTS = $(am_smc_cored_OBJECTS)
@@ -166,12 +165,12 @@ am__objects_8 = smc_hubd-Stream.$(OBJEXT) \
 	smc_hubd-RTSPserverManager.$(OBJEXT) \
 	smc_hubd-RTSPserverGate.$(OBJEXT) \
 	smc_hubd-RTSPserverStorage.$(OBJEXT)
-am__objects_9 = smc_hubd-Request.$(OBJEXT) \
-	smc_hubd-DiscoveryRequest.$(OBJEXT) \
+am__objects_9 = smc_hubd-dbg.$(OBJEXT) smc_hubd-mutex.$(OBJEXT) \
+	smc_hubd-Request.$(OBJEXT) smc_hubd-DiscoveryRequest.$(OBJEXT) \
 	smc_hubd-SMCagentService.$(OBJEXT) \
 	smc_hubd-SMCserverProxy.$(OBJEXT) smc_hubd-SMCC.$(OBJEXT) \
-	smc_hubd-Thread.$(OBJEXT) smc_hubd-SoapServer.$(OBJEXT) \
-	smc_hubd-Hello.$(OBJEXT) smc_hubd-Bye.$(OBJEXT)
+	smc_hubd-Thread.$(OBJEXT) smc_hubd-Hello.$(OBJEXT) \
+	smc_hubd-Bye.$(OBJEXT)
 am__objects_10 = smc_hubd-Subject.$(OBJEXT) \
 	smc_hubd-Observer.$(OBJEXT) smc_hubd-Command.$(OBJEXT) \
 	smc_hubd-RemoteProxy.$(OBJEXT) \
@@ -195,13 +194,13 @@ am__objects_11 = smc_manager-Stream.$(OBJEXT) \
 	smc_manager-RTSPserverManager.$(OBJEXT) \
 	smc_manager-RTSPserverGate.$(OBJEXT) \
 	smc_manager-RTSPserverStorage.$(OBJEXT)
-am__objects_12 = smc_manager-Request.$(OBJEXT) \
+am__objects_12 = smc_manager-dbg.$(OBJEXT) smc_manager-mutex.$(OBJEXT) \
+	smc_manager-Request.$(OBJEXT) \
 	smc_manager-DiscoveryRequest.$(OBJEXT) \
 	smc_manager-SMCagentService.$(OBJEXT) \
 	smc_manager-SMCserverProxy.$(OBJEXT) \
 	smc_manager-SMCC.$(OBJEXT) smc_manager-Thread.$(OBJEXT) \
-	smc_manager-SoapServer.$(OBJEXT) smc_manager-Hello.$(OBJEXT) \
-	smc_manager-Bye.$(OBJEXT)
+	smc_manager-Hello.$(OBJEXT) smc_manager-Bye.$(OBJEXT)
 am__objects_13 = smc_manager-Subject.$(OBJEXT) \
 	smc_manager-Observer.$(OBJEXT) smc_manager-Command.$(OBJEXT) \
 	smc_manager-RemoteProxy.$(OBJEXT) \
@@ -226,13 +225,13 @@ am__objects_14 = smc_storaged-Stream.$(OBJEXT) \
 	smc_storaged-RTSPserverManager.$(OBJEXT) \
 	smc_storaged-RTSPserverGate.$(OBJEXT) \
 	smc_storaged-RTSPserverStorage.$(OBJEXT)
-am__objects_15 = smc_storaged-Request.$(OBJEXT) \
+am__objects_15 = smc_storaged-dbg.$(OBJEXT) \
+	smc_storaged-mutex.$(OBJEXT) smc_storaged-Request.$(OBJEXT) \
 	smc_storaged-DiscoveryRequest.$(OBJEXT) \
 	smc_storaged-SMCagentService.$(OBJEXT) \
 	smc_storaged-SMCserverProxy.$(OBJEXT) \
 	smc_storaged-SMCC.$(OBJEXT) smc_storaged-Thread.$(OBJEXT) \
-	smc_storaged-SoapServer.$(OBJEXT) smc_storaged-Hello.$(OBJEXT) \
-	smc_storaged-Bye.$(OBJEXT)
+	smc_storaged-Hello.$(OBJEXT) smc_storaged-Bye.$(OBJEXT)
 am__objects_16 = smc_storaged-Subject.$(OBJEXT) \
 	smc_storaged-Observer.$(OBJEXT) smc_storaged-Command.$(OBJEXT) \
 	smc_storaged-RemoteProxy.$(OBJEXT) \
@@ -277,16 +276,13 @@ DIST_SOURCES = $(frontend_SOURCES) $(smc_cored_SOURCES) \
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run aclocal-1.11
-AMTAR = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run tar
-<<<<<<< HEAD
-=======
-AM_CXXFLAGS =  -g -Wall  -Wno-uninitialized -O0
->>>>>>> origin/master
+ACLOCAL = ${SHELL} /home/paperboy/workspace/smc/missing --run aclocal-1.11
+AMTAR = ${SHELL} /home/paperboy/workspace/smc/missing --run tar
+AM_CXXFLAGS =  -O3
 AR = ar
-AUTOCONF = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run automake-1.11
+AUTOCONF = ${SHELL} /home/paperboy/workspace/smc/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/paperboy/workspace/smc/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/paperboy/workspace/smc/missing --run automake-1.11
 AWK = gawk
 BOOST_CPPFLAGS = -pthread -I/usr/include
 BOOST_LDFLAGS = -L/usr/lib
@@ -351,7 +347,7 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/paperboy/workspace/smc/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 MOC = /usr/bin/moc
 NM = /usr/bin/nm -B
@@ -387,10 +383,10 @@ SHELL = /bin/bash
 STRIP = strip
 UIC = /usr/bin/uic
 VERSION = 1.0
-abs_builddir = /home/paperboy/Repository/Progetti/SMC/TND/src
-abs_srcdir = /home/paperboy/Repository/Progetti/SMC/TND/src
-abs_top_builddir = /home/paperboy/Repository/Progetti/SMC/TND
-abs_top_srcdir = /home/paperboy/Repository/Progetti/SMC/TND
+abs_builddir = /home/paperboy/workspace/smc/src
+abs_srcdir = /home/paperboy/workspace/smc/src
+abs_top_builddir = /home/paperboy/workspace/smc
+abs_top_srcdir = /home/paperboy/workspace/smc
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 ac_ct_DUMPBIN = 
@@ -419,7 +415,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/paperboy/Repository/Progetti/SMC/TND/install-sh
+install_sh = ${SHELL} /home/paperboy/workspace/smc/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -465,6 +461,7 @@ devicedir = $(wsdl)/Device
 mediadir = $(wsdl)/Media
 imagingdir = $(wsdl)/Imaging
 analyticsdir = $(wsdl)/Analytics
+DEBUG_FLAGS = -DDEBUG -g -rdynamic
 COMMON = $(top_srcdir)/common
 INCLUDE = \
 	 -I$(ONVIFLIB)/Media -I$(ONVIFLIB)/Device  -I$(ONVIFLIB)/Remote -I$(ONVIFLIB) \
@@ -473,7 +470,7 @@ INCLUDE = \
 	 -I$(top_srcdir)/src/SMC \
 	 -I$(top_srcdir)/src/apps 
 
-FLAGS = -DWITH_DOM  -DWITH_OPENSSL  $(BOOST_SYSTEM_LIB) $(BOOST_THREAD_LIB) -luuid
+FLAGS = -DWITH_DOM  -DWITH_OPENSSL  $(BOOST_SYSTEM_LIB) $(BOOST_THREAD_LIB) -luuid $(DEBUG_FLAGS) -DHAVE_PTHREAD
 LIBGSTREAMER = `pkg-config --cflags  --libs gstreamer-app-0.10 --libs gstreamer-0.10 --libs gst-rtsp-server-0.10`
 PROXY = \
 	patterns/Subject.cpp \
@@ -495,20 +492,21 @@ AGENTPROXY = patterns/Subject.cpp \
 	observers/CoreServerProxy.cpp
 
 SMC_SERVER = \
+	dbg.cpp \
+	mutex.cpp \
 	soap/SMCserverService.cpp \
 	soap/SMCagentProxy.cpp \
-	soap/SMCC.cpp \
-	SMC/SoapServer.cpp \
-	SMC/DiscoveryServer.cpp
+	soap/SMCC.cpp 
 
 SMC_AGENT = \
+	dbg.cpp \
+	mutex.cpp \
 	onvif/Request.cpp \
 	onvif/DiscoveryRequest.cpp \
 	soap/SMCagentService.cpp \
 	soap/SMCserverProxy.cpp \
 	soap/SMCC.cpp \
 	patterns/Thread.cpp \
-	SMC/SoapServer.cpp \
 	onvif/Hello.cpp \
 	onvif/Bye.cpp 
 
@@ -589,11 +587,12 @@ frontend_SOURCES = main-frontend.cpp \
 	gui/ClickListener.cpp \
 	$(AGENTPROXY)
 
-frontend_CXXFLAGS = $(INCLUDE)  -lphonon $(QT_CXXFLAGS) $(FLAGS) $(AM_CXXFLAGS) `pkg-config --cflags --libs gstreamer-app-0.10 --libs gstreamer-0.10` -I$(top_srcdir)/src/gui \
+frontend_CXXFLAGS = $(INCLUDE) -lphonon $(QT_CXXFLAGS) $(FLAGS) $(AM_CXXFLAGS) `pkg-config --cflags --libs gstreamer-app-0.10 --libs gstreamer-0.10` -I$(top_srcdir)/src/gui \
 	-I$(ONVIFLIB)/Remote  \
 	-I$(top_srcdir)/src/patterns \
 	-I$(top_srcdir)/src/observers \
-	-I$(top_srcdir)/src/stream -lgstinterfaces-0.10
+	-I$(top_srcdir)/src/stream -lgstinterfaces-0.10 \
+	-DHAVE_QT
 
 frontend_CPPFLAGS = $(INCLUDE)  $(QT_CPPFLAGS) $(AM_CPPFLAGS) 
 frontend_LDFLAGS = $(QT_LDFLAGS) $(LDFLAGS)
@@ -791,10 +790,11 @@ include ./$(DEPDIR)/frontend-Request.Po
 include ./$(DEPDIR)/frontend-SMCC.Po
 include ./$(DEPDIR)/frontend-SMCagentService.Po
 include ./$(DEPDIR)/frontend-SMCserverProxy.Po
-include ./$(DEPDIR)/frontend-SoapServer.Po
 include ./$(DEPDIR)/frontend-Subject.Po
 include ./$(DEPDIR)/frontend-Thread.Po
+include ./$(DEPDIR)/frontend-dbg.Po
 include ./$(DEPDIR)/frontend-main-frontend.Po
+include ./$(DEPDIR)/frontend-mutex.Po
 include ./$(DEPDIR)/frontend-qvideowidget.Po
 include ./$(DEPDIR)/frontend-qvideowidget.moc.Po
 include ./$(DEPDIR)/frontend-restoreui.Po
@@ -808,7 +808,6 @@ include ./$(DEPDIR)/smc_cored-CoreServer.Po
 include ./$(DEPDIR)/smc_cored-DeviceProxy.Po
 include ./$(DEPDIR)/smc_cored-DeviceRequest.Po
 include ./$(DEPDIR)/smc_cored-DiscoveryRequest.Po
-include ./$(DEPDIR)/smc_cored-DiscoveryServer.Po
 include ./$(DEPDIR)/smc_cored-FrontendProxy.Po
 include ./$(DEPDIR)/smc_cored-GetCapabilities.Po
 include ./$(DEPDIR)/smc_cored-GetDeviceInformation.Po
@@ -829,13 +828,14 @@ include ./$(DEPDIR)/smc_cored-SMCagentProxy.Po
 include ./$(DEPDIR)/smc_cored-SMCserverService.Po
 include ./$(DEPDIR)/smc_cored-SetCameraInfo.Po
 include ./$(DEPDIR)/smc_cored-SetCameraUri.Po
-include ./$(DEPDIR)/smc_cored-SoapServer.Po
 include ./$(DEPDIR)/smc_cored-StorageProxy.Po
 include ./$(DEPDIR)/smc_cored-Subject.Po
 include ./$(DEPDIR)/smc_cored-SystemReboot.Po
 include ./$(DEPDIR)/smc_cored-Thread.Po
 include ./$(DEPDIR)/smc_cored-coreStation.Po
+include ./$(DEPDIR)/smc_cored-dbg.Po
 include ./$(DEPDIR)/smc_cored-main.Po
+include ./$(DEPDIR)/smc_cored-mutex.Po
 include ./$(DEPDIR)/smc_hubd-Application.Po
 include ./$(DEPDIR)/smc_hubd-Bye.Po
 include ./$(DEPDIR)/smc_hubd-Command.Po
@@ -853,7 +853,6 @@ include ./$(DEPDIR)/smc_hubd-Request.Po
 include ./$(DEPDIR)/smc_hubd-SMCC.Po
 include ./$(DEPDIR)/smc_hubd-SMCagentService.Po
 include ./$(DEPDIR)/smc_hubd-SMCserverProxy.Po
-include ./$(DEPDIR)/smc_hubd-SoapServer.Po
 include ./$(DEPDIR)/smc_hubd-StorageFile.Po
 include ./$(DEPDIR)/smc_hubd-Stream.Po
 include ./$(DEPDIR)/smc_hubd-Streaming.Po
@@ -862,7 +861,9 @@ include ./$(DEPDIR)/smc_hubd-Thread.Po
 include ./$(DEPDIR)/smc_hubd-VideoCamStorage.Po
 include ./$(DEPDIR)/smc_hubd-VideoCamUDP.Po
 include ./$(DEPDIR)/smc_hubd-VideoOutput.Po
+include ./$(DEPDIR)/smc_hubd-dbg.Po
 include ./$(DEPDIR)/smc_hubd-main-hub.Po
+include ./$(DEPDIR)/smc_hubd-mutex.Po
 include ./$(DEPDIR)/smc_manager-Application.Po
 include ./$(DEPDIR)/smc_manager-Bye.Po
 include ./$(DEPDIR)/smc_manager-Command.Po
@@ -880,7 +881,6 @@ include ./$(DEPDIR)/smc_manager-Request.Po
 include ./$(DEPDIR)/smc_manager-SMCC.Po
 include ./$(DEPDIR)/smc_manager-SMCagentService.Po
 include ./$(DEPDIR)/smc_manager-SMCserverProxy.Po
-include ./$(DEPDIR)/smc_manager-SoapServer.Po
 include ./$(DEPDIR)/smc_manager-StorageFile.Po
 include ./$(DEPDIR)/smc_manager-Stream.Po
 include ./$(DEPDIR)/smc_manager-Streaming.Po
@@ -889,7 +889,9 @@ include ./$(DEPDIR)/smc_manager-Thread.Po
 include ./$(DEPDIR)/smc_manager-VideoCamStorage.Po
 include ./$(DEPDIR)/smc_manager-VideoCamUDP.Po
 include ./$(DEPDIR)/smc_manager-VideoOutput.Po
+include ./$(DEPDIR)/smc_manager-dbg.Po
 include ./$(DEPDIR)/smc_manager-main-manager.Po
+include ./$(DEPDIR)/smc_manager-mutex.Po
 include ./$(DEPDIR)/smc_storaged-Application.Po
 include ./$(DEPDIR)/smc_storaged-Bye.Po
 include ./$(DEPDIR)/smc_storaged-Command.Po
@@ -906,7 +908,6 @@ include ./$(DEPDIR)/smc_storaged-Request.Po
 include ./$(DEPDIR)/smc_storaged-SMCC.Po
 include ./$(DEPDIR)/smc_storaged-SMCagentService.Po
 include ./$(DEPDIR)/smc_storaged-SMCserverProxy.Po
-include ./$(DEPDIR)/smc_storaged-SoapServer.Po
 include ./$(DEPDIR)/smc_storaged-StorageAgent.Po
 include ./$(DEPDIR)/smc_storaged-StorageFile.Po
 include ./$(DEPDIR)/smc_storaged-Stream.Po
@@ -916,7 +917,9 @@ include ./$(DEPDIR)/smc_storaged-Thread.Po
 include ./$(DEPDIR)/smc_storaged-VideoCamStorage.Po
 include ./$(DEPDIR)/smc_storaged-VideoCamUDP.Po
 include ./$(DEPDIR)/smc_storaged-VideoOutput.Po
+include ./$(DEPDIR)/smc_storaged-dbg.Po
 include ./$(DEPDIR)/smc_storaged-main-storage.Po
+include ./$(DEPDIR)/smc_storaged-mutex.Po
 
 .cpp.o:
 	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -952,6 +955,34 @@ frontend-main-frontend.obj: main-frontend.cpp
 #	source='main-frontend.cpp' object='frontend-main-frontend.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -c -o frontend-main-frontend.obj `if test -f 'main-frontend.cpp'; then $(CYGPATH_W) 'main-frontend.cpp'; else $(CYGPATH_W) '$(srcdir)/main-frontend.cpp'; fi`
+
+frontend-dbg.o: dbg.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -MT frontend-dbg.o -MD -MP -MF $(DEPDIR)/frontend-dbg.Tpo -c -o frontend-dbg.o `test -f 'dbg.cpp' || echo '$(srcdir)/'`dbg.cpp
+	$(am__mv) $(DEPDIR)/frontend-dbg.Tpo $(DEPDIR)/frontend-dbg.Po
+#	source='dbg.cpp' object='frontend-dbg.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -c -o frontend-dbg.o `test -f 'dbg.cpp' || echo '$(srcdir)/'`dbg.cpp
+
+frontend-dbg.obj: dbg.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -MT frontend-dbg.obj -MD -MP -MF $(DEPDIR)/frontend-dbg.Tpo -c -o frontend-dbg.obj `if test -f 'dbg.cpp'; then $(CYGPATH_W) 'dbg.cpp'; else $(CYGPATH_W) '$(srcdir)/dbg.cpp'; fi`
+	$(am__mv) $(DEPDIR)/frontend-dbg.Tpo $(DEPDIR)/frontend-dbg.Po
+#	source='dbg.cpp' object='frontend-dbg.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -c -o frontend-dbg.obj `if test -f 'dbg.cpp'; then $(CYGPATH_W) 'dbg.cpp'; else $(CYGPATH_W) '$(srcdir)/dbg.cpp'; fi`
+
+frontend-mutex.o: mutex.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -MT frontend-mutex.o -MD -MP -MF $(DEPDIR)/frontend-mutex.Tpo -c -o frontend-mutex.o `test -f 'mutex.cpp' || echo '$(srcdir)/'`mutex.cpp
+	$(am__mv) $(DEPDIR)/frontend-mutex.Tpo $(DEPDIR)/frontend-mutex.Po
+#	source='mutex.cpp' object='frontend-mutex.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -c -o frontend-mutex.o `test -f 'mutex.cpp' || echo '$(srcdir)/'`mutex.cpp
+
+frontend-mutex.obj: mutex.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -MT frontend-mutex.obj -MD -MP -MF $(DEPDIR)/frontend-mutex.Tpo -c -o frontend-mutex.obj `if test -f 'mutex.cpp'; then $(CYGPATH_W) 'mutex.cpp'; else $(CYGPATH_W) '$(srcdir)/mutex.cpp'; fi`
+	$(am__mv) $(DEPDIR)/frontend-mutex.Tpo $(DEPDIR)/frontend-mutex.Po
+#	source='mutex.cpp' object='frontend-mutex.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -c -o frontend-mutex.obj `if test -f 'mutex.cpp'; then $(CYGPATH_W) 'mutex.cpp'; else $(CYGPATH_W) '$(srcdir)/mutex.cpp'; fi`
 
 frontend-Request.o: onvif/Request.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -MT frontend-Request.o -MD -MP -MF $(DEPDIR)/frontend-Request.Tpo -c -o frontend-Request.o `test -f 'onvif/Request.cpp' || echo '$(srcdir)/'`onvif/Request.cpp
@@ -1036,20 +1067,6 @@ frontend-Thread.obj: patterns/Thread.cpp
 #	source='patterns/Thread.cpp' object='frontend-Thread.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -c -o frontend-Thread.obj `if test -f 'patterns/Thread.cpp'; then $(CYGPATH_W) 'patterns/Thread.cpp'; else $(CYGPATH_W) '$(srcdir)/patterns/Thread.cpp'; fi`
-
-frontend-SoapServer.o: SMC/SoapServer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -MT frontend-SoapServer.o -MD -MP -MF $(DEPDIR)/frontend-SoapServer.Tpo -c -o frontend-SoapServer.o `test -f 'SMC/SoapServer.cpp' || echo '$(srcdir)/'`SMC/SoapServer.cpp
-	$(am__mv) $(DEPDIR)/frontend-SoapServer.Tpo $(DEPDIR)/frontend-SoapServer.Po
-#	source='SMC/SoapServer.cpp' object='frontend-SoapServer.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -c -o frontend-SoapServer.o `test -f 'SMC/SoapServer.cpp' || echo '$(srcdir)/'`SMC/SoapServer.cpp
-
-frontend-SoapServer.obj: SMC/SoapServer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -MT frontend-SoapServer.obj -MD -MP -MF $(DEPDIR)/frontend-SoapServer.Tpo -c -o frontend-SoapServer.obj `if test -f 'SMC/SoapServer.cpp'; then $(CYGPATH_W) 'SMC/SoapServer.cpp'; else $(CYGPATH_W) '$(srcdir)/SMC/SoapServer.cpp'; fi`
-	$(am__mv) $(DEPDIR)/frontend-SoapServer.Tpo $(DEPDIR)/frontend-SoapServer.Po
-#	source='SMC/SoapServer.cpp' object='frontend-SoapServer.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -c -o frontend-SoapServer.obj `if test -f 'SMC/SoapServer.cpp'; then $(CYGPATH_W) 'SMC/SoapServer.cpp'; else $(CYGPATH_W) '$(srcdir)/SMC/SoapServer.cpp'; fi`
 
 frontend-Hello.o: onvif/Hello.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(frontend_CPPFLAGS) $(CPPFLAGS) $(frontend_CXXFLAGS) $(CXXFLAGS) -MT frontend-Hello.o -MD -MP -MF $(DEPDIR)/frontend-Hello.Tpo -c -o frontend-Hello.o `test -f 'onvif/Hello.cpp' || echo '$(srcdir)/'`onvif/Hello.cpp
@@ -1765,6 +1782,34 @@ smc_cored-StorageProxy.obj: observers/StorageProxy.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -c -o smc_cored-StorageProxy.obj `if test -f 'observers/StorageProxy.cpp'; then $(CYGPATH_W) 'observers/StorageProxy.cpp'; else $(CYGPATH_W) '$(srcdir)/observers/StorageProxy.cpp'; fi`
 
+smc_cored-dbg.o: dbg.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -MT smc_cored-dbg.o -MD -MP -MF $(DEPDIR)/smc_cored-dbg.Tpo -c -o smc_cored-dbg.o `test -f 'dbg.cpp' || echo '$(srcdir)/'`dbg.cpp
+	$(am__mv) $(DEPDIR)/smc_cored-dbg.Tpo $(DEPDIR)/smc_cored-dbg.Po
+#	source='dbg.cpp' object='smc_cored-dbg.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -c -o smc_cored-dbg.o `test -f 'dbg.cpp' || echo '$(srcdir)/'`dbg.cpp
+
+smc_cored-dbg.obj: dbg.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -MT smc_cored-dbg.obj -MD -MP -MF $(DEPDIR)/smc_cored-dbg.Tpo -c -o smc_cored-dbg.obj `if test -f 'dbg.cpp'; then $(CYGPATH_W) 'dbg.cpp'; else $(CYGPATH_W) '$(srcdir)/dbg.cpp'; fi`
+	$(am__mv) $(DEPDIR)/smc_cored-dbg.Tpo $(DEPDIR)/smc_cored-dbg.Po
+#	source='dbg.cpp' object='smc_cored-dbg.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -c -o smc_cored-dbg.obj `if test -f 'dbg.cpp'; then $(CYGPATH_W) 'dbg.cpp'; else $(CYGPATH_W) '$(srcdir)/dbg.cpp'; fi`
+
+smc_cored-mutex.o: mutex.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -MT smc_cored-mutex.o -MD -MP -MF $(DEPDIR)/smc_cored-mutex.Tpo -c -o smc_cored-mutex.o `test -f 'mutex.cpp' || echo '$(srcdir)/'`mutex.cpp
+	$(am__mv) $(DEPDIR)/smc_cored-mutex.Tpo $(DEPDIR)/smc_cored-mutex.Po
+#	source='mutex.cpp' object='smc_cored-mutex.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -c -o smc_cored-mutex.o `test -f 'mutex.cpp' || echo '$(srcdir)/'`mutex.cpp
+
+smc_cored-mutex.obj: mutex.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -MT smc_cored-mutex.obj -MD -MP -MF $(DEPDIR)/smc_cored-mutex.Tpo -c -o smc_cored-mutex.obj `if test -f 'mutex.cpp'; then $(CYGPATH_W) 'mutex.cpp'; else $(CYGPATH_W) '$(srcdir)/mutex.cpp'; fi`
+	$(am__mv) $(DEPDIR)/smc_cored-mutex.Tpo $(DEPDIR)/smc_cored-mutex.Po
+#	source='mutex.cpp' object='smc_cored-mutex.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -c -o smc_cored-mutex.obj `if test -f 'mutex.cpp'; then $(CYGPATH_W) 'mutex.cpp'; else $(CYGPATH_W) '$(srcdir)/mutex.cpp'; fi`
+
 smc_cored-SMCserverService.o: soap/SMCserverService.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -MT smc_cored-SMCserverService.o -MD -MP -MF $(DEPDIR)/smc_cored-SMCserverService.Tpo -c -o smc_cored-SMCserverService.o `test -f 'soap/SMCserverService.cpp' || echo '$(srcdir)/'`soap/SMCserverService.cpp
 	$(am__mv) $(DEPDIR)/smc_cored-SMCserverService.Tpo $(DEPDIR)/smc_cored-SMCserverService.Po
@@ -1806,34 +1851,6 @@ smc_cored-SMCC.obj: soap/SMCC.cpp
 #	source='soap/SMCC.cpp' object='smc_cored-SMCC.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -c -o smc_cored-SMCC.obj `if test -f 'soap/SMCC.cpp'; then $(CYGPATH_W) 'soap/SMCC.cpp'; else $(CYGPATH_W) '$(srcdir)/soap/SMCC.cpp'; fi`
-
-smc_cored-SoapServer.o: SMC/SoapServer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -MT smc_cored-SoapServer.o -MD -MP -MF $(DEPDIR)/smc_cored-SoapServer.Tpo -c -o smc_cored-SoapServer.o `test -f 'SMC/SoapServer.cpp' || echo '$(srcdir)/'`SMC/SoapServer.cpp
-	$(am__mv) $(DEPDIR)/smc_cored-SoapServer.Tpo $(DEPDIR)/smc_cored-SoapServer.Po
-#	source='SMC/SoapServer.cpp' object='smc_cored-SoapServer.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -c -o smc_cored-SoapServer.o `test -f 'SMC/SoapServer.cpp' || echo '$(srcdir)/'`SMC/SoapServer.cpp
-
-smc_cored-SoapServer.obj: SMC/SoapServer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -MT smc_cored-SoapServer.obj -MD -MP -MF $(DEPDIR)/smc_cored-SoapServer.Tpo -c -o smc_cored-SoapServer.obj `if test -f 'SMC/SoapServer.cpp'; then $(CYGPATH_W) 'SMC/SoapServer.cpp'; else $(CYGPATH_W) '$(srcdir)/SMC/SoapServer.cpp'; fi`
-	$(am__mv) $(DEPDIR)/smc_cored-SoapServer.Tpo $(DEPDIR)/smc_cored-SoapServer.Po
-#	source='SMC/SoapServer.cpp' object='smc_cored-SoapServer.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -c -o smc_cored-SoapServer.obj `if test -f 'SMC/SoapServer.cpp'; then $(CYGPATH_W) 'SMC/SoapServer.cpp'; else $(CYGPATH_W) '$(srcdir)/SMC/SoapServer.cpp'; fi`
-
-smc_cored-DiscoveryServer.o: SMC/DiscoveryServer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -MT smc_cored-DiscoveryServer.o -MD -MP -MF $(DEPDIR)/smc_cored-DiscoveryServer.Tpo -c -o smc_cored-DiscoveryServer.o `test -f 'SMC/DiscoveryServer.cpp' || echo '$(srcdir)/'`SMC/DiscoveryServer.cpp
-	$(am__mv) $(DEPDIR)/smc_cored-DiscoveryServer.Tpo $(DEPDIR)/smc_cored-DiscoveryServer.Po
-#	source='SMC/DiscoveryServer.cpp' object='smc_cored-DiscoveryServer.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -c -o smc_cored-DiscoveryServer.o `test -f 'SMC/DiscoveryServer.cpp' || echo '$(srcdir)/'`SMC/DiscoveryServer.cpp
-
-smc_cored-DiscoveryServer.obj: SMC/DiscoveryServer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -MT smc_cored-DiscoveryServer.obj -MD -MP -MF $(DEPDIR)/smc_cored-DiscoveryServer.Tpo -c -o smc_cored-DiscoveryServer.obj `if test -f 'SMC/DiscoveryServer.cpp'; then $(CYGPATH_W) 'SMC/DiscoveryServer.cpp'; else $(CYGPATH_W) '$(srcdir)/SMC/DiscoveryServer.cpp'; fi`
-	$(am__mv) $(DEPDIR)/smc_cored-DiscoveryServer.Tpo $(DEPDIR)/smc_cored-DiscoveryServer.Po
-#	source='SMC/DiscoveryServer.cpp' object='smc_cored-DiscoveryServer.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_cored_CXXFLAGS) $(CXXFLAGS) -c -o smc_cored-DiscoveryServer.obj `if test -f 'SMC/DiscoveryServer.cpp'; then $(CYGPATH_W) 'SMC/DiscoveryServer.cpp'; else $(CYGPATH_W) '$(srcdir)/SMC/DiscoveryServer.cpp'; fi`
 
 smc_hubd-main-hub.o: main-hub.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -MT smc_hubd-main-hub.o -MD -MP -MF $(DEPDIR)/smc_hubd-main-hub.Tpo -c -o smc_hubd-main-hub.o `test -f 'main-hub.cpp' || echo '$(srcdir)/'`main-hub.cpp
@@ -1989,6 +2006,34 @@ smc_hubd-RTSPserverStorage.obj: stream/RTSPserverStorage.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -c -o smc_hubd-RTSPserverStorage.obj `if test -f 'stream/RTSPserverStorage.cpp'; then $(CYGPATH_W) 'stream/RTSPserverStorage.cpp'; else $(CYGPATH_W) '$(srcdir)/stream/RTSPserverStorage.cpp'; fi`
 
+smc_hubd-dbg.o: dbg.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -MT smc_hubd-dbg.o -MD -MP -MF $(DEPDIR)/smc_hubd-dbg.Tpo -c -o smc_hubd-dbg.o `test -f 'dbg.cpp' || echo '$(srcdir)/'`dbg.cpp
+	$(am__mv) $(DEPDIR)/smc_hubd-dbg.Tpo $(DEPDIR)/smc_hubd-dbg.Po
+#	source='dbg.cpp' object='smc_hubd-dbg.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -c -o smc_hubd-dbg.o `test -f 'dbg.cpp' || echo '$(srcdir)/'`dbg.cpp
+
+smc_hubd-dbg.obj: dbg.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -MT smc_hubd-dbg.obj -MD -MP -MF $(DEPDIR)/smc_hubd-dbg.Tpo -c -o smc_hubd-dbg.obj `if test -f 'dbg.cpp'; then $(CYGPATH_W) 'dbg.cpp'; else $(CYGPATH_W) '$(srcdir)/dbg.cpp'; fi`
+	$(am__mv) $(DEPDIR)/smc_hubd-dbg.Tpo $(DEPDIR)/smc_hubd-dbg.Po
+#	source='dbg.cpp' object='smc_hubd-dbg.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -c -o smc_hubd-dbg.obj `if test -f 'dbg.cpp'; then $(CYGPATH_W) 'dbg.cpp'; else $(CYGPATH_W) '$(srcdir)/dbg.cpp'; fi`
+
+smc_hubd-mutex.o: mutex.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -MT smc_hubd-mutex.o -MD -MP -MF $(DEPDIR)/smc_hubd-mutex.Tpo -c -o smc_hubd-mutex.o `test -f 'mutex.cpp' || echo '$(srcdir)/'`mutex.cpp
+	$(am__mv) $(DEPDIR)/smc_hubd-mutex.Tpo $(DEPDIR)/smc_hubd-mutex.Po
+#	source='mutex.cpp' object='smc_hubd-mutex.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -c -o smc_hubd-mutex.o `test -f 'mutex.cpp' || echo '$(srcdir)/'`mutex.cpp
+
+smc_hubd-mutex.obj: mutex.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -MT smc_hubd-mutex.obj -MD -MP -MF $(DEPDIR)/smc_hubd-mutex.Tpo -c -o smc_hubd-mutex.obj `if test -f 'mutex.cpp'; then $(CYGPATH_W) 'mutex.cpp'; else $(CYGPATH_W) '$(srcdir)/mutex.cpp'; fi`
+	$(am__mv) $(DEPDIR)/smc_hubd-mutex.Tpo $(DEPDIR)/smc_hubd-mutex.Po
+#	source='mutex.cpp' object='smc_hubd-mutex.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -c -o smc_hubd-mutex.obj `if test -f 'mutex.cpp'; then $(CYGPATH_W) 'mutex.cpp'; else $(CYGPATH_W) '$(srcdir)/mutex.cpp'; fi`
+
 smc_hubd-Request.o: onvif/Request.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -MT smc_hubd-Request.o -MD -MP -MF $(DEPDIR)/smc_hubd-Request.Tpo -c -o smc_hubd-Request.o `test -f 'onvif/Request.cpp' || echo '$(srcdir)/'`onvif/Request.cpp
 	$(am__mv) $(DEPDIR)/smc_hubd-Request.Tpo $(DEPDIR)/smc_hubd-Request.Po
@@ -2072,20 +2117,6 @@ smc_hubd-Thread.obj: patterns/Thread.cpp
 #	source='patterns/Thread.cpp' object='smc_hubd-Thread.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -c -o smc_hubd-Thread.obj `if test -f 'patterns/Thread.cpp'; then $(CYGPATH_W) 'patterns/Thread.cpp'; else $(CYGPATH_W) '$(srcdir)/patterns/Thread.cpp'; fi`
-
-smc_hubd-SoapServer.o: SMC/SoapServer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -MT smc_hubd-SoapServer.o -MD -MP -MF $(DEPDIR)/smc_hubd-SoapServer.Tpo -c -o smc_hubd-SoapServer.o `test -f 'SMC/SoapServer.cpp' || echo '$(srcdir)/'`SMC/SoapServer.cpp
-	$(am__mv) $(DEPDIR)/smc_hubd-SoapServer.Tpo $(DEPDIR)/smc_hubd-SoapServer.Po
-#	source='SMC/SoapServer.cpp' object='smc_hubd-SoapServer.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -c -o smc_hubd-SoapServer.o `test -f 'SMC/SoapServer.cpp' || echo '$(srcdir)/'`SMC/SoapServer.cpp
-
-smc_hubd-SoapServer.obj: SMC/SoapServer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -MT smc_hubd-SoapServer.obj -MD -MP -MF $(DEPDIR)/smc_hubd-SoapServer.Tpo -c -o smc_hubd-SoapServer.obj `if test -f 'SMC/SoapServer.cpp'; then $(CYGPATH_W) 'SMC/SoapServer.cpp'; else $(CYGPATH_W) '$(srcdir)/SMC/SoapServer.cpp'; fi`
-	$(am__mv) $(DEPDIR)/smc_hubd-SoapServer.Tpo $(DEPDIR)/smc_hubd-SoapServer.Po
-#	source='SMC/SoapServer.cpp' object='smc_hubd-SoapServer.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -c -o smc_hubd-SoapServer.obj `if test -f 'SMC/SoapServer.cpp'; then $(CYGPATH_W) 'SMC/SoapServer.cpp'; else $(CYGPATH_W) '$(srcdir)/SMC/SoapServer.cpp'; fi`
 
 smc_hubd-Hello.o: onvif/Hello.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_hubd_CXXFLAGS) $(CXXFLAGS) -MT smc_hubd-Hello.o -MD -MP -MF $(DEPDIR)/smc_hubd-Hello.Tpo -c -o smc_hubd-Hello.o `test -f 'onvif/Hello.cpp' || echo '$(srcdir)/'`onvif/Hello.cpp
@@ -2367,6 +2398,34 @@ smc_manager-RTSPserverStorage.obj: stream/RTSPserverStorage.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -c -o smc_manager-RTSPserverStorage.obj `if test -f 'stream/RTSPserverStorage.cpp'; then $(CYGPATH_W) 'stream/RTSPserverStorage.cpp'; else $(CYGPATH_W) '$(srcdir)/stream/RTSPserverStorage.cpp'; fi`
 
+smc_manager-dbg.o: dbg.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -MT smc_manager-dbg.o -MD -MP -MF $(DEPDIR)/smc_manager-dbg.Tpo -c -o smc_manager-dbg.o `test -f 'dbg.cpp' || echo '$(srcdir)/'`dbg.cpp
+	$(am__mv) $(DEPDIR)/smc_manager-dbg.Tpo $(DEPDIR)/smc_manager-dbg.Po
+#	source='dbg.cpp' object='smc_manager-dbg.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -c -o smc_manager-dbg.o `test -f 'dbg.cpp' || echo '$(srcdir)/'`dbg.cpp
+
+smc_manager-dbg.obj: dbg.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -MT smc_manager-dbg.obj -MD -MP -MF $(DEPDIR)/smc_manager-dbg.Tpo -c -o smc_manager-dbg.obj `if test -f 'dbg.cpp'; then $(CYGPATH_W) 'dbg.cpp'; else $(CYGPATH_W) '$(srcdir)/dbg.cpp'; fi`
+	$(am__mv) $(DEPDIR)/smc_manager-dbg.Tpo $(DEPDIR)/smc_manager-dbg.Po
+#	source='dbg.cpp' object='smc_manager-dbg.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -c -o smc_manager-dbg.obj `if test -f 'dbg.cpp'; then $(CYGPATH_W) 'dbg.cpp'; else $(CYGPATH_W) '$(srcdir)/dbg.cpp'; fi`
+
+smc_manager-mutex.o: mutex.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -MT smc_manager-mutex.o -MD -MP -MF $(DEPDIR)/smc_manager-mutex.Tpo -c -o smc_manager-mutex.o `test -f 'mutex.cpp' || echo '$(srcdir)/'`mutex.cpp
+	$(am__mv) $(DEPDIR)/smc_manager-mutex.Tpo $(DEPDIR)/smc_manager-mutex.Po
+#	source='mutex.cpp' object='smc_manager-mutex.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -c -o smc_manager-mutex.o `test -f 'mutex.cpp' || echo '$(srcdir)/'`mutex.cpp
+
+smc_manager-mutex.obj: mutex.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -MT smc_manager-mutex.obj -MD -MP -MF $(DEPDIR)/smc_manager-mutex.Tpo -c -o smc_manager-mutex.obj `if test -f 'mutex.cpp'; then $(CYGPATH_W) 'mutex.cpp'; else $(CYGPATH_W) '$(srcdir)/mutex.cpp'; fi`
+	$(am__mv) $(DEPDIR)/smc_manager-mutex.Tpo $(DEPDIR)/smc_manager-mutex.Po
+#	source='mutex.cpp' object='smc_manager-mutex.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -c -o smc_manager-mutex.obj `if test -f 'mutex.cpp'; then $(CYGPATH_W) 'mutex.cpp'; else $(CYGPATH_W) '$(srcdir)/mutex.cpp'; fi`
+
 smc_manager-Request.o: onvif/Request.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -MT smc_manager-Request.o -MD -MP -MF $(DEPDIR)/smc_manager-Request.Tpo -c -o smc_manager-Request.o `test -f 'onvif/Request.cpp' || echo '$(srcdir)/'`onvif/Request.cpp
 	$(am__mv) $(DEPDIR)/smc_manager-Request.Tpo $(DEPDIR)/smc_manager-Request.Po
@@ -2450,20 +2509,6 @@ smc_manager-Thread.obj: patterns/Thread.cpp
 #	source='patterns/Thread.cpp' object='smc_manager-Thread.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -c -o smc_manager-Thread.obj `if test -f 'patterns/Thread.cpp'; then $(CYGPATH_W) 'patterns/Thread.cpp'; else $(CYGPATH_W) '$(srcdir)/patterns/Thread.cpp'; fi`
-
-smc_manager-SoapServer.o: SMC/SoapServer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -MT smc_manager-SoapServer.o -MD -MP -MF $(DEPDIR)/smc_manager-SoapServer.Tpo -c -o smc_manager-SoapServer.o `test -f 'SMC/SoapServer.cpp' || echo '$(srcdir)/'`SMC/SoapServer.cpp
-	$(am__mv) $(DEPDIR)/smc_manager-SoapServer.Tpo $(DEPDIR)/smc_manager-SoapServer.Po
-#	source='SMC/SoapServer.cpp' object='smc_manager-SoapServer.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -c -o smc_manager-SoapServer.o `test -f 'SMC/SoapServer.cpp' || echo '$(srcdir)/'`SMC/SoapServer.cpp
-
-smc_manager-SoapServer.obj: SMC/SoapServer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -MT smc_manager-SoapServer.obj -MD -MP -MF $(DEPDIR)/smc_manager-SoapServer.Tpo -c -o smc_manager-SoapServer.obj `if test -f 'SMC/SoapServer.cpp'; then $(CYGPATH_W) 'SMC/SoapServer.cpp'; else $(CYGPATH_W) '$(srcdir)/SMC/SoapServer.cpp'; fi`
-	$(am__mv) $(DEPDIR)/smc_manager-SoapServer.Tpo $(DEPDIR)/smc_manager-SoapServer.Po
-#	source='SMC/SoapServer.cpp' object='smc_manager-SoapServer.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -c -o smc_manager-SoapServer.obj `if test -f 'SMC/SoapServer.cpp'; then $(CYGPATH_W) 'SMC/SoapServer.cpp'; else $(CYGPATH_W) '$(srcdir)/SMC/SoapServer.cpp'; fi`
 
 smc_manager-Hello.o: onvif/Hello.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_manager_CXXFLAGS) $(CXXFLAGS) -MT smc_manager-Hello.o -MD -MP -MF $(DEPDIR)/smc_manager-Hello.Tpo -c -o smc_manager-Hello.o `test -f 'onvif/Hello.cpp' || echo '$(srcdir)/'`onvif/Hello.cpp
@@ -2745,6 +2790,34 @@ smc_storaged-RTSPserverStorage.obj: stream/RTSPserverStorage.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -c -o smc_storaged-RTSPserverStorage.obj `if test -f 'stream/RTSPserverStorage.cpp'; then $(CYGPATH_W) 'stream/RTSPserverStorage.cpp'; else $(CYGPATH_W) '$(srcdir)/stream/RTSPserverStorage.cpp'; fi`
 
+smc_storaged-dbg.o: dbg.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -MT smc_storaged-dbg.o -MD -MP -MF $(DEPDIR)/smc_storaged-dbg.Tpo -c -o smc_storaged-dbg.o `test -f 'dbg.cpp' || echo '$(srcdir)/'`dbg.cpp
+	$(am__mv) $(DEPDIR)/smc_storaged-dbg.Tpo $(DEPDIR)/smc_storaged-dbg.Po
+#	source='dbg.cpp' object='smc_storaged-dbg.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -c -o smc_storaged-dbg.o `test -f 'dbg.cpp' || echo '$(srcdir)/'`dbg.cpp
+
+smc_storaged-dbg.obj: dbg.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -MT smc_storaged-dbg.obj -MD -MP -MF $(DEPDIR)/smc_storaged-dbg.Tpo -c -o smc_storaged-dbg.obj `if test -f 'dbg.cpp'; then $(CYGPATH_W) 'dbg.cpp'; else $(CYGPATH_W) '$(srcdir)/dbg.cpp'; fi`
+	$(am__mv) $(DEPDIR)/smc_storaged-dbg.Tpo $(DEPDIR)/smc_storaged-dbg.Po
+#	source='dbg.cpp' object='smc_storaged-dbg.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -c -o smc_storaged-dbg.obj `if test -f 'dbg.cpp'; then $(CYGPATH_W) 'dbg.cpp'; else $(CYGPATH_W) '$(srcdir)/dbg.cpp'; fi`
+
+smc_storaged-mutex.o: mutex.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -MT smc_storaged-mutex.o -MD -MP -MF $(DEPDIR)/smc_storaged-mutex.Tpo -c -o smc_storaged-mutex.o `test -f 'mutex.cpp' || echo '$(srcdir)/'`mutex.cpp
+	$(am__mv) $(DEPDIR)/smc_storaged-mutex.Tpo $(DEPDIR)/smc_storaged-mutex.Po
+#	source='mutex.cpp' object='smc_storaged-mutex.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -c -o smc_storaged-mutex.o `test -f 'mutex.cpp' || echo '$(srcdir)/'`mutex.cpp
+
+smc_storaged-mutex.obj: mutex.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -MT smc_storaged-mutex.obj -MD -MP -MF $(DEPDIR)/smc_storaged-mutex.Tpo -c -o smc_storaged-mutex.obj `if test -f 'mutex.cpp'; then $(CYGPATH_W) 'mutex.cpp'; else $(CYGPATH_W) '$(srcdir)/mutex.cpp'; fi`
+	$(am__mv) $(DEPDIR)/smc_storaged-mutex.Tpo $(DEPDIR)/smc_storaged-mutex.Po
+#	source='mutex.cpp' object='smc_storaged-mutex.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -c -o smc_storaged-mutex.obj `if test -f 'mutex.cpp'; then $(CYGPATH_W) 'mutex.cpp'; else $(CYGPATH_W) '$(srcdir)/mutex.cpp'; fi`
+
 smc_storaged-Request.o: onvif/Request.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -MT smc_storaged-Request.o -MD -MP -MF $(DEPDIR)/smc_storaged-Request.Tpo -c -o smc_storaged-Request.o `test -f 'onvif/Request.cpp' || echo '$(srcdir)/'`onvif/Request.cpp
 	$(am__mv) $(DEPDIR)/smc_storaged-Request.Tpo $(DEPDIR)/smc_storaged-Request.Po
@@ -2828,20 +2901,6 @@ smc_storaged-Thread.obj: patterns/Thread.cpp
 #	source='patterns/Thread.cpp' object='smc_storaged-Thread.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -c -o smc_storaged-Thread.obj `if test -f 'patterns/Thread.cpp'; then $(CYGPATH_W) 'patterns/Thread.cpp'; else $(CYGPATH_W) '$(srcdir)/patterns/Thread.cpp'; fi`
-
-smc_storaged-SoapServer.o: SMC/SoapServer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -MT smc_storaged-SoapServer.o -MD -MP -MF $(DEPDIR)/smc_storaged-SoapServer.Tpo -c -o smc_storaged-SoapServer.o `test -f 'SMC/SoapServer.cpp' || echo '$(srcdir)/'`SMC/SoapServer.cpp
-	$(am__mv) $(DEPDIR)/smc_storaged-SoapServer.Tpo $(DEPDIR)/smc_storaged-SoapServer.Po
-#	source='SMC/SoapServer.cpp' object='smc_storaged-SoapServer.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -c -o smc_storaged-SoapServer.o `test -f 'SMC/SoapServer.cpp' || echo '$(srcdir)/'`SMC/SoapServer.cpp
-
-smc_storaged-SoapServer.obj: SMC/SoapServer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -MT smc_storaged-SoapServer.obj -MD -MP -MF $(DEPDIR)/smc_storaged-SoapServer.Tpo -c -o smc_storaged-SoapServer.obj `if test -f 'SMC/SoapServer.cpp'; then $(CYGPATH_W) 'SMC/SoapServer.cpp'; else $(CYGPATH_W) '$(srcdir)/SMC/SoapServer.cpp'; fi`
-	$(am__mv) $(DEPDIR)/smc_storaged-SoapServer.Tpo $(DEPDIR)/smc_storaged-SoapServer.Po
-#	source='SMC/SoapServer.cpp' object='smc_storaged-SoapServer.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -c -o smc_storaged-SoapServer.obj `if test -f 'SMC/SoapServer.cpp'; then $(CYGPATH_W) 'SMC/SoapServer.cpp'; else $(CYGPATH_W) '$(srcdir)/SMC/SoapServer.cpp'; fi`
 
 smc_storaged-Hello.o: onvif/Hello.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(smc_storaged_CXXFLAGS) $(CXXFLAGS) -MT smc_storaged-Hello.o -MD -MP -MF $(DEPDIR)/smc_storaged-Hello.Tpo -c -o smc_storaged-Hello.o `test -f 'onvif/Hello.cpp' || echo '$(srcdir)/'`onvif/Hello.cpp

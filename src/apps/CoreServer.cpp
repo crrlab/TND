@@ -6,7 +6,6 @@
  */
 
 #include "CoreServer.h"
-#include "DiscoveryServer.h"
 #include "HubProxy.h"
 #include "StorageProxy.h"
 #include "ManagerProxy.h"
@@ -28,7 +27,7 @@ namespace SMC
 	this->subtype = "CoreServer";
 	this->port = "9990";
 
-	this->m_discovery = new DiscoveryServer(this);
+	//this->m_discovery = new DiscoveryServer(this);
 
 	//	this->RemoteCollection["Testing_Camera"]= new SMC::Onvif::NetworkVideoTransmitter ("192.168.1.134");
 	//this->RemoteCollection["Testing_Camera"]->start();
@@ -56,11 +55,13 @@ namespace SMC
 
 	bool exist = false;
 
+
+
+
 	for (it = this->RemoteCollection.begin(); it
 		!= this->RemoteCollection.end(); ++it)
 	    {
-	    it->second->exit();
-	    it->second->notify();
+	    it->second->closing();
 
 	    if (dynamic_cast<SMC::Onvif::NetworkVideoTransmitter*> (it->second))
 		{
@@ -96,10 +97,9 @@ namespace SMC
 	}
     void CoreServer::run()
 	{
-	boost::thread* serve, *discovery;
 	//, *discovery;
-	serve = new boost::thread(boost::bind(&SMC::CoreServer::Serve, this));
-	discovery = new boost::thread(boost::bind(
+	serve_thread = new boost::thread(boost::bind(&SMC::CoreServer::Serve, this));
+	discovery_thread = new boost::thread(boost::bind(
 		&SMC::CoreServer::DiscoveryServe, this));
 
 	std::string path = getenv("HOME");
@@ -124,8 +124,10 @@ namespace SMC
 	{
 
 	}
-    serve->join();
-    discovery->join();
+
+    serve_thread->join();
+    discovery_thread->join();
+    this->stopped=true;
 
     }
 void CoreServer::Serve()
@@ -134,9 +136,10 @@ int s;
     std::clog << "[SMC::Core]: CoreServer is running..." << std::endl;
     server = new SMC::serverService();
 
+	server->bind_flags=SO_REUSEADDR;
     this->server->user = (void*) this;
    	if (soap_valid_socket(soap_bind(server, NULL, atoi(this->port.c_str()), 100)))
-	{	for (;;)
+	{	for (;this->running;)
 		{	s=soap_valid_socket(server->accept());
 		  if (s < 0)
          {
@@ -155,11 +158,11 @@ int s;
 	exit(1);
 	}
 
+    soap_done(server); // close connection
+
     }
 void* CoreServer::DiscoveryServe()
-    {
-
-    Remote::dpws_discoveryService* discovery =
+    { discovery =
     new Remote::dpws_discoveryService(SOAP_IO_UDP);
     discovery->user = (void*) this;
 
@@ -179,13 +182,16 @@ void* CoreServer::DiscoveryServe()
     std::clog << "[SMC::Core]: No Multicast..." << std::endl;
 
     std::clog << "[SMC::Core]: Discovery is running..." << std::endl;
-    for (;;)
+    for (;this->running;)
 	{
 	if (discovery->serve())
 	soap_print_fault(discovery, stderr); // report the problem
 	soap_destroy(discovery);
 	soap_end(discovery);
 	}
+
+	if(this->running)
+	std::clog << "[SMC::Core]: Running..." << std::endl;
     soap_done(discovery); // close connection
 
     }
@@ -341,8 +347,7 @@ namespace Remote
 	    for (it = server->RemoteCollection.begin(); it
 		    != server->RemoteCollection.end(); ++it)
 		{
-		it->second->exit();
-		it->second->notify();
+		it->second->closing();
 
 		it->second->Detach(
 			server->RemoteCollection[wsd__Bye->wsa__EndpointReference.Address]);

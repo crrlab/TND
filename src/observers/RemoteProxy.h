@@ -21,11 +21,11 @@
 typedef std::map<std::string, Pattern::Command*> mapCommand;
 typedef std::map<std::string, std::string> mapString;
 
-typedef std::map<std::string,mapString> mapCommandOption;
-typedef std::pair<Pattern::Command*,mapString> mapCommandQueued;
+typedef std::map<std::string, mapString> mapCommandOption;
+typedef std::pair<Pattern::Command*, mapString> mapCommandQueued;
 namespace SMC {
 
-	class RemoteProxy:  public Pattern::Observer, public Pattern::Subject {
+	class RemoteProxy: public Pattern::Observer, public Pattern::Subject {
 		protected:
 			RemoteProxy();
 			mapString Information;
@@ -34,29 +34,33 @@ namespace SMC {
 			mapCommandOption optionAction;
 			std::queue<mapCommandQueued> queueCommands;
 
-
 			volatile bool running;
 			std::string uuid;
 		public:
-bool isRunning() { return running; }
+			bool isRunning() {
+				return running;
+			}
 			virtual void SetInfo(const std::string& a, const std::string& b) {
 				this->Information[a] = b;
 			}
 
-			virtual void exit() { this->lock();
-			this->running=false;
-			this->unlock();
+			virtual void closing() {
+				this->running = false;
+				this->notify();
+				this->stop();
+
 			}
 			virtual void SetUUID(const std::string& a) {
-						this->uuid = a;
-					}
-					virtual const std::string GetUUID() {
-						return this->uuid;
-					}
+				this->uuid = a;
+			}
+			virtual const std::string GetUUID() {
+				return this->uuid;
+			}
 			virtual const std::string getInfo(const std::string& a) {
 				return Information[a];
 			}
-			virtual void SetEndpoint(const std::string& a, const std::string& b) {
+			virtual void SetEndpoint(const std::string& a,
+					const std::string& b) {
 				this->Endpoints[a] = b;
 			}
 			virtual const char* getEndpoint(const std::string& a) {
@@ -65,8 +69,8 @@ bool isRunning() { return running; }
 			virtual void Update(Pattern::Subject* theChangeSubject)=0;
 
 			virtual RemoteProxy& Call(const std::string&);
-		    virtual RemoteProxy& SetOptionCall(
-								const std::string& Command, const std::string& optionType,const std::string& option);
+			virtual RemoteProxy& SetOptionCall(const std::string& Command,
+					const std::string& optionType, const std::string& option);
 
 			virtual void run();
 			virtual ~RemoteProxy();
