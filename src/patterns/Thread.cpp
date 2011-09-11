@@ -34,8 +34,17 @@ namespace Pattern {
 		boost::unique_lock<boost::mutex> lock(this->wait_mutex);
 		this->condition.wait(lock);
 	}
+	void Thread::stop(){
+		boost::unique_lock<boost::mutex> lock(this->exit_mutex);
+		this->stopped.wait(lock);
+	}
 	void Thread::notify(){
 	    boost::lock_guard<boost::mutex> lock(this->wait_mutex);
 		this->condition.notify_one();
 	}
+
+	void Thread::exit(){
+		    boost::lock_guard<boost::mutex> lock(this->wait_mutex);
+			this->stopped.notify_one();
+		}
 }

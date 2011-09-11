@@ -325,7 +325,7 @@ top_srcdir = @top_srcdir@
 @DX_COND_doc_TRUE@    $(DX_CLEAN_LATEX)
 
 ACLOCAL_AMFLAGS = -I m4
-SUBDIRS = libonvif src 
+SUBDIRS = libonvif src libutils 
 SOAPINCLUDE = $(top_srcdir)/common/import:$(top_srcdir)/common:$(top_srcdir)/common/WS
 ONVIF_OPTIONS = -i  -C  -x 
 SOAP = /usr/local/bin/soapcpp2
