@@ -90,7 +90,8 @@ DX_INIT_DOXYGEN([$PACKAGE_NAME],[doxygen.cfg],[doc])
 AC_CONFIG_FILES([Makefile
 				po/Makefile
 				libonvif/Makefile
-				src/Makefile])
+				src/Makefile
+				libutils/Makefile])
 AC_OUTPUT
 echo \
 "-------------------------------------------------

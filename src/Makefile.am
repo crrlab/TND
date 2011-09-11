@@ -20,6 +20,8 @@ mediadir = $(wsdl)/Media
 imagingdir = $(wsdl)/Imaging
 analyticsdir = $(wsdl)/Analytics
 
+utilsdir = $(top_srcdir)/libutils
+
 DEBUG_FLAGS = -DDEBUG -g -rdynamic
 
 COMMON = $(top_srcdir)/common
@@ -28,7 +30,9 @@ INCLUDE = \
 	 -I$(top_srcdir)/src/patterns \
 	 -I$(top_srcdir)/src/observers \
 	 -I$(top_srcdir)/src/SMC \
-	 -I$(top_srcdir)/src/apps 
+	 -I$(top_srcdir)/src/apps \
+	 -I$(top_srcdir)/libutils
+	 
 FLAGS = -DWITH_DOM  -DWITH_OPENSSL  $(BOOST_SYSTEM_LIB) $(BOOST_THREAD_LIB) -luuid $(DEBUG_FLAGS) -DHAVE_PTHREAD
 LIBGSTREAMER = `pkg-config --cflags  --libs gstreamer-app-0.10 --libs gstreamer-0.10 --libs gst-rtsp-server-0.10`
 bin_PROGRAMS = \
@@ -57,24 +61,17 @@ AGENTPROXY = 	patterns/Subject.cpp \
 	observers/CoreServerProxy.cpp
 	
 SMC_SERVER = \
-	dbg.cpp \
-	mutex.cpp \
 	soap/SMCserverService.cpp \
 	soap/SMCagentProxy.cpp \
-	soap/SMCC.cpp \
-	SMC/SoapServer.cpp \
-	SMC/DiscoveryServer.cpp
+	soap/SMCC.cpp 
 	
 SMC_AGENT = \
-	dbg.cpp \
-	mutex.cpp \
 	onvif/Request.cpp \
 	onvif/DiscoveryRequest.cpp \
 	soap/SMCagentService.cpp \
 	soap/SMCserverProxy.cpp \
 	soap/SMCC.cpp \
 	patterns/Thread.cpp \
-	SMC/SoapServer.cpp \
 	onvif/Hello.cpp \
 	onvif/Bye.cpp 
 
@@ -122,12 +119,12 @@ smc_cored_SOURCES =  main.cpp \
 	$(PROXY) \
 	$(SMC_SERVER)
 smc_cored_LDADD = \
-	$(ONVIFLIB)/libonvifdevicemgmt.la \
+   	$(ONVIFLIB)/libonvifdevicemgmt.la \
 	$(ONVIFLIB)/libonvifmedia.la \
+	 $(utilsdir)/libutils.la \
 	$(ONVIFLIB)/libonvifremotediscovery.la
-smc_cored_CXXFLAGS = $(INCLUDE) $(FLAGS) -DCORE_EXCEPTION -DDEBUG $(BOOST_SYSTEM_LIB) $(BOOST_THREAD_LIB) -lpthread
-smc_cored_CFLAGS = $(INCLUDE) $(FLAGS)  -lpthread
-
+smc_cored_CXXFLAGS = $(INCLUDE) $(FLAGS) -DCORE_EXCEPTION -DDEBUG $(BOOST_SYSTEM_LIB) $(BOOST_THREAD_LIB) 
+smc_cored_CFLAGS = $(INCLUDE) $(FLAGS) 
 		
 #discovery_SOURCES =   main-discovery.cpp 
 #discovery_LDADD = \
@@ -164,6 +161,7 @@ frontend_LDFLAGS  = $(QT_LDFLAGS) $(LDFLAGS)
 frontend_LDADD    = $(QT_LIBS) $(LDADD) \
 	$(ONVIFLIB)/libonvifdevicemgmt.la \
 	$(ONVIFLIB)/libonvifmedia.la \
+	 $(utilsdir)/libutils.la \
 	$(ONVIFLIB)/libonvifhello.la
 BUILT_SOURCES = gui/Frontend.moc.cpp \
 	gui/DeviceCollection.moc.cpp \
@@ -183,6 +181,7 @@ smc_storaged_SOURCES =   main-storage.cpp  \
 smc_storaged_LDADD = \
 	$(ONVIFLIB)/libonvifdevicemgmt.la \
 	$(ONVIFLIB)/libonvifmedia.la \
+	 $(utilsdir)/libutils.la \
 	$(ONVIFLIB)/libonvifhello.la
 smc_storaged_CXXFLAGS = \
 	$(INCLUDE) \
@@ -201,6 +200,7 @@ smc_hubd_SOURCES =   main-hub.cpp  \
 smc_hubd_LDADD = \
 	$(ONVIFLIB)/libonvifdevicemgmt.la \
 	$(ONVIFLIB)/libonvifmedia.la \
+	 $(utilsdir)/libutils.la \
 	$(ONVIFLIB)/libonvifhello.la
 smc_hubd_CXXFLAGS = \
 	$(INCLUDE) \
@@ -220,6 +220,7 @@ smc_manager_SOURCES =   main-manager.cpp  \
 smc_manager_LDADD = \
 	$(ONVIFLIB)/libonvifdevicemgmt.la \
 	$(ONVIFLIB)/libonvifmedia.la \
+	 $(utilsdir)/libutils.la \
 	$(ONVIFLIB)/libonvifhello.la
 smc_manager_CXXFLAGS = \
 	$(INCLUDE) \

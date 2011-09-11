@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'Frontend.h'
 **
-** Created: Mon Jul 18 15:51:43 2011
+** Created: Sun Jul 31 19:19:06 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Frontend[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,17 +33,13 @@ static const uint qt_meta_data_Frontend[] = {
  // slots: signature, parameters, type, tag, flags
       16,   10,    9,    9, 0x0a,
       44,   37,    9,    9, 0x0a,
-      75,   65,    9,    9, 0x0a,
-     126,    9,    9,    9, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Frontend[] = {
     "Frontend\0\0fixed\0fixAspectRatio(bool)\0"
-    "enable\0enableCropSize(bool)\0curr,prev\0"
-    "currItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)\0"
-    "timerSlot()\0"
+    "enable\0enableCropSize(bool)\0"
 };
 
 const QMetaObject Frontend::staticMetaObject = {
@@ -79,11 +75,9 @@ int Frontend::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         switch (_id) {
         case 0: fixAspectRatio((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 1: enableCropSize((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 2: currItemChanged((*reinterpret_cast< QTreeWidgetItem*(*)>(_a[1])),(*reinterpret_cast< QTreeWidgetItem*(*)>(_a[2]))); break;
-        case 3: timerSlot(); break;
         default: ;
         }
-        _id -= 4;
+        _id -= 2;
     }
     return _id;
 }

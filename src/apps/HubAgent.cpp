@@ -22,11 +22,16 @@ HubAgent::HubAgent() {
 }
 
 HubAgent::~HubAgent() {
-	// TODO Auto-generated destructor stub
+
+    soap_destroy(this->server);
+    soap_end(this->server);
+
+    soap_done(this->server); // close connection
 }
 
 void HubAgent::run() {
 	this->PipelineServe();
+
 
 }
 

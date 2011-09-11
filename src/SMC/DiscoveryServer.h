@@ -8,7 +8,6 @@
 #ifndef DISCOVERYSERVER_H_
 #define DISCOVERYSERVER_H_
 
-#include "Remotedpws_discoveryService.h"
 #include "SoapServer.h"
 
 namespace SMC {
