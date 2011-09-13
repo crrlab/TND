@@ -74,7 +74,7 @@ am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libutils_la_LIBADD =
+libutils_la_DEPENDENCIES =
 am_libutils_la_OBJECTS = dbg.lo mutex.lo
 libutils_la_OBJECTS = $(am_libutils_la_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
@@ -257,6 +257,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = libutils.la
 libutils_la_SOURCES = dbg.cpp mutex.cpp
+libutils_la_LIBADD = -lpthread
 all: all-am
 
 .SUFFIXES:

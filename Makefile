@@ -142,12 +142,12 @@ distuninstallcheck_listfiles = find . -type f -print
 distcleancheck_listfiles = find . -type f -print
 ACLOCAL = ${SHELL} /home/sviluppo/Progetti/SMC/missing --run aclocal-1.11
 AMTAR = ${SHELL} /home/sviluppo/Progetti/SMC/missing --run tar
-AM_CXXFLAGS =  -O3
+AM_CXXFLAGS =  -g -Wall  -Wno-uninitialized -O0
 AR = ar
 AUTOCONF = ${SHELL} /home/sviluppo/Progetti/SMC/missing --run autoconf
 AUTOHEADER = ${SHELL} /home/sviluppo/Progetti/SMC/missing --run autoheader
 AUTOMAKE = ${SHELL} /home/sviluppo/Progetti/SMC/missing --run automake-1.11
-AWK = gawk
+AWK = mawk
 BOOST_CPPFLAGS = -pthread -I/usr/include
 BOOST_LDFLAGS = -L/usr/lib
 BOOST_SYSTEM_LIB = -lboost_system-mt
@@ -170,16 +170,16 @@ DUMPBIN =
 DX_CONFIG = doxygen.cfg
 DX_DOCDIR = doc
 DX_DOT = 
-DX_DOXYGEN = /usr/bin/doxygen
+DX_DOXYGEN = 
 DX_DVIPS = 
 DX_EGREP = 
-DX_ENV =  SRCDIR='.' PROJECT='StreamingMediaCenter' DOCDIR='doc' VERSION='1.0' PERL_PATH='/usr/bin/perl' HAVE_DOT='NO' GENERATE_MAN='NO' GENERATE_RTF='NO' GENERATE_XML='NO' GENERATE_HTMLHELP='NO' GENERATE_CHI='NO' GENERATE_HTML='YES' GENERATE_LATEX='NO'
+DX_ENV =  SRCDIR='.' PROJECT='StreamingMediaCenter' DOCDIR='doc' VERSION='1.0' HAVE_DOT='NO' GENERATE_MAN='NO' GENERATE_RTF='NO' GENERATE_XML='NO' GENERATE_HTMLHELP='NO' GENERATE_CHI='NO' GENERATE_HTML='NO' GENERATE_LATEX='NO'
 DX_FLAG_DX_CURRENT_FEATURE = 
 DX_FLAG_chi = 0
 DX_FLAG_chm = 0
-DX_FLAG_doc = 1
+DX_FLAG_doc = 0
 DX_FLAG_dot = 0
-DX_FLAG_html = 1
+DX_FLAG_html = 0
 DX_FLAG_man = 0
 DX_FLAG_pdf = 0
 DX_FLAG_ps = 0
@@ -300,32 +300,32 @@ target_alias =
 top_build_prefix = 
 top_builddir = .
 top_srcdir = .
-DX_CLEAN_HTML = doc/html
-#DX_CLEAN_CHM = doc/chm
-##DX_CLEAN_CHI = doc/streamingmediacenter.chi
-#DX_CLEAN_MAN = doc/man
-#DX_CLEAN_RTF = doc/rtf
-#DX_CLEAN_XML = doc/xml
-#DX_CLEAN_PS = doc/streamingmediacenter.ps
-#DX_PS_GOAL = doxygen-ps
-#DX_CLEAN_PDF = doc/streamingmediacenter.pdf
-#DX_PDF_GOAL = doxygen-pdf
-#DX_CLEAN_LATEX = doc/latex
-DX_CLEANFILES = \
-    doc/streamingmediacenter.tag \
-    -r \
-    $(DX_CLEAN_HTML) \
-    $(DX_CLEAN_CHM) \
-    $(DX_CLEAN_CHI) \
-    $(DX_CLEAN_MAN) \
-    $(DX_CLEAN_RTF) \
-    $(DX_CLEAN_XML) \
-    $(DX_CLEAN_PS) \
-    $(DX_CLEAN_PDF) \
-    $(DX_CLEAN_LATEX)
+##DX_CLEAN_HTML = doc/html
+##DX_CLEAN_CHM = doc/chm
+###DX_CLEAN_CHI = doc/streamingmediacenter.chi
+##DX_CLEAN_MAN = doc/man
+##DX_CLEAN_RTF = doc/rtf
+##DX_CLEAN_XML = doc/xml
+##DX_CLEAN_PS = doc/streamingmediacenter.ps
+##DX_PS_GOAL = doxygen-ps
+##DX_CLEAN_PDF = doc/streamingmediacenter.pdf
+##DX_PDF_GOAL = doxygen-pdf
+##DX_CLEAN_LATEX = doc/latex
+#DX_CLEANFILES = \
+#    doc/streamingmediacenter.tag \
+#    -r \
+#    $(DX_CLEAN_HTML) \
+#    $(DX_CLEAN_CHM) \
+#    $(DX_CLEAN_CHI) \
+#    $(DX_CLEAN_MAN) \
+#    $(DX_CLEAN_RTF) \
+#    $(DX_CLEAN_XML) \
+#    $(DX_CLEAN_PS) \
+#    $(DX_CLEAN_PDF) \
+#    $(DX_CLEAN_LATEX)
 
 ACLOCAL_AMFLAGS = -I m4
-SUBDIRS = libonvif src libutils 
+SUBDIRS = libonvif libutils  src 
 SOAPINCLUDE = $(top_srcdir)/common/import:$(top_srcdir)/common:$(top_srcdir)/common/WS
 ONVIF_OPTIONS = -i  -C  -x 
 SOAP = /usr/local/bin/soapcpp2
@@ -831,51 +831,51 @@ uninstall-am:
 	ps ps-am tags tags-recursive uninstall uninstall-am
 
 
-#doxygen-ps: doc/streamingmediacenter.ps
+##doxygen-ps: doc/streamingmediacenter.ps
 
-#doc/streamingmediacenter.ps: doc/streamingmediacenter.tag
-#	cd doc/latex; \
-#	rm -f *.aux *.toc *.idx *.ind *.ilg *.log *.out; \
-#	$(DX_LATEX) refman.tex; \
-#	$(MAKEINDEX_PATH) refman.idx; \
-#	$(DX_LATEX) refman.tex; \
-#	countdown=5; \
-#	while $(DX_EGREP) 'Rerun (LaTeX|to get cross-references right)' \
-#	                  refman.log > /dev/null 2>&1 \
-#	   && test $$countdown -gt 0; do \
-#	    $(DX_LATEX) refman.tex; \
-#	    countdown=`expr $$countdown - 1`; \
-#	done; \
-#	$(DX_DVIPS) -o ../streamingmediacenter.ps refman.dvi
+##doc/streamingmediacenter.ps: doc/streamingmediacenter.tag
+##	cd doc/latex; \
+##	rm -f *.aux *.toc *.idx *.ind *.ilg *.log *.out; \
+##	$(DX_LATEX) refman.tex; \
+##	$(MAKEINDEX_PATH) refman.idx; \
+##	$(DX_LATEX) refman.tex; \
+##	countdown=5; \
+##	while $(DX_EGREP) 'Rerun (LaTeX|to get cross-references right)' \
+##	                  refman.log > /dev/null 2>&1 \
+##	   && test $$countdown -gt 0; do \
+##	    $(DX_LATEX) refman.tex; \
+##	    countdown=`expr $$countdown - 1`; \
+##	done; \
+##	$(DX_DVIPS) -o ../streamingmediacenter.ps refman.dvi
 
-#doxygen-pdf: doc/streamingmediacenter.pdf
+##doxygen-pdf: doc/streamingmediacenter.pdf
 
-#doc/streamingmediacenter.pdf: doc/streamingmediacenter.tag
-#	cd doc/latex; \
-#	rm -f *.aux *.toc *.idx *.ind *.ilg *.log *.out; \
-#	$(DX_PDFLATEX) refman.tex; \
-#	$(DX_MAKEINDEX) refman.idx; \
-#	$(DX_PDFLATEX) refman.tex; \
-#	countdown=5; \
-#	while $(DX_EGREP) 'Rerun (LaTeX|to get cross-references right)' \
-#	                  refman.log > /dev/null 2>&1 \
-#	   && test $$countdown -gt 0; do \
-#	    $(DX_PDFLATEX) refman.tex; \
-#	    countdown=`expr $$countdown - 1`; \
-#	done; \
-#	mv refman.pdf ../streamingmediacenter.pdf
+##doc/streamingmediacenter.pdf: doc/streamingmediacenter.tag
+##	cd doc/latex; \
+##	rm -f *.aux *.toc *.idx *.ind *.ilg *.log *.out; \
+##	$(DX_PDFLATEX) refman.tex; \
+##	$(DX_MAKEINDEX) refman.idx; \
+##	$(DX_PDFLATEX) refman.tex; \
+##	countdown=5; \
+##	while $(DX_EGREP) 'Rerun (LaTeX|to get cross-references right)' \
+##	                  refman.log > /dev/null 2>&1 \
+##	   && test $$countdown -gt 0; do \
+##	    $(DX_PDFLATEX) refman.tex; \
+##	    countdown=`expr $$countdown - 1`; \
+##	done; \
+##	mv refman.pdf ../streamingmediacenter.pdf
 
-.PHONY: doxygen-run doxygen-doc $(DX_PS_GOAL) $(DX_PDF_GOAL)
+#.PHONY: doxygen-run doxygen-doc $(DX_PS_GOAL) $(DX_PDF_GOAL)
 
-.INTERMEDIATE: doxygen-run $(DX_PS_GOAL) $(DX_PDF_GOAL)
+#.INTERMEDIATE: doxygen-run $(DX_PS_GOAL) $(DX_PDF_GOAL)
 
-doxygen-run: doc/streamingmediacenter.tag
+#doxygen-run: doc/streamingmediacenter.tag
 
-doxygen-doc: doxygen-run $(DX_PS_GOAL) $(DX_PDF_GOAL)
+#doxygen-doc: doxygen-run $(DX_PS_GOAL) $(DX_PDF_GOAL)
 
-doc/streamingmediacenter.tag: $(DX_CONFIG) $(pkginclude_HEADERS)
-	rm -rf doc
-	$(DX_ENV) $(DX_DOXYGEN) $(srcdir)/$(DX_CONFIG)
+#doc/streamingmediacenter.tag: $(DX_CONFIG) $(pkginclude_HEADERS)
+#	rm -rf doc
+#	$(DX_ENV) $(DX_DOXYGEN) $(srcdir)/$(DX_CONFIG)
 
 # ensure the distribution of the doxygen configuration file
 

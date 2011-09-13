@@ -1,6 +1,6 @@
 include $(top_srcdir)/aminclude.am
 ACLOCAL_AMFLAGS = -I m4
-SUBDIRS =  libonvif src libutils 
+SUBDIRS =  libonvif libutils  src 
 SOAPINCLUDE = $(top_srcdir)/common/import:$(top_srcdir)/common:$(top_srcdir)/common/WS
 ONVIF_OPTIONS = -i  -C  -x 
 SOAP = /usr/local/bin/soapcpp2

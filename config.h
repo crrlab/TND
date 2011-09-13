@@ -2,7 +2,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Debug Mode */
-/* #undef DEBUG */
+#define DEBUG /**/
 
 /* define if the Boost library is available */
 #define HAVE_BOOST /**/
@@ -60,7 +60,7 @@
 #define LT_OBJDIR ".libs/"
 
 /* No-debug Mode */
-#define NDEBUG /**/
+/* #undef NDEBUG */
 
 /* Name of package */
 #define PACKAGE "streamingmediacenter"

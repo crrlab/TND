@@ -278,12 +278,12 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = ${SHELL} /home/sviluppo/Progetti/SMC/missing --run aclocal-1.11
 AMTAR = ${SHELL} /home/sviluppo/Progetti/SMC/missing --run tar
-AM_CXXFLAGS =  -O3
+AM_CXXFLAGS =  -g -Wall  -Wno-uninitialized -O0
 AR = ar
 AUTOCONF = ${SHELL} /home/sviluppo/Progetti/SMC/missing --run autoconf
 AUTOHEADER = ${SHELL} /home/sviluppo/Progetti/SMC/missing --run autoheader
 AUTOMAKE = ${SHELL} /home/sviluppo/Progetti/SMC/missing --run automake-1.11
-AWK = gawk
+AWK = mawk
 BOOST_CPPFLAGS = -pthread -I/usr/include
 BOOST_LDFLAGS = -L/usr/lib
 BOOST_SYSTEM_LIB = -lboost_system-mt
@@ -306,16 +306,16 @@ DUMPBIN =
 DX_CONFIG = doxygen.cfg
 DX_DOCDIR = doc
 DX_DOT = 
-DX_DOXYGEN = /usr/bin/doxygen
+DX_DOXYGEN = 
 DX_DVIPS = 
 DX_EGREP = 
-DX_ENV =  SRCDIR='.' PROJECT='StreamingMediaCenter' DOCDIR='doc' VERSION='1.0' PERL_PATH='/usr/bin/perl' HAVE_DOT='NO' GENERATE_MAN='NO' GENERATE_RTF='NO' GENERATE_XML='NO' GENERATE_HTMLHELP='NO' GENERATE_CHI='NO' GENERATE_HTML='YES' GENERATE_LATEX='NO'
+DX_ENV =  SRCDIR='.' PROJECT='StreamingMediaCenter' DOCDIR='doc' VERSION='1.0' HAVE_DOT='NO' GENERATE_MAN='NO' GENERATE_RTF='NO' GENERATE_XML='NO' GENERATE_HTMLHELP='NO' GENERATE_CHI='NO' GENERATE_HTML='NO' GENERATE_LATEX='NO'
 DX_FLAG_DX_CURRENT_FEATURE = 
 DX_FLAG_chi = 0
 DX_FLAG_chm = 0
-DX_FLAG_doc = 1
+DX_FLAG_doc = 0
 DX_FLAG_dot = 0
-DX_FLAG_html = 1
+DX_FLAG_html = 0
 DX_FLAG_man = 0
 DX_FLAG_pdf = 0
 DX_FLAG_ps = 0
@@ -473,7 +473,7 @@ INCLUDE = \
 	 -I$(top_srcdir)/libutils
 
 FLAGS = -DWITH_DOM  -DWITH_OPENSSL  $(BOOST_SYSTEM_LIB) $(BOOST_THREAD_LIB) -luuid $(DEBUG_FLAGS) -DHAVE_PTHREAD
-LIBGSTREAMER = `pkg-config --cflags  --libs gstreamer-app-0.10 --libs gstreamer-0.10 --libs gst-rtsp-server-0.10`
+LIBGSTREAMER = `pkg-config --cflags --libs gstreamer-0.10 --libs gst-rtsp-server-0.10`
 PROXY = \
 	patterns/Subject.cpp \
 	patterns/Observer.cpp \
@@ -586,7 +586,7 @@ frontend_SOURCES = main-frontend.cpp \
 	gui/ClickListener.cpp \
 	$(AGENTPROXY)
 
-frontend_CXXFLAGS = $(INCLUDE) -lphonon $(QT_CXXFLAGS) $(FLAGS) $(AM_CXXFLAGS) `pkg-config --cflags --libs gstreamer-app-0.10 --libs gstreamer-0.10` -I$(top_srcdir)/src/gui \
+frontend_CXXFLAGS = $(INCLUDE) -lphonon $(QT_CXXFLAGS) $(FLAGS) $(AM_CXXFLAGS) `pkg-config --cflags --libs  gstreamer-0.10` -I$(top_srcdir)/src/gui \
 	-I$(ONVIFLIB)/Remote  \
 	-I$(top_srcdir)/src/patterns \
 	-I$(top_srcdir)/src/observers \

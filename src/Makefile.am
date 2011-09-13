@@ -34,7 +34,7 @@ INCLUDE = \
 	 -I$(top_srcdir)/libutils
 	 
 FLAGS = -DWITH_DOM  -DWITH_OPENSSL  $(BOOST_SYSTEM_LIB) $(BOOST_THREAD_LIB) -luuid $(DEBUG_FLAGS) -DHAVE_PTHREAD
-LIBGSTREAMER = `pkg-config --cflags  --libs gstreamer-app-0.10 --libs gstreamer-0.10 --libs gst-rtsp-server-0.10`
+LIBGSTREAMER = `pkg-config --cflags --libs gstreamer-0.10 --libs gst-rtsp-server-0.10`
 bin_PROGRAMS = \
 	smc-cored \
 	smc-storaged \
@@ -150,7 +150,7 @@ frontend_SOURCES =   main-frontend.cpp \
 	gui/restoreui.cpp \
 	gui/ClickListener.cpp \
 	$(AGENTPROXY)
-frontend_CXXFLAGS = $(INCLUDE) -lphonon $(QT_CXXFLAGS) $(FLAGS) $(AM_CXXFLAGS) `pkg-config --cflags --libs gstreamer-app-0.10 --libs gstreamer-0.10` -I$(top_srcdir)/src/gui \
+frontend_CXXFLAGS = $(INCLUDE) -lphonon $(QT_CXXFLAGS) $(FLAGS) $(AM_CXXFLAGS) `pkg-config --cflags --libs  gstreamer-0.10` -I$(top_srcdir)/src/gui \
 	-I$(ONVIFLIB)/Remote  \
 	-I$(top_srcdir)/src/patterns \
 	-I$(top_srcdir)/src/observers \
