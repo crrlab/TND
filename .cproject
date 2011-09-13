@@ -48,7 +48,7 @@
 					<folderInfo id="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1824768353.609188931." name="/" resourcePath="">
 						<toolChain id="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1005340449" name="org.eclipse.linuxtools.cdt.autotools.core.toolChain" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolChain">
 							<targetPlatform id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.targetPlatform.2035349221" isAbstract="false" name="GNU Autotools Target Platform" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.targetPlatform"/>
-							<builder arguments="-c smc make" buildPath="${workspace_loc:/SMC}/build-Gnu_with_SChroot" command="schroot" id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.builder.658821115" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.builder"/>
+							<builder arguments="-c smc -u sviluppo -d /home/sviluppo/Progetti/SMC  make" buildPath="${workspace_loc:/SMC}/build-Gnu_with_SChroot" command="schroot" id="org.eclipse.linuxtools.cdt.autotools.core.toolchain.builder.658821115" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="org.eclipse.linuxtools.cdt.autotools.core.toolchain.builder"/>
 							<tool id="org.eclipse.linuxtools.cdt.autotools.core.gnu.toolchain.tool.configure.493003832" name="configure" superClass="org.eclipse.linuxtools.cdt.autotools.core.gnu.toolchain.tool.configure">
 								<option id="org.eclipse.linuxtools.cdt.autotools.core.option.configure.name.877888009" name="Name" superClass="org.eclipse.linuxtools.cdt.autotools.core.option.configure.name" value="org.eclipse.linuxtools.cdt.autotools.core.toolChain.1824768353" valueType="string"/>
 							</tool>
