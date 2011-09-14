@@ -20,9 +20,10 @@ AgentRequest::~AgentRequest() {
 }
 
 	void AgentRequest::setEndpoint() {
-	    this->Proxy.recv_timeout=3;
-	    this->Proxy.send_timeout=3;
+	    this->Proxy.recv_timeout=8;
+	    this->Proxy.send_timeout=8;
 		this->Proxy.soap_endpoint = this->Application->getEndpoint("Soap_Service");
+		std::clog<<"Invia Chiamata all'indirizzo: "<<this->Application->getEndpoint("Soap_Service")<<std::endl;
 	}
 
 	void AgentRequest::setHeader() {

@@ -23,6 +23,7 @@ namespace Pattern {
 		this->_observers.push_front(o);
 	}
 	void Subject::Detach(Pattern::Observer* o) {
+
 		this->_observers.remove(o);
 
 	}

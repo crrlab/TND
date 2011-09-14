@@ -36,7 +36,13 @@ namespace Pattern {
 	}
 	void Thread::stop(){
 		boost::unique_lock<boost::mutex> lock(this->exit_mutex);
+
+		this->running = false;
+		this->notify();
 		this->stopped.wait(lock);
+
+
+		std::clog<<"THREAD Stopped...."<<std::endl;
 	}
 	void Thread::notify(){
 	    boost::lock_guard<boost::mutex> lock(this->wait_mutex);
@@ -44,6 +50,7 @@ namespace Pattern {
 	}
 
 	void Thread::exit(){
+		std::clog<<"THREAD EXIT...."<<std::endl;
 		    boost::lock_guard<boost::mutex> lock(this->wait_mutex);
 			this->stopped.notify_one();
 		}

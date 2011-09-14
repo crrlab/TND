@@ -32,7 +32,13 @@ public:
 
 	virtual void stop();
 	virtual void exit();
+
+	virtual bool isRunning() {
+		return running;
+	}
 protected:
+
+	volatile bool running;
 	/** definisce una classe astratta
 	 *
 	 */

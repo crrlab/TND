@@ -38,9 +38,9 @@ namespace SMC {
 		}
 
 		NetworkVideoTransmitter::~NetworkVideoTransmitter() {
-			mapCommand::iterator it;
+		//	mapCommand::iterator it;
 
-			this->Action.clear();
+	//		this->Action.clear();
 			std::clog << "Telecamera rimossa" << std::endl;
 
 /** Save Function */

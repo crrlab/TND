@@ -13,7 +13,8 @@
 namespace SMC {
 
 HubProxy::~HubProxy() {
-	// TODO Auto-generated destructor stub
+
+	std::clog<<"Hub Proxy Rimosso"<<std::endl;
 }
 
 void HubProxy::Attach(Pattern::Observer *o) {
@@ -24,7 +25,13 @@ void HubProxy::Attach(Pattern::Observer *o) {
 		Pattern::Subject::Attach(o);
 
 }
+void HubProxy::Detach(Pattern::Observer *o) {
+	if (dynamic_cast<SMC::ManagerProxy*> (o))
+		Pattern::Subject::Detach(o);
+	if (dynamic_cast<SMC::StorageProxy*> (o))
+		Pattern::Subject::Detach(o);
 
+}
 void HubProxy::Update(Pattern::Subject* theChangeSubject) {
 	if (dynamic_cast<SMC::Onvif::NetworkVideoTransmitter*> (theChangeSubject)) {
 

@@ -74,6 +74,7 @@ void RTSPserver::run() {
 	gst_rtsp_media_factory_set_launch(factory, this->pipeline.c_str());
 	gst_rtsp_media_factory_set_shared(GST_RTSP_MEDIA_FACTORY(factory), TRUE);
 
+	//gst_rtsp_media_factory_set_multicast_group(GST_RTSP_MEDIA_FACTORY(factory), "224.2.0.1");
 	/* attach the test factory to the /test url */
 	gst_rtsp_media_mapping_add_factory(mapping, this->path.c_str(), factory);
 

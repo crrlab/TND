@@ -168,9 +168,6 @@ void Application::save() {
 
 #ifndef CORE_EXCEPTION
 	this->comandi["Bye"]->Execute();
-	this->comandi["Bye"]->Execute();
-	this->comandi["Bye"]->Execute();
-	this->comandi["Bye"]->Execute();
 
 
 #endif

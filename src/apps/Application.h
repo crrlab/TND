@@ -45,7 +45,7 @@ mapCommand comandi;
 
 				std::clog << "[SMC::"<<this->subtype<<"]: agentServer is running..."<<this->port
 						<< std::endl;
-			//	server->accept_timeout=10 uSec;
+			//	server->accept_timeout=1;
 				server->bind_flags=SO_REUSEADDR;
 				if (!soap_valid_socket(soap_bind(server, NULL, atoi(this->port.c_str()), 100))) {
 				    soap_print_fault(server, stderr);
@@ -96,9 +96,6 @@ mapCommand comandi;
 
 #ifndef CORE_EXCEPTION
                                 //sleep(5);
-				this->comandi["Hello"]->Execute();
-				this->comandi["Hello"]->Execute();
-				this->comandi["Hello"]->Execute();
 				this->comandi["Hello"]->Execute();
 
 #endif

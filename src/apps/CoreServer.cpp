@@ -182,13 +182,14 @@ void* CoreServer::DiscoveryServe()
     std::clog << "[SMC::Core]: No Multicast..." << std::endl;
 
     std::clog << "[SMC::Core]: Discovery is running..." << std::endl;
-    for (;this->running;)
+    for (;;)
 	{
 	if (discovery->serve())
 	soap_print_fault(discovery, stderr); // report the problem
 	soap_destroy(discovery);
 	soap_end(discovery);
 	}
+    std::clog << "[SMC::Core]: Stopped..." << std::endl;
 
 	if(this->running)
 	std::clog << "[SMC::Core]: Running..." << std::endl;
@@ -337,6 +338,7 @@ namespace Remote
     int dpws_discoveryService::Bye(wsd__ByeType *wsd__Bye)
 	{
 
+    	std::clog << "[SMC::Core][Hello::RemoveDevice] inizio remove device"<< std::endl;
 	/** Importa la classe main nel Discovery server */
 	SMC::CoreServer* server = static_cast<SMC::CoreServer*> (this->user);
 	if (server->RemoteCollection.find(
@@ -347,19 +349,25 @@ namespace Remote
 	    for (it = server->RemoteCollection.begin(); it
 		    != server->RemoteCollection.end(); ++it)
 		{
-		it->second->closing();
 
+	    	std::clog << "[SMC::Core][Hello::RemoveDevice] In Chiusura"<< std::endl;
+	//	it->second->closing();
+		std::clog << "[SMC::Core][Hello::RemoveDevice] In Detach"<< std::endl;
 		it->second->Detach(
 			server->RemoteCollection[wsd__Bye->wsa__EndpointReference.Address]);
+		std::clog << "[SMC::Core][Hello::RemoveDevice] Notifica a tutti la chiusura"<< std::endl;
 		it->second->Notify();
 
 		}
+	    server->RemoteCollection[wsd__Bye->wsa__EndpointReference.Address]->closing();
 	    delete server->RemoteCollection[wsd__Bye->wsa__EndpointReference.Address];
 	    server->RemoteCollection.erase(
 		    wsd__Bye->wsa__EndpointReference.Address);
 	    std::clog << "[SMC::Core][Bye::RemoveDevice] "
 		    << wsd__Bye->wsa__EndpointReference.Address << std::endl;
 	    }
+
+	std::clog << "[SMC::Core][Hello::RemoveDevice] fine remove device"<< std::endl;
 
 	return SOAP_OK;
 	}

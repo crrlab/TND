@@ -16,6 +16,7 @@ class HubProxy: public SMC::AgentProxy {
 public:
 	HubProxy(const std::string& a): AgentProxy(a){}
 	virtual void Attach(Pattern::Observer *);
+	virtual void Detach(Pattern::Observer *);
 	virtual void Update (Pattern::Subject* theChangeSubject);
 	virtual ~HubProxy();
 };

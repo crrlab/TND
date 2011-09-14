@@ -34,19 +34,15 @@ namespace SMC {
 			mapCommandOption optionAction;
 			std::queue<mapCommandQueued> queueCommands;
 
-			volatile bool running;
 			std::string uuid;
 		public:
-			bool isRunning() {
-				return running;
-			}
 			virtual void SetInfo(const std::string& a, const std::string& b) {
 				this->Information[a] = b;
 			}
 
 			virtual void closing() {
-				this->running = false;
-				this->notify();
+		//		this->running = false;
+			//	this->notify();
 				this->stop();
 
 			}

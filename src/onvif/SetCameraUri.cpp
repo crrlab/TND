@@ -21,7 +21,7 @@ void SetCameraUri::getRequest() {
 	SMC::camera__uri info;
 	SMC::camera__info _response;
 
-	std::clog << "* setCameraInfo: " <<m_options["uuid"] <<std::endl;
+	std::clog << "* setCameraUri " <<m_options["uuid"] <<std::endl;
 	if (!this->m_options["uuid"].empty() || !this->m_options["StreamUri"].empty()) {
 		info.uuid = this->m_options["uuid"];
 		info.streamURI = this->m_options["StreamUri"];
@@ -29,6 +29,8 @@ void SetCameraUri::getRequest() {
 
 		{
 			if (!_response.uuid.empty()) {
+
+				std::clog<<"Info TYPE"<<_response.Info<<std::endl;
 				if(_response.Info_type != "StorageFile")
 				this->Application->StreamingSource[_response.uuid].setUri(
 						_response.Info);

@@ -72,12 +72,16 @@ namespace SMC
 
 	    if (this->queueCommands.empty() && this->isRunning())
 		{
+	    	std::clog << "[SMC::Core] Bloccato" << std::endl;
 		this->wait();
+		std::clog << "[SMC::Core] Sbloccato" << std::endl;
 
 		}
 
 	    }
 	this->exit();
+
+	std::clog << "[SMC::Core] Uscita thread" << std::endl;
 
 	}
 
