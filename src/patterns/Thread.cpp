@@ -39,7 +39,7 @@ namespace Pattern {
 
 		this->running = false;
 		this->notify();
-		this->stopped.wait(lock);
+		//this->stopped.wait(lock);
 
 
 		std::clog<<"THREAD Stopped...."<<std::endl;

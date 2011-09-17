@@ -26,7 +26,7 @@ namespace SMC
 	{
 	this->subtype = "CoreServer";
 	this->port = "9990";
-
+	dbgSetPrefix("[SMC::CoreServer]");
 	//this->m_discovery = new DiscoveryServer(this);
 
 	//	this->RemoteCollection["Testing_Camera"]= new SMC::Onvif::NetworkVideoTransmitter ("192.168.1.134");
@@ -141,6 +141,8 @@ int s;
    	if (soap_valid_socket(soap_bind(server, NULL, atoi(this->port.c_str()), 100)))
 	{	for (;this->running;)
 		{	s=soap_valid_socket(server->accept());
+/*! salta il resto del ciclo */
+	    if (s==0) {continue;}
 		  if (s < 0)
          {
             soap_print_fault(server, stderr);
@@ -158,6 +160,7 @@ int s;
 	exit(1);
 	}
 
+   	DT("SoapServer closed");
     soap_done(server); // close connection
 
     }

@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
       app.exec();
       delete win;
       DT("Frontend exit from main");
+      app.exit(0);
     }
     catch (EX e) {
       DT("Frontend exception (%s)", e.what());

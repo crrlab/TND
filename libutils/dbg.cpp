@@ -15,6 +15,7 @@
 #include <execinfo.h>
 #include <cxxabi.h>
 #include <vector>
+#include <list>
 #ifdef HAVE_QT
 #include <QApplication>
 #endif
@@ -24,7 +25,7 @@
 
 
 // for calling the rewritten signal handlers
-typedef std::map<int,sighandler_t> SigMap;
+typedef std::map<int,sighandler_t> SigHandlerMap;
 
 
 //---- local data
@@ -38,7 +39,7 @@ static std::string _dbgPrefix;
 static std::string _dbgSuffix;
 
 // for calling the rewritten signal handlers
-static SigMap _sigMap;
+static SigHandlerMap _sigHandlerMap;
 
 // registered shutdown procedures
 static std::vector<DbgProc> _shutdownProcs;
@@ -48,6 +49,14 @@ static bool                 _shutdownDone = false;
 
 //---- local api
 
+
+template<class K, class V>
+inline V mapFind(const std::map<K,V>& m, const K& key, const V& def = 0)
+{
+  typename std::map<K,V>::const_iterator it = m.find(key);
+  if(it == m.end()) return def;
+  return it->second;
+}
 
 static inline void _dbgLog1(const char*        str)               { fprintf(_dbgStream, "%s", str); }
 static inline void _dbgLog1(const std::string& str)               { _dbgLog1(str.c_str()); }
@@ -118,36 +127,37 @@ static void _dbgSigHandler(int sig)
     case SIGBUS :
     case SIGILL :
     case SIGFPE :
-      DBG_BTRACE2(2, false);	// in release mode no dump occurs
+      //dbg("Error: signal #%d (%s)", sig, strsignal(sig));   // for dumping error signals in debug and also in release mode
+      //dbgBacktrace(2, false);
+      DBG_BTRACE2(2, false);		// backtrace dump (debug mode only)
       break;
     default:
-      //DBG_BTRACE(2, false);	// uncomment just for testing backtrace dump on all signals
+      //DBG_BTRACE2(2, false);	// uncomment to have backtrace dump for all signals (in debug mode)
       break;
   }
-  //DT("looking for prev sig handler");
-  SigMap::const_iterator is = _sigMap.find(sig);
-  if(is != _sigMap.end()) {
-    //DT("prev sig handler found");
-    sighandler_t h = is->second;
-    if(h && h!=SIG_ERR) {
-      h(sig);		// exec previously defined signal handler
-      DT("prev sig handler executed");
+  //DT("Debug: looking for previous signal handler");
+  sighandler_t h = mapFind(_sigHandlerMap, sig);
+  if(h) {
+    h(sig);
+    if(h == SIG_IGN) {
+      DT("Debug: signal to ignore (continue running).");
+      return;
     }
+    DT("Debug: previous signal handler executed.");
   }
-  //DT("shutdown...");
+  //DT("Debug: shutdown...");
   _dbgSigShutdown(sig);
-  //DT("shutdown DONE");
+  //DT("Debug: shutdown DONE");
   exit(sig);
-  //DT("exit!!!!");
+  //DT("Debug: exited!!!");
 }
 
 static inline void _dbgSigAdd(int sig)
 {
-  //struct sigaction act;
-  //sigaction(sig, _dbgHandler, &act);
+  // TODO: use sigaction(...) instead of signal(...)???
   sighandler_t h = signal(sig, _dbgSigHandler);
-  if(h == _dbgSigHandler) return;	// avoid duplicated debug handlers
-  _sigMap[sig] = h;
+  if(h==_dbgSigHandler || h==SIG_ERR) return;	// skip duplicate and useless handlers
+  _sigHandlerMap[sig] = h;
 }
 
 static inline void _dbgSetString(const char* src, std::string& dst, bool prefix)
@@ -181,7 +191,7 @@ static inline void _dbgLogTime()
   time_t t;
   time(&t);
   char str[128];
-  strftime(str, 128, DBG_TIME, localtime(&t));
+  strftime(str, 128, DBG_FMT_TIME, localtime(&t));
   _dbgLog1(str);
 }
 
@@ -197,6 +207,7 @@ static void _qtMsgHandler(QtMsgType type, const char* msg)
   switch(type) {
     case QtDebugMsg:
     case QtWarningMsg:
+      //DBG_BTRACE(2, false);   // backtrace should not really helpful here
       break;
     case QtCriticalMsg:
     case QtFatalMsg:
@@ -356,11 +367,9 @@ void dbgSetupSignals()
   _dbgSigAdd(SIGBUS );
   _dbgSigAdd(SIGILL );
   _dbgSigAdd(SIGFPE );	// floating point exception
-  //atexit(_dbgShutdown);
   std::set_terminate (_dbgShutdown);
   std::set_unexpected(_dbgShutdown);
   #ifdef HAVE_QT
   qInstallMsgHandler(_qtMsgHandler);
   #endif
 }
-

@@ -22,18 +22,19 @@
 // undef to avoid synchronized logging (through mutex)
 #define DBG_SAFE
 
-// undef to exclude function names in full debug messages (faster)
+// undef to exclude function names in full debug messages (it's a bit faster)
 #define DBG_FUN_ENABLE
 
-// time format (of time string)
-#ifndef DBG_TIME
-#define DBG_TIME  "[%d/%m/%Y, %H:%M:%S]  "
+// time format (for logging time string)
+#ifndef DBG_FMT_TIME
+#define DBG_FMT_TIME  "[%d/%m/%Y, %H:%M:%S]  "
 #endif
 
 // exception shortcut
 #define EX       std::exception&
 
-#define _LINE_   DBG_TOSTRING(__LINE__)
+// code positions
+#define _LINE_   DBG_QUOTE(__LINE__)
 #define _FUN_    __PRETTY_FUNCTION__
 #define _CLS_    CLS(*this)
 #define CLS(c)   typeid(c).name()
@@ -44,30 +45,33 @@
 #define _AT_     __FILE__ " - " _LINE_
 #endif
 
-#define DBG_TOSTRING(x)   DBG_STRINGIFY(x)
-#define DBG_STRINGIFY(x)  #x
+// internal utilities
+#define DBG_QUOTE(x)    DBG_QUOTE1(x)
+#define DBG_QUOTE1(x)   #x
+#define DBG_COND(cond, code)  do { if(!(cond)) { code; }} while(0)
 
 #ifdef DEBUG
 
 // debug enabled
-#define D0(fmt, ...)      dbg0(         fmt, ##__VA_ARGS__)
-#define DT(fmt, ...)      dbgT(         fmt, ##__VA_ARGS__)
-#define DF(fmt, ...)      dbgF(DBG_LOC, fmt, ##__VA_ARGS__)
-#define D0_IF(cond, fmt, ...)  if(cond) { D0(fmt, ##__VA_ARGS__); }
-#define DT_IF(cond, fmt, ...)  if(cond) { DT(fmt, ##__VA_ARGS__); }
-#define DF_IF(cond, fmt, ...)  if(cond) { DF(fmt, ##__VA_ARGS__); }
-#define DBG_PREFIX(s)     dbgPrefix(s)
-#define DBG_SUFFIX(s)     dbgSuffix(s)
-#define DBG_BTRACE        dbgBacktrace();
-#define DBG_BTRACE1(x)    dbgBacktrace(x);
-#define DBG_BTRACE2(x,y)  dbgBacktrace(x, y);
-#define DBG_SIGNALS       dbgSetupSignals();
+#define D0(fmt, ...)           dbg0(         fmt, ##__VA_ARGS__)
+#define DT(fmt, ...)           dbgT(         fmt, ##__VA_ARGS__)
+#define DF(fmt, ...)           dbgF(DBG_LOC, fmt, ##__VA_ARGS__)
+#define D0_IF(cond, fmt, ...)  DBG_COND(!(cond), D0(fmt, ##__VA_ARGS__))
+#define DT_IF(cond, fmt, ...)  DBG_COND(!(cond), DT(fmt, ##__VA_ARGS__))
+#define DF_IF(cond, fmt, ...)  DBG_COND(!(cond), DF(fmt, ##__VA_ARGS__))
+#define DBG_PREFIX(s)          dbgPrefix(s)
+#define DBG_SUFFIX(s)          dbgSuffix(s)
+#define DBG_BTRACE             dbgBacktrace();
+#define DBG_BTRACE1(x)         dbgBacktrace(x);
+#define DBG_BTRACE2(x,y)       dbgBacktrace(x, y);
+#define DBG_SIGNALS            dbgSetupSignals();
+#define DBG_ASSERT(cond, fmt, fin)   DBG_COND(cond,  D(fmt, DBG_QUOTE(cond)); DBG_BTRACE1(false); if(fin) ::exit(fin))
 #ifdef DBG_FUN_ENABLE
 #define DBG_LOC  ("\n    (" _AT_ + ")\n").c_str()
 #else
 #define DBG_LOC   "\n    (" _AT_ ")\n"
 #endif
-#define DBG           1
+#define DBG          1
 
 #else	// DEBUG
 
@@ -84,39 +88,37 @@
 #define DBG_BTRACE1(x)
 #define DBG_BTRACE2(x,y)
 #define DBG_SIGNALS
-#define DBG_LOC        "\n"
-#define DBG            0
+#define DBG_ASSERT(cond, fmt, fin)
+#define DBG_LOC    "\n"
+#define DBG        0
 
 #endif	// DEBUG
 
-// >>>>>> default debug macro <<<<<<
+// >>>>>> main debug macros <<<<<<
 #define D(fmt, ...)            DF(fmt, ##__VA_ARGS__)
 //#define D(fmt, ...)            DT(fmt, ##__VA_ARGS__)
-#define D_IF(cond, fmt, ...)   DF_IF(cond, fmt, #__VA_ARGS__); }
-//#define D_IF(cond, fmt, ...)   DT_IF(cond, fmt, #__VA_ARGS__); }
-
-// unique key string for syncing debug logging
-#define DBG_SYNC_KEY  "__dbg_log__"
-
-#ifdef DBG_SAFE
-#define DBG_SYNC  SYNC(DBG_SYNC_KEY);
-#else
-#define DBG_SYNC
-#endif
-
-
+#define D_IF(cond, fmt, ...)   DF_IF(cond, fmt, ##__VA_ARGS__)
+//#define D_IF(cond, fmt, ...)   DT_IF(cond, fmt, ##__VA_ARGS__)
+#define ASS(cond)              DBG_ASSERT(cond, "Debug ASSERT FAILED: \"%s\""   , 1)
+#define WARN(cond)             DBG_ASSERT(cond, "Debug WARNING! \"%s\" is false", 0)
 // default debug function (useful for logging messages also in release mode)
-#define dbg(fmt, ...)  dbgF(DBG_LOC, fmt, ##__VA_ARGS__)
+#define dbg(fmt, ...)          dbgF(DBG_LOC, fmt, ##__VA_ARGS__)
+
+// unique key string for synchronizing the debug log
+#define DBG_SYNC_KEY  "__dbg_log__"
 
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <typeinfo>
 #include <string>
 #include <exception>
 
 #ifdef DBG_SAFE
 #include "mutex.h"
+#define DBG_SYNC  SYNC(DBG_SYNC_KEY);
 #else
+#define DBG_SYNC
 #define SYNC(x)
 #define SYNC_F
 #define SYNC_C

@@ -170,7 +170,7 @@ int agentService::setCameraURI(struct camera__uri *_info,
 
 		std::clog << "### FINE ERRORE ###" << std::endl;
 		std::clog << "Camera esistente" << std::endl;
-		return 500;
+		return soap_receiver_fault(this, "Camera gia inserita nel sistema", NULL);
 	}
 
 }

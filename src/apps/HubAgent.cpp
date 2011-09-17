@@ -19,14 +19,11 @@ HubAgent::HubAgent() {
 	this->subtype = "HubAgent";
 	this->port = "50081";
 
+	dbgSetPrefix("[SMC::HubAgent]");
 }
 
 HubAgent::~HubAgent() {
 
-    soap_destroy(this->server);
-    soap_end(this->server);
-
-    soap_done(this->server); // close connection
 }
 
 void HubAgent::run() {
@@ -56,6 +53,7 @@ int agentService::coreStation(std::string command, std::string &message) {
 	server->CoreProxy = new CoreServerProxy();
 	server->CoreProxy->setEndpoint(command);
 	std::clog << "CoreServer " << server->CoreProxy->getEndpoint() << std::endl;
+
 	return 0;
 }
 ;

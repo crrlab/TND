@@ -79,7 +79,7 @@ namespace SMC
 		}
 
 	    }
-	this->exit();
+//	this->exit();
 
 	std::clog << "[SMC::Core] Uscita thread" << std::endl;
 

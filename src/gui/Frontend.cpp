@@ -37,6 +37,8 @@ void Frontend::run()
     show();
     this->server->user = (void*)this;
     Qserve = QtConcurrent::run(boost::bind(&Frontend::Serve, this));
+
+
 }
 
 bool Frontend::eventFilter(QObject* o, QEvent* e)

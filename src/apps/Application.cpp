@@ -26,8 +26,7 @@
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 
-#include "dbg.h"
-#include "mutex.h"
+
 
 
 /** Namespace del software streaming Media Center
@@ -45,6 +44,7 @@ Application::Application() {
     this->stopped = false;
 
     dbgSetupSignals();
+
     dbgRegShutdown(segnale_ricevuto);
 
     this->subtype = "Application";
@@ -62,11 +62,15 @@ void Application::segnale_ricevuto(int /*signum*/) {
 }
 
 Application::~Application() {
-    app = 0;
-#ifndef CORE_EXCEPTION
+  //  app = 0;
 
+	this->running = false;
+#ifndef CORE_EXCEPTION
 #endif
-    save();
+D("Rimuovi costruttore");
+save();
+while(!this->stopped) {sleep(1);}
+raise (SIGPIPE);
     //exit(1);
 }
 
