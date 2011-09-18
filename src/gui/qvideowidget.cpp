@@ -19,7 +19,7 @@ QVideoWidget::QVideoWidget(int id, bool fixedAspectRatio, bool cropSize, QTreeWi
   item->setData(0, Qt::UserRole, id);
   this->_itemTree = item;
   connect(this, SIGNAL(sigPlay()), this, SLOT(play()));
-  connect(this, SIGNAL(sigStop()), this, SLOT(stop()));
+  connect(this, SIGNAL(), this, SLOT(stop()));
   if(tree) {
     connect(tree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(currItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
     ui.Video->setCursor(Qt::PointingHandCursor);
@@ -30,6 +30,8 @@ QVideoWidget::QVideoWidget(int id, bool fixedAspectRatio, bool cropSize, QTreeWi
 
 QVideoWidget::~QVideoWidget()
 {
+
+
   ui.Video->removeEventFilter(this);
 }
 
@@ -110,6 +112,16 @@ void QVideoWidget::enableCropSize(bool enable)
   _enableCropSize();
 }
 
+void QVideoWidget::stop() {
+	qDebug("Stop Media");
+	media->stop();
+
+	qDebug("Oscura scritta");
+this->_itemTree->setDisabled(true);
+qDebug("Oscura video");
+ui.Video->hide();
+
+}
 void QVideoWidget::_enableCropSize()
 {
   if(ui.Video->isHidden()) return;

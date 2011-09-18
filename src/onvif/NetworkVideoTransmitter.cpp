@@ -75,7 +75,6 @@ namespace SMC {
 			Call("GetCapabilities");
 			Call("GetProfiles");
 
-			this->Notify();
 
 		}
 	}

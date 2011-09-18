@@ -223,6 +223,7 @@ int serverService::setCameraInfo(struct camera__info *_info,
 	server->RemoteCollection[_info->uuid]->SetInfo(_info->Info_type,
 		_info->Info);
 	server->RemoteCollection[_info->uuid]->Notify();
+	return SOAP_OK;
 	}
 
     if (_info->Info_type == "live")
@@ -232,6 +233,7 @@ int serverService::setCameraInfo(struct camera__info *_info,
 	server->RemoteCollection[_info->uuid]->SetInfo(_info->Info_type,
 		_info->Info);
 	server->RemoteCollection[_info->uuid]->Notify();
+	return SOAP_OK;
 	}
 
     if (_info->Info_type == "differita")
@@ -241,6 +243,7 @@ int serverService::setCameraInfo(struct camera__info *_info,
 	server->RemoteCollection[_info->uuid]->SetInfo(_info->Info_type,
 		_info->Info);
 	server->RemoteCollection[_info->uuid]->Notify();
+	return SOAP_OK;
 	}
 
     if (_info->Info_type == "timestamp")
@@ -250,6 +253,7 @@ int serverService::setCameraInfo(struct camera__info *_info,
 	server->RemoteCollection[_info->uuid]->SetInfo(_info->Info_type,
 		_info->Info);
 	server->RemoteCollection[_info->uuid]->Notify();
+	return SOAP_OK;
 	}
 
     return SOAP_OK;
@@ -341,7 +345,7 @@ namespace Remote
     int dpws_discoveryService::Bye(wsd__ByeType *wsd__Bye)
 	{
 
-    	std::clog << "[SMC::Core][Hello::RemoveDevice] inizio remove device"<< std::endl;
+    	std::clog << "[SMC::Core][Bye::RemoveDevice] inizio remove device"<< std::endl;
 	/** Importa la classe main nel Discovery server */
 	SMC::CoreServer* server = static_cast<SMC::CoreServer*> (this->user);
 	if (server->RemoteCollection.find(
@@ -349,17 +353,28 @@ namespace Remote
 		!= server->RemoteCollection.end())
 	    {
 	    std::map<std::string, SMC::RemoteProxy*>::iterator it;
+
+	    DT("Rimuovere Video");
+	    server->RemoteCollection[wsd__Bye->wsa__EndpointReference.Address]->SetInfo("command","removeAll");
+	    	    	server->RemoteCollection[wsd__Bye->wsa__EndpointReference.Address]->Notify();
+	    	    	 DT("Video Rimossi");
 	    for (it = server->RemoteCollection.begin(); it
 		    != server->RemoteCollection.end(); ++it)
 		{
 
-	    	std::clog << "[SMC::Core][Hello::RemoveDevice] In Chiusura"<< std::endl;
+
+
+
+
+
+	    	std::clog << "[SMC::Core][Bye::RemoveDevice] In Chiusura"<< std::endl;
 	//	it->second->closing();
 		std::clog << "[SMC::Core][Hello::RemoveDevice] In Detach"<< std::endl;
 		it->second->Detach(
 			server->RemoteCollection[wsd__Bye->wsa__EndpointReference.Address]);
 		std::clog << "[SMC::Core][Hello::RemoveDevice] Notifica a tutti la chiusura"<< std::endl;
-		it->second->Notify();
+
+		//it->second->Notify();
 
 		}
 	    server->RemoteCollection[wsd__Bye->wsa__EndpointReference.Address]->closing();

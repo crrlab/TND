@@ -37,6 +37,7 @@ DeviceContainer::DeviceContainer(SMC::Application* app) {
 }
 
 DeviceContainer::~DeviceContainer() {
+this->video->signalStop();
 }
 
 void DeviceContainer::addTree(QTreeWidget* a) {

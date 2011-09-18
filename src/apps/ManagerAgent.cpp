@@ -77,9 +77,27 @@ int agentService::setCameraInfo(struct camera__info *_info,
 	message = "Not OK";
 	ManagerAgent* server = static_cast<ManagerAgent*>(this->user);
 	std::clog << _info->Info_type << ": " << _info->Info << std::endl;
+
+	if (_info->Info_type == "removeAll") {
+		message = "";
+		std::map<std::string, RTSPserver*>::iterator it;
+		for (it = server->servers.begin(); it != server->servers.end(); ++it) {
+
+			delete it->second;
+
+		}
+
+		server->servers.clear();
+
+		return SOAP_OK;
+
+	}
+
 	if (_info->Info_type == "url_differita") {
 		message = "urlDifferita OK";
 		server->urls[_info->uuid]["differita"] = _info->Info;
+
+		return SOAP_OK;
 
 	}
 
@@ -92,6 +110,7 @@ int agentService::setCameraInfo(struct camera__info *_info,
 		s = out.str();
 		std::clog << "Switch: " << _info->Info << std::endl;
 		server->servers["SwitchServer"]->setLocation(_info->Info);
+		return SOAP_OK;
 
 	}
 
@@ -107,6 +126,7 @@ int agentService::setCameraInfo(struct camera__info *_info,
 				server->urls[_info->uuid]["live"]);
 		std::clog << "LIVE: " << server->urls[_info->uuid]["live"] << std::endl;
 
+		return SOAP_OK;
 	}
 
 	if (_info->Info_type == "differita") {
@@ -120,6 +140,8 @@ int agentService::setCameraInfo(struct camera__info *_info,
 				server->urls[_info->uuid]["differita"]);
 		std::clog << _info->uuid << "DIFFERITA: "
 				<< server->urls[_info->uuid]["differita"] << std::endl;
+
+		return SOAP_OK;
 	}
 
 	return SOAP_OK;
@@ -127,7 +149,6 @@ int agentService::setCameraInfo(struct camera__info *_info,
 ;
 int agentService::setCameraURI(struct camera__uri *_info,
 		struct camera__info &_infoResponse) {
-
 
 	std::clog << "### INIZIO ###" << std::endl;
 	ManagerAgent* server = static_cast<ManagerAgent*>(this->user);
@@ -170,7 +191,8 @@ int agentService::setCameraURI(struct camera__uri *_info,
 
 		std::clog << "### FINE ERRORE ###" << std::endl;
 		std::clog << "Camera esistente" << std::endl;
-		return soap_receiver_fault(this, "Camera gia inserita nel sistema", NULL);
+		return soap_receiver_fault(this, "Camera gia inserita nel sistema",
+				NULL);
 	}
 
 }

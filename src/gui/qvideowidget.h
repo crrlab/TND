@@ -51,7 +51,8 @@ public slots:
     void currItemChanged(QTreeWidgetItem* curr, QTreeWidgetItem* prev);
 
     void play() { media->play(); }
-    void stop() { media->stop(); }
+    void stop();
+    void signalStop(){sigStop();}
 
 signals:
   void sigPlay();

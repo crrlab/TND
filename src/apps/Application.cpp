@@ -64,12 +64,15 @@ void Application::segnale_ricevuto(int /*signum*/) {
 Application::~Application() {
   //  app = 0;
 
+
 	this->running = false;
-#ifndef CORE_EXCEPTION
-#endif
+
 D("Rimuovi costruttore");
 save();
+#ifndef CORE_EXCEPTION
 while(!this->stopped) {sleep(1);}
+
+#endif
 raise (SIGPIPE);
     //exit(1);
 }

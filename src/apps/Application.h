@@ -57,27 +57,14 @@ mapCommand comandi;
 				}
 				int r;
 				for (;this->running;) {
-
-
-				//	r =select((int) server->master + 1, server,NULL, NULL,NULL);
-				  //  select((int) soap->master + 1, &fd, &fd, &fd, &timeout);
-					//
-					//if (r < 0)
-				    DT("Accept");
-				//    soap_poll(server);
 				    int s = soap_valid_socket(server->accept());
+				    if (s==0) continue;
 
-					DT("Signal soap closing: %d", s);
-				    if (s==0) {DT("Signal soap closing");
-				    continue;
-				    }
 				    if (s < 0) {
 				    	DT("Error");
 				        soap_print_fault(server, stderr);
 				        break;
 				    }
-
-
 				    DT("Serve");
 				    (void)server->serve();
 				    soap_destroy(server);

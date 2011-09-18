@@ -39,6 +39,8 @@ namespace SMC {
 					this->Application->StreamingSource[input.ProfileToken].setUri( output.MediaUri->Uri);
 				}
 
+			//	Application->Notify();
+
 
 		}
 	}

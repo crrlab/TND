@@ -49,6 +49,7 @@ void HubProxy::Update(Pattern::Subject* theChangeSubject) {
 				this->SetOptionCall("SetCameraUri", "StreamUri",
 						it->second.getUri());
 		}
+		if(!nvt->StreamingSource.empty())
 		this->Call("SetCameraUri");
 	}
 }

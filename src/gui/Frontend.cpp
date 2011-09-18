@@ -242,8 +242,31 @@ namespace SMC
     }
 
     /// Web service operation 'setCameraInfo' (returns error code or SOAP_OK)
-    int agentService::setCameraInfo(struct camera__info* /*_info*/, std::string& /*message*/)
+    int agentService::setCameraInfo(struct camera__info* _info, std::string& message)
     {
+    	/*Frontend* server = static_cast<Frontend*> (this->user);
+    	if (_info->Info_type == "removeAll") {
+
+    		QMap<QString, DeviceContainer*>::iterator it;
+    		for (it = server->devices.begin(); it
+    			 != server->devices.end() ; ++it) {
+    			 if (it.key() == "SwitchServer") {
+      				 qDebug() << "Main Video";
+    				 }
+
+    			 else {
+
+
+    				 server->nullvideos.append(it.value()->getVideoWidget());
+
+    				 server->devices.remove(it.key());
+    			 }
+
+    		}
+*/
+
+
+    	}
 	return SOAP_OK;
     }
 
